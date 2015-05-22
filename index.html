@@ -137,6 +137,12 @@
 			desc.innerHTML= desc.innerHTML+arr[index];
 			index++;
 		}
+		//设置页面不能选中文字
+		if (window.addEventListener){
+			window.addEventListener("selectstart", function(){return false;}, false);
+		}else if (window.attachEvent){
+			window.attachEvent("onselectstart", function(){return false;});
+		}
 	})();
 </script>
  </body>
