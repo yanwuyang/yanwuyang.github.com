@@ -3,34 +3,101 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
+	<meta name="Author" content="yanwuyang">
+    <meta name="Keywords" content="颜五洋">
+    <meta name="Description" content="颜五洋个人主页">
+	<title>Yanwuyang.GitHub.io by yanwuyang</title>
 
-    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
-
-    <title>Yanwuyang.GitHub.io by yanwuyang</title>
+	<style style="text/css">
+		body {
+		  margin: 0;
+		  padding: 0;
+		  background:url("images/xingkong.jpg") ;
+		  color: #eaeaea;
+		  font: 16px;
+		  line-height: 1.5;
+		  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+		}
+		.container {
+		  width: 100%;
+		  height:100%;
+		}
+		.xingxing{
+			position:absolute;
+			left:85%;
+			top:25%;
+			width:100px;
+			height:100px;
+			margin-left:-50px;
+			margin-top:-50px;
+		}
+		.main{
+			position:absolute;
+			left:25%;
+			top:30%;
+			
+		}
+		.header{
+			width: 80px; height: 80px;-moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px;
+			border:1px solid #DDDDDD;
+			background:url(images/header.jpg);
+			float:left;
+		}
+		.desc{
+			float:left;
+			border:1px solid #DDDDDD;
+			margin-left:20px;
+			width:300px;
+			height:200px;
+			padding:20px 20px;
+			-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius:5px;
+		}
+		.triangle-left {
+			width: 0;
+			height: 0;
+			border-top: 10px solid transparent;
+		    border-right: 20px solid #DDDDDD;
+			border-bottom: 10px solid transparent;
+			margin-top:-19px;
+			margin-left:-40px;
+		}
+	</style>
+	<script>
+			var arr=["hi"," ","大","家","好"," ","我","叫","颜","五","洋"];
+			var index=0;
+			onload = function(){
+				init();
+				
+			}
+		
+			function init(){
+				if(index==arr.length){
+					return;
+				}
+				var desc = document.getElementById("desc");
+				desc.innerHTML= desc.innerHTML+arr[index];
+				index++;
+				setTimeout("init()",200);
+			}
+	</script>
   </head>
 
-  <body>
-
-    <header>
-      <div class="container">
-        <h1>Yanwuyang.GitHub.io</h1>
-        <h2>My home page</h2>
-
-        <section id="downloads">
-          <a href="https://github.com/yanwuyang" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
-      </div>
-    </header>
-
-    <div class="container">
-      <section id="main_content">
-        <h3>
-          Hello everyone
-        <h3>
+ <body>
+	<div class="container">
+		<div class="xingxing">
+			<img src="images/xingxing2.gif" width="80px" height="80px">
+		</div>	
+		<div class="main">
+			<div class="header"></div>
+			
+			<div class="desc" id="desc">
+			<div class="triangle-left"></div>
+			
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		 
     </div>
 
-    
-  </body>
+ </body>
 </html>
