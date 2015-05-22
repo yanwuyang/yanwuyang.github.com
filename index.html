@@ -3,60 +3,57 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="Author" content="yanwuyang">
+	<meta name="Author" content="yanwuyang">
     <meta name="Keywords" content="颜五洋">
     <meta name="Description" content="颜五洋个人主页">
-    <title>Yanwuyang.GitHub.io by yanwuyang</title>
+	<title>Yanwuyang.GitHub.io by yanwuyang</title>
 
 	<style style="text/css">
 		body {
 		  margin: 0;
 		  padding: 0;
-		  background:url("images/xingkong.jpg") ;
+		  background:  url("images/bg.jpg") no-repeat scroll;
 		  color: #eaeaea;
 		  font: 16px;
 		  line-height: 1.5;
 		  font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+		  
+		  overflow: hidden;
+		  width: 100%;
+		  height: 100%;
 		}
 		.container {
 		  width: 100%;
 		  height:100%;
 		}
-		.xingxing{
-			position:absolute;
-			left:85%;
-			top:25%;
-			width:100px;
-			height:100px;
-			margin-left:-50px;
-			margin-top:-50px;
-		}
 		.main{
+			width:450px;
 			position:absolute;
-			left:25%;
+			left:30%;
 			top:30%;
 			
 		}
 		.header{
 			width: 80px; height: 80px;-moz-border-radius: 50px; -webkit-border-radius: 50px; border-radius: 50px;
-			border:1px solid #DDDDDD;
+			border:1px solid #888888;
 			background:url(images/header.jpg);
 			float:left;
 		}
 		.desc{
 			float:left;
-			border:1px solid #DDDDDD;
+			border:1px solid #888888;
 			margin-left:20px;
 			width:300px;
 			height:200px;
 			padding:20px 20px;
+			color:#000000;
 			-moz-border-radius: 5px; -webkit-border-radius: 5px; border-radius:5px;
 		}
 		.triangle-left {
 			width: 0;
 			height: 0;
 			border-top: 10px solid transparent;
-		    border-right: 20px solid #DDDDDD;
+		    border-right: 20px solid #888888;
 			border-bottom: 10px solid transparent;
 			margin-top:-19px;
 			margin-left:-40px;
@@ -67,7 +64,7 @@
 			var arr=["hi","，","大","家","好","，","我","是","颜","五","洋","！","一","名","java","程","序","员","。","正","在","探","索","程","序","员","之","路."];
 			var index=0;
 			var timeObj;
-			var timeObj=setInterval(init,200);
+			var timeObj=setInterval(init,150);
 			function init(){
 				if(index==arr.length){
 					clearInterval(timeObj);
@@ -83,16 +80,13 @@
 
  <body>
 	<div class="container">
-		<div class="xingxing">
-			<img src="images/xingxing2.gif" width="80px" height="80px">
-		</div>	
 		<div class="main">
 			<div class="header"></div>
 			<div class="desc" id="desc">
-			<div class="triangle-left"></div>
+				<div class="triangle-left"></div>
 			</div>
 			<div style="clear:both"></div>
-		</div>
+		</div> 
     </div>
  </body>
 </html>
