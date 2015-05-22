@@ -63,22 +63,21 @@
 		}
 	</style>
 	<script>
-			var arr=["hi"," ","大","家","好"," ","我","叫","颜","五","洋"];
+		(function(){
+			var arr=["hi","，","大","家","好","，","我","是","颜","五","洋","！","一","名","java","程","序","员","。","正","在","探","索","程","序","员","之","路."];
 			var index=0;
-			onload = function(){
-				init();
-				
-			}
-		
+			var timeObj;
+			var timeObj=setInterval(init,200);
 			function init(){
 				if(index==arr.length){
+					clearInterval(timeObj);
 					return;
 				}
 				var desc = document.getElementById("desc");
 				desc.innerHTML= desc.innerHTML+arr[index];
 				index++;
-				setTimeout("init()",200);
 			}
+		})();
 	</script>
   </head>
 
