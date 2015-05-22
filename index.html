@@ -138,10 +138,10 @@
 			index++;
 		}
 		//设置页面不能选中文字
-		if (window.addEventListener){
-			window.addEventListener("selectstart", function(){return false;}, false);
-		}else if (window.attachEvent){
-			window.attachEvent("onselectstart", function(){return false;});
+		if (window.document.addEventListener){
+			window.document.addEventListener("selectstart", function(){return false;}, false);
+		}else if (window.document.attachEvent){
+			window.document.attachEvent("onselectstart", function(){return false;});
 		}
 	})();
 </script>
