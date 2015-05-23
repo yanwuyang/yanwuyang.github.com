@@ -35,34 +35,22 @@
   		margin:0 10px;
   	}
   	.technique-nav a{
-  		color:#FFFFFF;
+  		color:#000000;
   		text-align: center; text-decoration: none;
   	}
+  	.technique-nav .active a { color:#FFFFFF;}
   </style>
   <script>
   $(function () {
-	  getChartData("data/developinglanguage.json");
+	  getChartData(null,"data/developinglanguage.json");
   });
   function showChart(categories,name,data){
 	  $('#container').highcharts({
-	        chart: {
-	            type: 'column'
-	        },
-	        title: {
-	            text: '专业技术熟练程度表'
-	        },
-	        subtitle: {
-	            text: 'Source: yanwuyang.github.io'
-	        },
-	        xAxis: {
-	            categories: categories
-	        },
-	        yAxis: {
-	            min: 0,
-	            title: {
-	                text: '熟练程度'
-	            }
-	        },
+	        chart: {type: 'column'},
+	        title: { text: '专业技术熟练程度表' },
+	        subtitle: { text: 'Source: yanwuyang.github.io'},
+	        xAxis: {categories: categories},
+	        yAxis: { min: 0,title: { text: '熟练程度'}},
 	        tooltip: {
 	            headerFormat: '<span style="font-size: 10px;">{point.key}</span>',
 	            pointFormat: '' +
@@ -72,19 +60,12 @@
 	            useHTML: true
 	        },
 	        plotOptions: {
-	            column: {
-	                pointPadding: 0.2,
-	                borderWidth: 0
-	            }
+	            column: { pointPadding: 0.2,borderWidth: 0}
 	        },
-	        series: [{
-	            name: name,
-	            data: data
-
-	        }]
+	        series: [{ name: name,data: data }]
 	    });
   }
-  function getChartData(url){
+  function getChartData(obj,url){
 	  $.ajax({
 		  type: "GET",
 		   dataType:"text",
@@ -94,6 +75,13 @@
 			  showChart(data["categories"],data["name"],data["data"]);
 		   }
 	  });
+	  if(obj==null){
+		  return;
+	  }
+	  $(".technique-nav li").each(function(i){
+			$(this).attr("class","");
+	  });
+	  obj.parentNode.className="active";
   }
   </script>
 </head>
@@ -102,14 +90,14 @@
   <div id="container" style="max-width:800px;height:400px"></div>
   <div class="technique-main">
 	  <ul class="technique-nav">
-	  	<li><a href="javascript:void(0)" onclick="getChartData('data/developinglanguage.json')">开发语言</a></li>
-	  	<li><a href="javascript:void(0)" onclick="getChartData('data/javaframe.json')">Java开发框架</a></li>
-	  	<li><a href="javascript:void(0)" onclick="getChartData('data/javascriptframe.json')">JavaScript框架</a></li>
-	  	<li><a href="javascript:void(0)" onclick="getChartData('data/database.json')">数据库</a></li>
-	  	<li><a href="javascript:void(0)" onclick="getChartData('data/server.json')">中间件</a></li>
-	  	<li><a href="javascript:void(0)" onclick="getChartData('data/cache.json')">分布式缓存</a></li>
-	  	<li><a href="javascript:void(0)" onclick="getChartData('data/loadbalance.json')">负载均衡</a></li>
-	  	<li><a href="javascript:void(0)" onclick="getChartData('data/os.json')">操作系统</a></li>
+	  	<li class="active"><a href="javascript:void(0)" onclick="getChartData(this,'data/developinglanguage.json')">开发语言</a></li>
+	  	<li><a href="javascript:void(0)" onclick="getChartData(this,'data/javaframe.json')">Java开发框架</a></li>
+	  	<li><a href="javascript:void(0)" onclick="getChartData(this,'data/javascriptframe.json')">JavaScript框架</a></li>
+	  	<li><a href="javascript:void(0)" onclick="getChartData(this,'data/database.json')">数据库</a></li>
+	  	<li><a href="javascript:void(0)" onclick="getChartData(this,'data/server.json')">中间件</a></li>
+	  	<li><a href="javascript:void(0)" onclick="getChartData(this,'data/cache.json')">分布式缓存</a></li>
+	  	<li><a href="javascript:void(0)" onclick="getChartData(this,'data/loadbalance.json')">负载均衡</a></li>
+	  	<li><a href="javascript:void(0)" onclick="getChartData(this,'data/os.json')">操作系统</a></li>
 	  </ul>
   	  <div style="clear:both"></div>
   </div>
