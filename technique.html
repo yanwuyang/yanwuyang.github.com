@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset='utf-8'>
+  <title>Yanwuyang.GitHub.io by yanwuyang</title>
+  <script type="text/javascript" src="javascripts/jquery-1.8.3.min.js"></script>
+  <script type="text/javascript" src="javascripts/highcharts.js"></script>
+  
+  <style type="text/css">
+  	*{margin:0;padding:0}
+  	.main{
+  		width:1000px;
+  		height:100%;
+  		overflow:hidden;
+  		margin: 0 auto;
+  	}
+  	#container{
+  		margin: 50px auto;
+  	}
+  	.technique-main{
+  		left:50%;	
+  		max-width:800px;
+  		margin:0 auto;
+  	}
+  	.technique-nav{
+  		list-style-type:none;
+  		text-align:center;
+  	}
+  	.technique-nav li{
+  		float:left;
+  		display:block;
+  		margin:0 10px;
+  		color:#FFFFFF;
+  		cursor:pointer;
+  	}
+  </style>
+  <script>
+  $(function () {
+	  getChartData("data/developinglanguage.json");
+  });
+  function showChart(categories,name,data){
+	  $('#container').highcharts({
+	        chart: {
+	            type: 'column'
+	        },
+	        title: {
+	            text: '专业技术熟练程度表'
+	        },
+	        subtitle: {
+	            text: 'Source: yanwuyang.github.io'
+	        },
+	        xAxis: {
+	            categories: categories
+	        },
+	        yAxis: {
+	            min: 0,
+	            title: {
+	                text: 'Rainfall (mm)'
+	            }
+	        },
+	        tooltip: {
+	            headerFormat: '<span style="font-size: 10px;">{point.key}</span>',
+	            pointFormat: '' +
+	                '',
+	            footerFormat: '<table><tbody><tr><td style="padding: 0px;">{series.name}: </td><td style="padding: 0px;"><b>{point.y:.1f} mm</b></td></tr></tbody></table>',
+	            shared: true,
+	            useHTML: true
+	        },
+	        plotOptions: {
+	            column: {
+	                pointPadding: 0.2,
+	                borderWidth: 0
+	            }
+	        },
+	        series: [{
+	            name: name,
+	            data: data
+
+	        }]
+	    });
+  }
+  function getChartData(url){
+	  $.ajax({
+		  type: "GET",
+		   dataType:"text",
+		   url: url,
+		   success: function(data){
+			  var data = eval(data);
+			  showChart(data["categories"],data["name"],data["data"]);
+		   }
+	  });
+  }
+  </script>
+</head>
+<body>
+<div class="main">
+  <div id="container" style="max-width:800px;height:400px"></div>
+  <div class="technique-main">
+	  <ul class="technique-nav">
+	  	<li><a href="javascript:void(0)" onclick="getChartData('data/developinglanguage.json')">开发语言</a>
+	  		<ul style="display:none">
+	  			<li>Java</li>
+	  			<li>Javascript</li>
+	  			<li>CSS</li>
+	  			<li>HTML</li>
+	  		</ul>
+	  	</li>
+	  	<li>Java开发框架
+	  		<ul style="display:none">
+	  			<li>Hibernate</li>
+	  			<li>Spring</li>
+	  			<li>Struts1</li>
+	  			<li>Struts2</li>
+	  			<li>Ibatis</li>
+	  			<li>dwr</li>
+	  		</ul>
+	  	</li>
+	  	<li>Javascript框架
+	  		<ul style="display:none">
+	  			<li>Jquery</li>
+	  			<li>extjs</li>
+	  		</ul>
+	  	</li>
+	  	<li>数据库
+	  		<ul style="display:none">
+	  			<li>Oracle</li>
+	  			<li>SQL Server</li>
+	  			<li>Mysql</li>
+	  			<li>DB2</li>
+	  			<li>sybase</li>
+	  			<li>达梦</li>
+	  		</ul>
+	  	</li>
+	  	<li>中间件
+	  		<ul style="display:none">
+	  			<li>Tomcat</li>
+	  			<li>Jboss</li>
+	  			<li>Weblogic</li>
+	  			<li>金蝶</li>
+	  			<li>东方通</li>
+	  		</ul>
+	  	</li>
+	  	<li>Linux</li>
+	  	<li>分布式缓存</li>
+	  	<li>负载均衡</li>
+	  	
+	  </ul>
+  	  <div style="clear:both"></div>
+  </div>
+ </div>
+</body>
+</html>
