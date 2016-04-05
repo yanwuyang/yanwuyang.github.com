@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<base href="${_project.envRoot}">
+<title>全球译星翻译平台</title>
+<link href="${_project.envRoot}/styles/base/css/common.css" rel="stylesheet" type="text/css" >
+<script src="${_project.envRoot}/scripts/lib/jquery/jquery.2.1.1.min.js"></script>
+<script src="${_project.envRoot}/scripts/lib/plugins/jquery-fileupload/js/vendor/jquery.ui.widget.js"></script>
+<script src="${_project.envRoot}/scripts/lib/plugins/jquery-fileupload/js/jquery.iframe-transport.js"></script>
+<script src="${_project.envRoot}/scripts/lib/plugins/jquery-fileupload/js/jquery.fileupload.js"></script>
+<style>
+	.desc{
+		border:0px;
+		width:100%;
+	}
+</style>
+<script type="text/javascript">
+ 	var size;
+	$(document).ready(function(){
+	 	$.ajax({
+	 		type:'GET',
+	 		url:"${_project.envRoot}/filemanage/getAllFile?status=complete&type=interpreter&t="+new Date().getTime(),
+	 		success:function(data){
+	 			data = eval('('+data+')');
+	 			size = data.length;
+	 			for(var i=0;i<size;i++){
+	 				var item = data[i];
+	 				var str="<tr>";
+	 				str+="<td><input type='hidden' id='id_"+i+"' value='"+item['id']+"'>"+item['fileName']+"</td>";
+	 				str+="<td align='center'>"+item['sourceLanguage']+"</td>";
+	 				str+="<td align='center'>"+item['targetLanguage']+"</td>";
+	 				str+="<td align='center'>"+item['emergencyDegree']+"</td>";
+	 				var desc = item['descs'];
+	 				if(desc==null){
+	 					desc="";
+	 				}
+	 				str+="<td>"+desc+"</td>";
+	 				str+="<td align='center'><img src='${_project.envRoot}/styles/base/image/import.png' onclick='down(\""+item['id']+"\",\"source\")' title='下载源文件' style='cursor:pointer'/>&nbsp;<img src='${_project.envRoot}/styles/base/image/import.png' onclick='down(\""+item['id']+"\",\"target\")' title='下载目标文件' style='cursor:pointer'/></td>";
+	 				str+="</str>";
+	 				$("#infoTable").append(str);
+	 			}
+	 		}
+	 	});
+	});
+
+	function down(fileId,type){
+		location.href="${_project.envRoot}/filemanage/downFile?id="+fileId+"&type="+type;	
+	}
+</script>
+</head>
+	<body style="background-color:#FFFFFF; padding: 2px;">
+		<input type="file" name="Filedata" id="fileupload_input" style="display:none" />
+		<div id="content" style="border:1px solid #BED6F0;width:100%;height:500px">
+			<div id="thumbnails" style="margin-top:0px;">
+				<table id="infoTable" border="0" width="100%" cellpadding=5 cellspacing=0>
+					<thead>
+						<th width="300px">文件名称</th>
+						<th width="90px">原语言</th>
+						<th width="90px">目标语言</th>
+						<th width="90px">紧急程度</th>
+						<th>描叙</th>
+						<th width="60px">操作</th>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+			<div id="progress" style="width:340px;height:170px">
+			</div>
+		</div>	
+	</body>
+</html>

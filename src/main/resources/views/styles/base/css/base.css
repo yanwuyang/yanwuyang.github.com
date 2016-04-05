@@ -1,0 +1,120 @@
+*{margin:0;padding:0}
+.ui-header{
+	border-left-width: 0;
+	border-right-width: 0;
+	position: relative;
+	background: #18B4ED repeat scroll 0 0;
+    border: 1px solid #18B4ED;
+    color: #fff;
+    font-weight: 700;
+}
+.ui-order-header {
+	border-left-width: 0;
+	border-right-width: 0;
+	position: relative;
+	background: #18B4ED repeat scroll 0 0;
+    border: 1px solid #18B4ED;
+    color: #fff;
+}
+.ui-btn {
+    cursor: pointer;
+    text-align: center;
+}
+.ui-btn-left, .ui-btn-right, .ui-btn-inline {
+    display: inline-block;
+    vertical-align: middle;
+}
+.ui-header .ui-btn-left, .ui-header .ui-btn-right, .ui-footer .ui-btn-left, .ui-footer .ui-btn-right {
+    position: absolute;
+    top: 8px;
+}
+.ui-btn-up-a {
+    color: #fff;
+    font-weight: 500;
+    text-shadow: 0 1px 0 #111;
+    font-family: Helvetica,Arial,sans-serif;
+    text-decoration: none;
+}
+.ui-btn-icon-left{
+	padding-left: 30px;
+}
+.ui-btn-corner-all{
+	border-radius:5px;
+}
+.ui-btn-form{
+	height:40px;
+	display:block;
+	background-color:#18B1EA;
+	line-height:40px;
+	text-align:center;
+	color:#FFFFFF;
+}
+.ui-btn-l{
+	padding:0 10px;
+}
+.ui-btn-confirm{
+	width:95%;
+}
+.ui-title {
+    display: block;
+    font-size: 16px;
+    margin: 0.6em 30% 0.8em;
+    min-height: 1.1em;
+    outline: 0 none !important;
+    overflow: hidden;
+    padding: 0;
+    text-align: center;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.ui-content{
+	width:100%;
+	overflow:hidden;
+}
+.logo{
+	height:165px;
+	width:165px;
+	margin:10px auto;
+}
+.item{
+	display:inline-block;
+	width:100%;
+	margin:0 5px;
+	margin-top:15px;
+}
+input{
+	height:40px;
+	width:95%;
+	border-radius:5px;
+	border:1px solid #999999;
+}
+
+.file-input-wrapper{
+    top:2px;
+	float: left;
+	height: 50px;
+	width: 60px;
+	background:url('/styles/base/image/upload_wrapper.png') no-repeat 0px 0px;background-size:cover;
+	position:relative;
+	margin-right:10px;
+}
+.file-input-div{
+	text-align:center;
+	padding-top:12px;
+	font-size:15px;
+	font-weight:800
+}
+.inputstyle{
+    width: 0px;
+    height: 0px;
+    cursor: pointer;
+    font-size: 1px;
+    outline: medium none;
+    position: absolute;
+    filter:alpha(opacity=0);
+    -moz-opacity:0;
+    opacity:0; 
+    left:0px;
+    top: 0px;
+}

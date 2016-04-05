@@ -1,0 +1,51 @@
+*{
+	margin:0 0;padding:0 0;
+}
+#infoTable{
+	border:1px solid #D0D0CE; border-collapse:collapse;table-layout:fixed;font-size:13px
+}
+#infoTable th{
+	background-color:#F2F4F3;
+	height:30px;
+	border:1px solid #D0D0CE;
+}
+#infoTable td{
+	border:1px solid #D0D0CE;
+	height:25px;
+}
+.toolbar{
+	list-style:none;
+	margin:0 0;
+	
+}
+.toolbar li{
+	height:20px;
+	float:left;
+	margin:5px 5px;
+}
+.btn{
+	cursor:pointer;
+	text-align:center;
+	line-height:15px;
+}
+.upload-icon{
+	background:url(../image/export.png) no-repeat;
+}
+.cancel-icon{
+	background:url(../image/delete.png) no-repeat;
+}
+.save-icon{
+	background:url(../image/save.png) no-repeat;
+}
+.submit-icon{
+	background:url(../image/submit.png) no-repeat;
+}
+.btn span{
+	font-size:12px;;border:0px;
+	background-color:#D3E0F1;
+	font-family:"ËÎÌו";
+	margin-left:20px;
+}
+#divFileProgressContainer{
+	font-size:13px;
+}

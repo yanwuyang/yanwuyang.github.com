@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<base href="${_project.envRoot}">
+<title>全球译星翻译平台</title>
+<link href="${_project.envRoot}/styles/base/css/common.css" rel="stylesheet" type="text/css" >
+<script src="${_project.envRoot}/scripts/lib/jquery/jquery.2.1.1.min.js"></script>
+<style>
+	*{margin:0 0}
+	.desc{
+		border:0px;
+		width:100%;
+	}
+</style>
+<script type="text/javascript">
+ 	var size;
+ 	var langStr;
+	$(document).ready(function(){
+		$.ajax({
+	 		type:'GET',
+	 		url:"${_project.envRoot}/filemanage/getDictByType?type=language",
+	 		async:false,
+	 		success:function(data){
+	 			var data = eval('('+data+')');
+	 			for(var i=0;i<data.length;i++){
+	 				var item = data[i];
+	 				langStr+="		<option value='"+item['dictKey']+"'>"+item['dictValue']+"</option>";
+	 			}
+	 		}
+	 	});
+	 	$.ajax({
+	 		type:'GET',
+	 		url:"${_project.envRoot}/filemanage/getAllFile?status=upload&type=customer&t="+new Date().getTime(),
+	 		success:function(data){
+	 			var data = eval('('+data+')');
+	 			size = data.length;
+	 			for(var i=0;i<size;i++){
+	 				var item = data[i];
+	 				var str="<tr>";
+	 				str+="<td><input type='hidden' id='id_"+i+"' value='"+item['id']+"'>"+item['fileName']+"</td>";
+	 				str+="<td align='center'>"+getLang('sourceLanguage_'+i,item['sourceLanguage'])+"</td>";
+	 				str+="<td align='center'>"+getLang('targetLanguage_'+i,item['targetLanguage'])+"</td>";
+	 				str+="<td align='center'>"+getEmergencyDegree('emergencyDegree_'+i,item['emergencyDegree'])+"</td>";
+	 				var desc = item['descs'];
+	 				if(desc==null){
+	 					desc="";
+	 				}
+	 				str+="<td><input type='text' id='desc_"+i+"' placeholder='请输入描叙' value='"+desc+"' class='desc'></td>";
+	 				str+="<td align='center'><img src='${_project.envRoot}/styles/base/image/delete.png' onclick='del(\""+item['id']+"\")' title='删除' style='cursor:pointer'/></td>";
+	 				str+="</str>";
+	 				$("#infoTable").append(str);
+	 			}
+	 		}
+	 	});
+	 	
+	});
+	function del(id){
+		if(confirm("确定删除该条记录?")){
+			location.href="${_project.envRoot}/filemanage/delete?id="+id;
+		}
+	}
+	function getLang(id,value){
+		var lang="<select id='"+id+"'>";
+		lang+=langStr;
+		lang+="</select>";
+		return lang;
+	}
+	function getEmergencyDegree(id,value){
+		var emergencyDegree="<select id='"+id+"'>";
+		emergencyDegree+="		<option value=10>10</option>";
+		emergencyDegree+="		<option value=20>20</option>";
+		emergencyDegree+="</select>";
+		return emergencyDegree;
+	}
+	function save(actionType){
+		var data="[";
+		for(var i=0;i<size;i++){
+			if(data!='['){
+				data+=",";
+			}
+			data+="{";
+			data+="'id':'"+$('#id_'+i).val()+"',";
+			data+="'sourceLanguage':'"+$('#sourceLanguage_'+i).val()+"',";
+			data+="'targetLanguage':'"+$('#targetLanguage_'+i).val()+"',";
+			data+="'emergencyDegree':'"+$('#emergencyDegree_'+i).val()+"',";
+			data+="'desc':'"+$('#desc_'+i).val()+"'";
+			data+="}";
+		}
+		data+="]";
+		$.ajax({
+	 		type:'GET',
+	 		url:'${_project.envRoot}/filemanage/setting',
+	 		data:{'data':data,'actionType':actionType},
+	 		success:function(data){
+	 			if(data){
+	 				alert("保存成功");
+	 				location.reload();
+	 			}
+	 		}
+	 	});
+	 	
+	}
+	function selectedAll(){
+		 if($("#selected").is(':checked')){
+		 	 $("input:checkbox[name='tid']").attr("checked","true");//全选
+		 }else{
+		 	 $("input:checkbox[name='tid']").removeAttr("checked");//取消全选
+		 }
+	}
+</script>
+</head>
+	<body style="background-color:#FFFFFF; padding: 2px;">
+		<div id="content" style="border:1px solid #BED6F0;width:100%;height:500px">
+			<div style="overflow:hidden;background-color:#D3E0F1;width:99.9%;border:1px solid #BED6F0">
+				<ul class="toolbar">
+					<li><div class="btn save-icon"><span id="btnSave"  onclick="save('upload');">保存</span></div></li>
+					<li><div class="btn submit-icon"><span id="btnSave"  onclick="save('submit');">保存并提交</span></div></li>
+					<div style="clear:both"></div>
+				</ul>
+			</div>
+			<div id="thumbnails" style="margin-top:0px;">
+				<table id="infoTable" border="0" width="100%" cellpadding=5 cellspacing=0>
+					<thead>
+						<th width="300px">文件名称</th>
+						<th width="90px">原语言</th>
+						<th width="90px">目标语言</th>
+						<th width="90px">紧急程度</th>
+						<th>描叙</th>
+						<th width="40px">操作</th>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+		</div>	
+	</body>
+</html>

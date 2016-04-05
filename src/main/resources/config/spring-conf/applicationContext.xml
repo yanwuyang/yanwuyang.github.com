@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:tx="http://www.springframework.org/schema/tx" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+         http://www.springframework.org/schema/tx  http://www.springframework.org/schema/tx/spring-tx-3.0.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- 属性文件读入 -->
+	<bean id="propertyConfigurer"
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations">
+			<list>
+				<value>classpath*:config/jdbc.properties</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean class="com.qqyx.file.manage.framedata.FrameData" init-method="init" destroy-method="destroy">
+		<property name="configs">
+			<list>
+				<value>classpath*:config/system-config/base-config.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- 使Spring关注Annotation -->
+    <context:annotation-config />
+    <!-- 核心类扫描 -->
+	<context:component-scan base-package="com.qqyx.file.manage" >
+		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+<!-- 		<context:exclude-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/> -->
+	</context:component-scan>
+	<!-- 配置数据源 -->
+    <bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${biz.jdbc.mysql.driver.class.name}" /> 
+		<property name="url" value="${biz.jdbc.mysql.url}" />
+		<property name="username" value="${biz.jdbc.mysql.username}" />
+		<property name="password" value="${biz.jdbc.mysql.password}" />
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="hibernateProperties">  
+            <props>  
+                <prop key="hibernate.dialect">com.qqyx.file.manage.utils.HibernateDialectExtension</prop>  
+                <prop key="hibernate.show_sql">${biz.hibernate.show_sql}</prop>  
+                <prop key="hibernate.cache.provider_class">org.hibernate.cache.EhCacheProvider</prop>  
+                <prop key="hibernate.cache.use_query_cache">${biz.hibernate.cache.use_query_cache}</prop>  
+                <prop key="hibernate.jdbc.batch_size">50</prop>  
+                <prop key="hibernate.cache.use_second_level_cache">${biz.hibernate.cache.use_second_level_cache}</prop>  
+                <prop key="hibernate.hbm2ddl.auto">update</prop>
+            </props>  
+        </property>
+		<property name="packagesToScan" value="com.qqyx.file.manage.model" />  
+	</bean>
+	<bean id="transactionManager"  
+        class="org.springframework.orm.hibernate4.HibernateTransactionManager">  
+        <property name="sessionFactory" ref="sessionFactory" />  
+    </bean>  
+    <tx:annotation-driven transaction-manager="transactionManager" /> 
+    
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver" >
+		<property name="maxInMemorySize">
+			<value>4096</value>
+		</property>
+		<property name="maxUploadSize" value="292482136" />
+		<property name="defaultEncoding" value="utf-8" />
+	</bean>
+    
+    <!-- 初始化MongoDB -->
+    <!-- 
+    <bean id="MongoFactory" class="bpap.common.MongoFactory">
+        <property name="ip" value="${biz.jdbc.mongo.ip}" /> 
+        <property name="port" value="${biz.jdbc.mongo.port}" />
+        <property name="username" value="${biz.jdbc.mongo.username}" />
+        <property name="password" value="${biz.jdbc.mongo.password}" />
+        <property name="dbname" value="${biz.jdbc.mongo.dbname}" />  
+    </bean>
+    <bean name="mongoDS" factory-bean="MongoFactory" factory-method="initMongo"/>
+     -->
+</beans>

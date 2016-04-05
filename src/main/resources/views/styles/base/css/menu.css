@@ -1,0 +1,132 @@
+a{
+	text-decoration: none;
+	color: #666666;
+}
+body{
+	background-color: #FFFFFF;
+}
+.mobile {
+    width: 271px;
+    height: 518px;
+    position: relative;
+    margin-left: 10px;
+    margin-right: auto;
+	margin-top:10px;
+}
+.mobile .content {
+	position: absolute;
+	top: 85px;
+	left: 16px;
+	overflow: hidden;
+}
+.menuBar{
+	bottom:0px;
+	position:absolute;
+	width:240px;
+	height:40px;
+}
+div.menuBar ul{
+	list-style:none; /* 去掉ul前面的符号 */ 
+	margin: 0px; /* 与外界元素的距离为0 */
+	padding: 0px; /* 与内部元素的距离为0 */
+	width: 240px; /* 宽度根据元素内容调整 */
+	
+}
+/* 所有class为menu的div中的ul中的li样式 */
+div.menuBar ul li{
+	float:left; /* 向左漂移，将竖排变为横排 */
+	width: 80px;
+}
+
+/* 所有class为menu的div中的ul中的a样式(包括尚未点击的和点击过的样式) */
+div.menuBar ul li a{
+	background-color: #FFFFFF;
+	color: #555;
+	display: block;
+	font-family: 微软雅黑;
+	font-size: 14px;
+	height: 38px;
+	line-height: 38px;
+	text-align: center;
+	BORDER-BOTTOM: #9d9d9d 1px solid;
+	BORDER-LEFT: #9d9d9d 1px solid;
+	BORDER-TOP: #9d9d9d 1px solid;
+	BORDER-RIGHT: #9d9d9d 1px solid;/* 边框 */
+	white-space: nowrap; /* 对于文本内的空白处，不会换行，文本会在在同一行上继续，直到遇到 <br> 标签为止。 */
+}
+/* 所有class为menu的div中的ul中的a样式(鼠标移动到元素中的样式) */
+div.menuBar ul li a:hover{
+	color: #465c71; /* 文字颜色 */
+	font-style:normal;
+}
+/* 所有class为menu的div中的ul中的a样式(鼠标点击元素时的样式) */
+div.menuBar ul li a:active{
+	background-color:#09F; /* 背景色 */
+	color: #FFF; /* 文字颜色 */ 
+	font-style:normal;
+}
+div.menuBar ul li a em{
+	font-style:normal;//设置在em中的字体不倾斜
+}
+
+.box{
+	position:absolute;
+	width:70px;		
+	BORDER-BOTTOM: #9d9d9d 1px solid;
+	BORDER-LEFT: #9d9d9d 1px solid;
+	BORDER-TOP: #9d9d9d 1px solid;
+	BORDER-RIGHT: #9d9d9d 1px solid;
+	PADDING-BOTTOM: 1px; 
+	PADDING-LEFT: 1px;
+	PADDING-RIGHT: 1px; 
+	PADDING-TOP: 1px; 
+	
+	border-radius: 8px; 
+	-moz-border-radius: 8px;
+	-webkit-border-radius: 8px
+}
+#menuItem1{
+	bottom:45px;
+	margin-left: 5px;
+}
+
+#menuItem2{
+	bottom:45px;
+	margin-left: 85px;
+}
+
+#menuItem3{
+	bottom:45px;
+	margin-left: 165px;		
+}
+
+.box EM {
+	bottom: -5px;
+	display: block;
+	height: 5px;
+	position: absolute;
+	text-align: center;
+	width: 100%;
+}
+
+.t_box_clearfix{
+	background-color: #FFF;
+	BORDER-BOTTOM: #555 1px solid;
+	BORDER-LEFT: #fff 0px solid;
+	BORDER-TOP: #fff 0px solid;
+	BORDER-RIGHT: #fff 0px solid; 
+	border-radius: 4px; 
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px
+	height:25px;
+}
+
+div.t_box_clearfix ul{
+	list-style:none; /* 去掉ul前面的符号 */ 
+	margin: 0px; /* 与外界元素的距离为0 */
+	padding: 0px; /* 与内部元素的距离为0 */
+	text-align:center;
+	padding-BOTTOM: 5px; /* 与内部元素的距离为0 */
+	padding-TOP: 5px;
+	font-size:12px;
+}

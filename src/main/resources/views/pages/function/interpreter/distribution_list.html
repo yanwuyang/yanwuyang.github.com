@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<base href="${_project.envRoot}">
+<title>全球译星翻译平台</title>
+<link href="${_project.envRoot}/styles/base/css/common.css" rel="stylesheet" type="text/css" >
+<script src="${_project.envRoot}/scripts/lib/jquery/jquery.2.1.1.min.js"></script>
+<script src="${_project.envRoot}/scripts/lib/plugins/jquery-fileupload/js/vendor/jquery.ui.widget.js"></script>
+<script src="${_project.envRoot}/scripts/lib/plugins/jquery-fileupload/js/jquery.iframe-transport.js"></script>
+<script src="${_project.envRoot}/scripts/lib/plugins/jquery-fileupload/js/jquery.fileupload.js"></script>
+<style>
+	.desc{
+		border:0px;
+		width:100%;
+	}
+</style>
+<script type="text/javascript">
+ 	var size;
+	$(document).ready(function(){
+	 	$.ajax({
+	 		type:'GET',
+	 		url:"${_project.envRoot}/filemanage/getAllFile?status=distribute&type=interpreter&t="+new Date().getTime(),
+	 		success:function(data){
+	 			data = eval('('+data+')');
+	 			size = data.length;
+	 			for(var i=0;i<size;i++){
+	 				var item = data[i];
+	 				var str="<tr>";
+	 				str+="<td><input type='hidden' id='id_"+i+"' value='"+item['id']+"'>"+item['fileName']+"</td>";
+	 				str+="<td align='center'>"+item['sourceLanguage']+"</td>";
+	 				str+="<td align='center'>"+item['targetLanguage']+"</td>";
+	 				str+="<td align='center'>"+item['emergencyDegree']+"</td>";
+	 				str+="<td align='center'>"+getProgress('progress_'+i,item['progress'])+"</td>";
+	 				var desc = item['descs'];
+	 				if(desc==null){
+	 					desc="";
+	 				}
+	 				str+="<td>"+desc+"</td>";
+	 				str+="<td align='center'><img src='${_project.envRoot}/styles/base/image/import.png' onclick='down(\""+item['id']+"\")' title='下载源文件' style='cursor:pointer'/>&nbsp;<img src='${_project.envRoot}/styles/base/image/export.png' onclick='upload(\""+item['id']+"\")' title='上传' style='cursor:pointer'/></td>";
+	 				str+="</str>";
+	 				$("#infoTable").append(str);
+	 			}
+	 		}
+	 	});
+	});
+
+	function down(fileId){
+		location.href="${_project.envRoot}/filemanage/downFile?id="+fileId;	
+	}
+	
+	function upload(itemId) {
+		$("#fileupload_input").fileupload({
+		    url:"${_project.envRoot}/filemanage/uploadTranslationFile",//文件上传地址，当然也可以直接写在input的data-url属性内
+		    formData:{id:itemId},//如果需要额外添加参数可以在这里添加
+		    done:function(e,result){
+		        //done方法就是上传完毕的回调函数，其他回调函数可以自行查看api
+		        //注意result要和jquery的ajax的data参数区分，这个对象包含了整个请求信息
+		        //返回的数据在result.result中，假设我们服务器返回了一个json对象
+		        console.log(JSON.stringify(result.result));
+		        $("#progress").fadeOut(300);//
+		    }, 
+		    progressall: function (e, data) {//设置上传进度事件的回调函数  
+		        var progress = parseInt(data.loaded / data.total * 10);  
+		    	$('#progress').html(getTplStr(progress*10));
+		    }  
+		})
+		$("#fileupload_input").click();
+    }
+	function getTplStr(v){
+		return '<div>'+
+					'<div style="border:1px solid #7491B3;height:20px;width:290px;margin:2px 0px 1px 0px;float:left;">'+		
+						'<div style="float:left;background:#6D9FDE;width:'+v+'%;height:20px;"><div></div></div>'+
+					'</div>'+
+				'<div style="text-align:center;float:right;width:40px;margin:4px 0px 1px 0px;height:12px;font-size:12px;line-height:12px">'+v+'%</div>'+			
+			'</div>'
+	}
+	function getProgress(id,value){
+		var emergencyDegree="<select id='"+id+"'>";
+		emergencyDegree+="		<option value=10>10</option>";
+		emergencyDegree+="		<option value=20>20</option>";
+		emergencyDegree+="		<option value=30>30</option>";
+		emergencyDegree+="		<option value=40>40</option>";
+		emergencyDegree+="		<option value=50>50</option>";
+		emergencyDegree+="		<option value=60>60</option>";
+		emergencyDegree+="		<option value=70>70</option>";
+		emergencyDegree+="		<option value=80>80</option>";
+		emergencyDegree+="		<option value=90>90</option>";
+		emergencyDegree+="		<option value=100>100</option>";
+		emergencyDegree+="</select>";
+		return emergencyDegree;
+	}
+	function save(){
+		var data="[";
+		for(var i=0;i<size;i++){
+			if(data!='['){
+				data+=",";
+			}
+			data+="{";
+			data+="'id':'"+$('#id_'+i).val()+"',";
+			data+="'progress':'"+$('#progress_'+i).val()+"'";
+			data+="}";
+		}
+		data+="]";
+		$.ajax({
+	 		type:'GET',
+	 		url:'${_project.envRoot}/filemanage/uploadProgress?t='+new Date().getTime(),
+	 		data:{'data':data},
+	 		success:function(data){
+	 			if(data=="ok"){
+	 				alert("保存成功");
+	 			}else{
+	 				alert(data);
+	 			}
+	 		}
+	 	});
+	 	
+	}
+</script>
+</head>
+	<body style="background-color:#FFFFFF; padding: 2px;">
+		<input type="file" name="Filedata" id="fileupload_input" style="display:none" />
+		<div id="content" style="border:1px solid #BED6F0;width:100%;height:500px">
+			<div style="overflow:hidden;background-color:#D3E0F1;width:99.9%;border:1px solid #BED6F0">
+				<ul class="toolbar">
+					<li><div class="btn save-icon"><span id="btnSave"  onclick="save();">保存</span></div></li>
+					<div style="clear:both"></div>
+				</ul>
+			</div>
+			<div id="thumbnails" style="margin-top:0px;">
+				<table id="infoTable" border="0" width="100%" cellpadding=5 cellspacing=0>
+					<thead>
+						<th width="300px">文件名称</th>
+						<th width="90px">原语言</th>
+						<th width="90px">目标语言</th>
+						<th width="90px">紧急程度</th>
+						<th width="90px">已完成</th>
+						<th>描叙</th>
+						<th width="80px">操作</th>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+			</div>
+			<div id="progress" style="width:340px;height:170px">
+			</div>
+		</div>	
+	</body>
+</html>

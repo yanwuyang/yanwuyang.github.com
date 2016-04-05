@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<base href="${_project.envRoot}">
+		<title>全球译星翻译平台</title>
+		<link href="${_project.envRoot}/styles/base/css/common.css" rel="stylesheet" type="text/css" >
+		<script type="text/javascript" src="${_project.envRoot}/scripts/function/swfupload/swfupload.js"></script>
+		<script type="text/javascript" src="${_project.envRoot}/scripts/function/swfupload/handlers.js"></script>
+		<script type="text/javascript">
+			var swfu;
+			window.onload = function () {
+				swfu = new SWFUpload({
+					upload_url: "${_project.envRoot}/filemanage/upload;jsessionid=${sessionId}",
+					post_params: {"name" : "zwm"},
+					use_query_string:true,
+					// File Upload Settings
+					file_size_limit : "200 MB",	// 文件大小控制
+					file_types : "*.*",
+					file_types_description : "All Files",
+					file_upload_limit : "0",
+					file_queue_error_handler : fileQueueError,
+					file_dialog_complete_handler : fileDialogComplete,//选择好文件后提交
+					file_queued_handler : fileQueued,
+					upload_progress_handler : uploadProgress,
+					upload_error_handler : uploadError,
+					upload_success_handler : uploadSuccess,
+					upload_complete_handler : uploadComplete,
+					button_placeholder_id : "spanButtonPlaceholder",
+					button_image_url:'${_project.envRoot}/styles/base/image/select.png',  
+					button_width: 80,
+					button_height: 18,
+					button_text : '<span class="button">添加文件</span>',
+					button_text_style : '.button {font-family: Helvetica, Arial, sans-serif;font-size: 13pt;text-align:center;} .buttonSmall { font-size: 10pt; }',
+					button_text_top_padding: 0,
+					button_text_left_padding: 5,
+					button_window_mode: SWFUpload.WINDOW_MODE.TRANSPARENT,
+					button_cursor: SWFUpload.CURSOR.HAND,
+					
+					// Flash Settings
+					flash_url : "${_project.envRoot}/scripts/function/swfupload/swfupload.swf",
+	
+					custom_settings : {
+						upload_target : "divFileProgressContainer"
+					},
+					// Debug Settings
+					debug: false  //是否显示调试窗口
+				});
+			};
+			function startUploadFile(){
+				swfu.startUpload();
+			}
+			
+		</script>
+	</head>
+	<body style="background-color:#FFFFFF;padding: 2px;">
+		<div id="content" style="border:1px solid #BED6F0;width:100%;height:500px">
+			<div style="overflow:hidden;background-color:#D3E0F1;width:99.9%;border:1px solid #BED6F0">
+				<ul class="toolbar">
+					<li><div id="spanButtonPlaceholder" ></div></li>
+					<li><div class="btn upload-icon"><span id="btnUpload"  onclick="startUploadFile();"  >上 传</span></div></li>
+					<li><div class="btn cancel-icon"><span id="btnCancel"  onclick="cancelUpload();" disabled="disabled">取消所有上传</span></div></li>
+					<div style="clear:both"></div>
+				</ul>
+			</div>
+			<div id="thumbnails" style="margin-top:0px;">
+				<table id="infoTable" border="0" width="100%" cellpadding=5 cellspacing=0>
+				<thead>
+					<th width="300px">文件名称</th>
+					<th width="70px">文件类型</th>
+					<th width="90px">文件大小</th>
+					<th width="140px">上传进度</th>
+					<th>状态</th>
+					<th width="60px">操作</th>
+				</thead>
+				</table>
+			</div>
+			<div id="divFileProgressContainer"></div>
+		</div>	
+	</body>
+</html>

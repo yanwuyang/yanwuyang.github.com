@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>全球译星翻译平台</title>
+<link rel="stylesheet" type="text/css" href="${_project.envRoot}/styles/function/user/base204f7e.css">
+<link rel="stylesheet" type="text/css" href="${_project.envRoot}/styles/function/user/page_register1ffa7e.css">
+<link rel="stylesheet" type="text/css" href="${_project.envRoot}/styles/function/user/processor_bar1ec663.css">
+<style type="text/css">
+	.help-block{
+		color: red;
+	}
+	.frm_controls ul{
+		list-style:none;
+		width: 278px;
+		
+	}
+	.frm_controls ul li{
+		float:left;
+	}
+</style>
+<script>
+	function back(){
+		location.href="${_project.envRoot}/user/register_01";
+	}
+	function save(){
+		document.forms[0].submit();
+	}
+</script>
+</head>
+<body class="zh_CN" id="registerStep1">
+    <div id="body"  style="width:100%">
+        <div class="container_box">
+            <div class="col_main">
+                <div class="main_bd">
+                    <div id="stepItems">
+                        <ul class="processor_bar grid_line">
+                            <li class="step grid_item size1of5 pprev">
+                                <h4>1 基本信息</h4>
+                            </li>
+                            <li class="step grid_item size1of5 prev">
+                                <h4>2 选择类型</h4>
+                            </li>
+                            <li class="step grid_item size1of5 current">
+                                <h4>3 信息完善</h4>
+                            </li>
+                            <li class="step grid_item size1of5 next">
+                                <h4>&nbsp;</h4>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="register">
+                        <div class="account_box">
+                            <div>
+                                <form action="${_project.envRoot}/user/register_03"  id="step5_reg" novalidate="novalidate" method="post" style="text-align: center;">
+                                	<input  type="hidden" name="type" value="$!type"/>
+                                	<input  type="hidden" name="id" value="$!id"/>
+                                	<input  type="hidden" id="dataAuthority" name="dataAuthority" value="$!obj.dataAuthority"/>
+                                    <div style="padding-left:5%;" >
+	                                    <div class="frm_control_group">
+                                            <label for="" class="frm_label">姓名</label>
+                                            <div class="frm_controls">
+                                                <span class="frm_input_box">
+                                                    <input name="realName" id="realName" type="text" placeholder="" class="frm_input" value="$!jsemail">
+                                                </span>
+                                            </div>
+                                        </div>
+                                         <div class="frm_control_group">
+                                            <label for="" class="frm_label">手机号码</label>
+                                            <div class="frm_controls">
+                                                <span class="frm_input_box">
+                                                    <input name="tel" id="tel" type="text" placeholder="" class="frm_input" value="$!jsemail">
+                                                </span>
+                                            </div>
+                                        </div>
+                                         <div class="frm_control_group">
+                                            <label for="" class="frm_label">邮箱</label>
+                                            <div class="frm_controls">
+                                                <span class="frm_input_box">
+                                                    <input name="email" id="email" type="text" placeholder="" class="frm_input" value="$!jsemail">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="frm_control_group">
+                                            <label for="" class="frm_label">国家</label>
+                                            <div class="frm_controls">
+                                                <span class="frm_input_box">
+                                                    <input name="country" id="country" type="text" placeholder="" class="frm_input" value="$!jsemail">
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="frm_control_group">
+                                            <label for="" class="frm_label">联系地址</label>
+                                            <div class="frm_controls">
+                                                <span class="frm_input_box">
+                                                    <input name="address" id="address" type="text" placeholder="" class="frm_input" value="$!jsemail">
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="tool_area"></div>
+                                    <div class="tool_bar border tc">
+                                        <span class="btn btn_default btn_input">
+                                            <button type="button"  id="js_prevBtn" onclick="back()">返回</button>
+                                        </span>
+                                        <span class="btn btn_primary btn_input">
+                                            <button type="button"  id="js_submitReg" onclick="save()">完成</button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

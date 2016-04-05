@@ -1,0 +1,16 @@
+/target/
+/src/main/webapp/WEB-INF/classes/
+
+/src/main/resources/config/jdbc.properties
+
+.classpath
+.project
+/.settings/
+.git
+
+/src/main/webapp/logs/
+
+/bin/
+
+*.bak
+*.launch

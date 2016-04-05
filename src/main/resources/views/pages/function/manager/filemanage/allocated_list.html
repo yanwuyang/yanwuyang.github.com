@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>全球译星翻译平台</title>
+    <link rel="stylesheet" type="text/css" href="${_project.envRoot}/styles/base/css/easyui/themes/bootstrap/easyui.css" />
+    <link rel="stylesheet" type="text/css" href="${_project.envRoot}/styles/base/css/easyui/themes/icon.css" />
+    <link rel="stylesheet" type="text/css" href="${_project.envRoot}/styles/base/css/easyui/themes/color.css" />
+    <link rel="stylesheet" type="text/css" href="${_project.envRoot}/styles/base/css/form.css" />
+    <script type="text/javascript" src="${_project.envRoot}/scripts/lib/jquery/jquery.2.1.1.min.js"></script>
+    <script type="text/javascript" src="${_project.envRoot}/scripts/lib/jquery/jquery.easyui.min.js"></script> 
+    <script type="text/javascript" src="${_project.envRoot}/scripts/lib/jquery/easyui-lang-zh_CN.js"></script> 
+    <script type="text/javascript" src="${_project.envRoot}/scripts/function/form-common.js"></script> 
+    <style>
+    	*{margin:0 0;}
+    </style>
+</head>
+<body>
+
+ <table id="dg" title="文件管理&gt;&gt;已分配文件" class="easyui-datagrid" style="width:100%;height:455px"
+            url="${_project.envRoot}/filemanage/fileList?status=distribute"
+            toolbar="#toolbar" pagination="true"
+            rownumbers="true" fitColumns="true" singleSelect="true">
+        <thead>
+            <tr>
+                <th field="fileName" width="50">文件名称</th>
+                <th field="sourceCineLanguage" width="50">源语言</th>
+                <th field="targetCineLanguage" width="50">目标语言</th>
+                <th field="emergencyDegree" width="30" >紧急程度</th>
+                <th field="update_date" width="50" >分配日期</th>
+                <th field="sourceUserName" width="50">上传用户</th>
+                <th field="translationName" width="50">译员</th>
+                <th field="progress" width="50" >进度</th>
+                <th field="descs" width="50" >描叙</th>
+            </tr>
+        </thead>
+    </table>
+    <div id="toolbar">
+    	类型：<input class="easyui-textbox" name="type" id="type" style="width:150px;height:25px">
+		<a href="javascript:void(0)" class="easyui-linkbutton" data-options="iconCls:'icon-search'" onclick="query()" style="width:80px">查询</a>
+				 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+		<a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-edit" plain="true" onclick="edit()">查看</a>
+    </div>
+    
+    <div id="dlg" class="easyui-dialog" style="width:560px;height:380px;padding:10px 20px"
+            closed="true" buttons="#dlg-buttons">
+       <div class="ftitle">分配译员</div>
+        <form id="fm" method="post" novalidate>
+        	<input type="hidden" name="interpreter" id="interpreter">
+        	<table cellpadding="5" >
+               <tr>
+                    <td>文件名称:</td>
+                    <td colspan=3><input class="easyui-textbox"  style="width:380px" type="text" name="fileName" editable="false" data-options="required:true">
+					</td>
+                </tr>
+                <tr>
+               		 <td>源语言:</td>
+                    <td><input class="easyui-textbox" type="text" name="sourceLanguage" editable="false"  data-options="required:true"></input></td>
+                    <td>目标语言:</td>
+                    <td><input class="easyui-textbox" type="text" name="targetLanguage" editable="false" data-options="required:true"></input></td>
+                </tr>
+                <tr>
+                    <td>译员:</td>
+                    <td colspan=3>
+                    <select id="cc" style="width:200px"></select>
+					    <div id="sp">
+					        <div style="color:#99BBE8;background:#fafafa;padding:5px;">选择译员</div>
+					        <div style="padding:10px" id="rolePanel">
+					           
+					        </div>
+					    </div>
+					</td>
+                </tr>
+           </table>
+        </form>
+    </div>
+    <div id="dlg-buttons">
+        <a href="javascript:void(0)" class="easyui-linkbutton c6" iconCls="icon-ok" onclick="save()" style="width:90px">分配</a>
+        <a href="javascript:void(0)" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')" style="width:90px">取消</a>
+    </div>
+    <script type="text/javascript">
+       formUtil.fnSave('${_project.envRoot}/sysDict/save','新增字典');
+       formUtil.fnUpdate('${_project.envRoot}/sysDict/save','编辑字典');
+       formUtil.fnDelete('${_project.envRoot}/sysDict/delete');
+       function query(){
+    	   $('#dg').datagrid('load',{ 
+    		   username:$('#username').val(), 
+    		   type:$('#type').combobox('getValue')
+    		   } 
+   		   ); 
+       }
+       
+       function distribute(){
+    	   var row = $('#dg').datagrid('getSelected');
+	        if (row){
+	            $('#dlg').dialog('open').dialog('setTitle',"分配译员");
+	            $('#fm').form('load',row);
+	            url = '${_project.envRoot}/filemanage/distribute?id='+row.id;
+	        }    	   
+       }
+       $(function(){
+           $('#cc').combo({
+               editable:false
+           });
+           
+           initRolePanel();
+    	   $('#sp').appendTo($('#cc').combo('panel'));
+           $('#sp input').click(function(){
+               var text="";
+               var value="";
+               $('#sp input').each(function(){
+            	   if($(this).is(':checked')){
+            		   var s = $(this).next('span').text();
+            		   var v = $(this).val();
+            		   if(text!=""){
+                    	   text+=",";
+                    	   value+=",";
+                       }
+            		   text+=s;
+            		   value+=v;
+            	   }
+               });
+               $('#interpreter').val(value);
+               $('#cc').combo('setText', text);
+               var s = $(this).next('span').text();
+               //$('#cc').combo('setValue', v).combo('setText', s)
+               //$('#cc').combo('setValue', v).combo('setText', s).combo('hidePanel');
+           });
+       });
+       
+       function initRolePanel(){
+    	   var html="";
+    	   var url = "${_project.envRoot}/user/getInterpreter?t="+new Date().getTime();
+    	   $.ajax({
+  	         type: "GET",
+  	         url: url,
+  	         async:false,
+  	         success: function(data){
+  	        	 var list =eval(data);
+  	        	 for(var i=0;i<list.length;i++){
+  	        		 var userId = list[i]["id"];
+  	        		 var userName = list[i]["userName"];
+  	        		 html+='<input type="radio" name="userId"  value="'+userId+'"><span>'+userName+'</span><br/>'
+  	        	 }
+  	        	 $("#rolePanel").html(html);
+  	         }
+  	 	   });
+    	   
+       }
+       
+       function fnFormat(value,rowData,rowIndex){
+       	if(value=="0"){
+       		return "停用";
+       	}
+       	return "启用";
+       }
+       function fnOperate(){
+    	   return "<a href='#'>分配</a>";
+       }
+    </script>
+</body>
+</html>

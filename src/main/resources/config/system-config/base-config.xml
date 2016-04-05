@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configure>
+  <category id="config" name="基本配置"> 
+	<item key="attach-path" value="H:/uploadFiles/" comment="附件保存路径"/>
+  </category>	
+</configure>

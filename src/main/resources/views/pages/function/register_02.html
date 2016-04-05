@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>全球译星翻译平台</title>
+<link rel="stylesheet" type="text/css" href="${_project.envRoot}/styles/function/user/base204f7e.css">
+<link rel="stylesheet" type="text/css" href="${_project.envRoot}/styles/function/user/page_register1ffa7e.css">
+<link rel="stylesheet" type="text/css" href="${_project.envRoot}/styles/function/user/processor_bar1ec663.css">
+<style type="text/css">
+	.help-block{
+		color: red;
+	}
+</style>
+<script>
+	function next(){
+		document.forms[0].submit();
+	}
+</script>
+</head>
+<body class="zh_CN" id="registerStep1">
+    <div id="body"  style="width:100%">
+        <div class="container_box">
+            <div class="col_main">
+                <div class="main_bd">
+                    <div id="stepItems">
+                        <ul class="processor_bar grid_line">
+                            <li class="step grid_item size1of5 prev">
+                                <h4>1 基本信息</h4>
+                            </li>
+                            <li class="step grid_item size1of5 current">
+                                <h4>2 选择类型</h4>
+                            </li>
+                            <li class="step grid_item size1of5 next">
+                                <h4>3 信息完善</h4>
+                            </li>
+                        </ul>
+                    </div>
+                    <div id="register">
+                        <div class="account_box">
+                            <div class="page_msg mini">
+                                <div class="inner group">
+                                    <span class="msg_icon_wrp">
+                                        <i class="icon_msg_mini info"></i>
+                                    </span>
+                                    <div class="msg_content">
+                                        <p>用户类型为译员，只能翻译分配的材料。用户类型为客户可以上传翻译材料</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div  >
+                                <form action="${_project.envRoot}/user/register_02"  id="step5_reg" novalidate="novalidate" method="post" style="text-align: center;">
+                                	<input  type="hidden" name="id" value="$!id"/>
+                                    <div style="padding-left:5%;" >
+	                                    <div class="frm_control_group" style="float: left;width: 200px;height:200px;border: 1px solid #ddd;">
+	                                    	<div class="frm_content" style="cursor: pointer;">
+	                                    		<div style="padding-top: 20px;">
+		                                        	<img style="vertical-align:middle;margin-right: 30px;" src="${_project.envRoot}/styles/function/images/register3-user.png" width="60" height="60">
+		                                        	我是客户
+	                                        	</div>
+		                                        <div style="margin-left: 20px;margin-top: 20px;font-size: 12px;margin-right: 20px;text-justify: inter-ideograph; text-align: justify">
+		                                        	成为客户就可以上传文件，系统会按需分配译员翻译
+		                                        </div>
+		                                        <div style="font-size: 12px;margin-top: 10px;border-top:1px solid #66aad7;margin-left: 15px;margin-right: 15px;padding-top: 10px;">
+		                                        	适用于个人和企业
+		                                        </div>
+	                                    	</div>
+	                                        <div style="margin-top: 17px;background-color:#ddd;height: 30px;text-align: center; line-height: 30px;">
+	                                        	<input type="radio" name="type" id="type" value="customer" class="input_checkbox"/>
+	                                        	<span style="font-size: 12px;">我同意并遵守<a href="${_project.envRoot}/documentCenter/developerAgreement">《客户协议》</a></span>
+	                                        </div>
+	                                    </div>
+	                                    <div class="frm_control_group" style="float: left;width: 200px;height:200px;border: 1px solid #ddd;margin-left: 15%;text-align: center;">
+	                                    	<div class="frm_content" style="cursor: pointer;">
+		                                        <div style="padding-top: 20px;">
+		                                        	<img style="vertical-align:middle;margin-right: 14px;" src="${_project.envRoot}/styles/function/images/register3-book.png" width="60" height="60">
+		                                        	我是译员
+		                                        </div>
+		                                        <div style="margin-left: 20px;margin-top: 20px;font-size: 12px;margin-right: 20px;text-justify: inter-ideograph; text-align: justify">
+		                                        	获取客户翻译材料进行翻译，更新进度
+		                                        </div>
+		                                        <div style="font-size: 12px;margin-top: 10px;border-top:1px solid #66aad7;margin-left: 15px;margin-right: 15px;padding-top: 10px;">
+		                                        	适用于个人和企业
+		                                        </div>
+	                                        </div>
+	                                        <div style="margin-top: 17px;background-color:#ddd;height: 30px;text-align: center; line-height: 30px;">
+	                                        	<input type="radio" name="type" id="type" value="interpreter" class="input_checkbox"/>
+	                                        	<span style="font-size: 12px;">我同意并遵守<a href="${_project.envRoot}/documentCenter/openDataAgreement">《译员协议》</a></span>
+	                                        </div>
+	                                    </div>
+                                    </div>
+                                    <div class="tool_area"></div>
+                                    <div class="tool_bar border tc">
+                                        <!--
+                                        <span class="btn btn_default btn_input">
+                                            <button type="button" href="javascript:;" id="js_prevBtn">返回</button>
+                                        </span>
+                                        -->
+                                        <span class="btn btn_primary btn_input">
+                                            <button type="button"  id="submitBtn" onclick="next()">下一步</button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
