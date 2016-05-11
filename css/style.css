@@ -556,6 +556,7 @@ a.article-title:hover {
 .article-entry {
   color: #555;
   padding: 0 20px;
+table
 }
 .article-entry:before,
 .article-entry:after {
@@ -605,54 +606,53 @@ a.article-title:hover {
   max-width: 100%;
   height: auto;
   display: block;
-  margin: auto;
+  margin: left;
 }
 .article-entry iframe {
   border: none;
 }
-.article-entry table {
-  width: 100%;
+width: 100% {
   border-collapse: collapse;
   border-spacing: 0;
 }
-.article-entry th {
+th {
   font-weight: bold;
   border-bottom: 3px solid #ddd;
   padding-bottom: 0.5em;
 }
-.article-entry td {
+td {
   border-bottom: 1px solid #ddd;
-  padding: 10px 0;
+  padding: 10px 15px;
 }
-.article-entry blockquote {
+blockquote {
   font-family: Georgia, "Times New Roman", serif;
   font-size: 1.4em;
   margin: 1.6em 20px;
   text-align: center;
 }
-.article-entry blockquote footer {
+blockquote footer {
   font-size: 14px;
   margin: 1.6em 0;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
-.article-entry blockquote footer cite:before {
+blockquote footer cite:before {
   content: "—";
   padding: 0 0.5em;
 }
-.article-entry .pullquote {
+.pullquote {
   text-align: left;
   width: 45%;
   margin: 0;
 }
-.article-entry .pullquote.left {
+.pullquote.left {
   margin-left: 0.5em;
   margin-right: 1em;
 }
-.article-entry .pullquote.right {
+.pullquote.right {
   margin-right: 0.5em;
   margin-left: 1em;
 }
-.article-entry .caption {
+.caption {
   color: #999;
   display: block;
   font-size: 0.9em;
@@ -660,15 +660,15 @@ a.article-title:hover {
   position: relative;
   text-align: center;
 }
-.article-entry .video-container {
+.video-container {
   position: relative;
   padding-top: 56.25%;
   height: 0;
   overflow: hidden;
 }
-.article-entry .video-container iframe,
-.article-entry .video-container object,
-.article-entry .video-container embed {
+.video-container iframe,
+.video-container object,
+.video-container embed {
   position: absolute;
   top: 0;
   left: 0;
@@ -946,6 +946,34 @@ a.article-title:hover {
   display: block;
   max-width: 100%;
   margin: 0 auto;
+}
+.toc-article {
+  background: #eee;
+  border: 1px solid #bbb;
+  -webkit-border-radius: 10px;
+  border-radius: 10px;
+  margin: 1.5em 0 0.3em 1.5em;
+  padding: 1.2em 1em 0 1em;
+  max-width: 28%;
+}
+.toc-title {
+  font-size: 120%;
+}
+#toc {
+  line-height: 1em;
+  font-size: 0.9em;
+  float: right;
+}
+.toc {
+  padding: 0;
+  margin: 1em;
+  line-height: 1.8em;
+}
+li {
+  list-style-type: none;
+}
+.toc-child {
+  margin-left: 1em;
 }
 #comments {
   background: #fff;
