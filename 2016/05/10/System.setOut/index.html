@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yanwuyang.github.io/2016/05/10/System.setOut/index.html">
 <meta property="og:site_name" content="东写西读">
 <meta property="og:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;今天一同事问我System.out.println()输出的内容为什么没有输出到日志文件中。他告诉我的是他使用的weblogic中间件。说起这个真的平时没太注意。因为我之前一直使用的是jboss，查看日志也是看的jboss日志文件，通过System.out.println输出的内容也显示在了日志文">
-<meta property="og:updated_time" content="2016-05-10T15:24:27.493Z">
+<meta property="og:updated_time" content="2016-05-11T02:23:57.460Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="System.setOut">
 <meta name="twitter:description" content="&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;今天一同事问我System.out.println()输出的内容为什么没有输出到日志文件中。他告诉我的是他使用的weblogic中间件。说起这个真的平时没太注意。因为我之前一直使用的是jboss，查看日志也是看的jboss日志文件，通过System.out.println输出的内容也显示在了日志文">
@@ -64,9 +64,13 @@
         <section id="main"><article id="post-System.setOut" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/05/10/System.setOut/" class="article-date">
-  <time datetime="2016-05-10T15:06:39.911Z" itemprop="datePublished">2016-05-10</time>
+  <time datetime="2016-05-10T12:10:33.000Z" itemprop="datePublished">2016-05-10</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -83,6 +87,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+		<!-- Table of Contents -->
+		
         <p>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天一同事问我System.out.println()输出的内容为什么没有输出到日志文件中。他告诉我的是他使用的weblogic中间件。说起这个真的平时没太注意。因为我之前一直使用的是jboss，查看日志也是看的jboss日志文件，通过System.out.println输出的内容也显示在了日志文件中。带着好奇心去看了下自己系统下的日志文件果然没有。于是打开jboss的log4j.xml 与自己系统下的log4j.xml进行了一下对比发现并无不同。于是打开jboss代码看了下发现jboss org.jboss.logging.Log4jService  installSystemAdapters方法中对System.setOut 有设置。<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;表示对于System.setOut不懂到网上百度了下，官方说明是通过System.setOut方法允许程序员自行定义System.out输出流， 我们可以将我们改造好的PrintStream替换java原来的System.out对象。于是他这个问题就很好解决了。<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">init</span><span class="params">()</span> </span>&#123;</span><br><span class="line">  PrintStream printStream = <span class="keyword">new</span> PrintStream(System.out) &#123;</span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">(<span class="keyword">boolean</span> x)</span> </span>&#123;</span><br><span class="line">    log(Boolean.valueOf(x));</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">(<span class="keyword">char</span> x)</span> </span>&#123;</span><br><span class="line">    log(Character.valueOf(x));</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">(<span class="keyword">char</span>[] x)</span> </span>&#123;</span><br><span class="line">    log(x == <span class="keyword">null</span> ? <span class="keyword">null</span> : <span class="keyword">new</span> String(x));</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">(<span class="keyword">double</span> x)</span> </span>&#123;</span><br><span class="line">    log(Double.valueOf(x));</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">(<span class="keyword">float</span> x)</span> </span>&#123;</span><br><span class="line">    log(Float.valueOf(x));</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">(<span class="keyword">int</span> x)</span> </span>&#123;</span><br><span class="line">    log(Integer.valueOf(x));</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">(<span class="keyword">long</span> x)</span> </span>&#123;</span><br><span class="line">    log(x);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">(Object x)</span> </span>&#123;</span><br><span class="line">    log(x);</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">println</span><span class="params">(String x)</span> </span>&#123;</span><br><span class="line">    log(x);</span><br><span class="line">   &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">  System.setOut(printStream);</span><br><span class="line">  System.setErr(printStream);</span><br><span class="line"></span><br><span class="line"> &#125;</span><br><span class="line"></span><br><span class="line"> <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">log</span><span class="params">(Object info)</span> </span>&#123;</span><br><span class="line">  LogFactoryImpl.getLog(getClass()).info(info);</span><br><span class="line"> &#125;</span><br></pre></td></tr></table></figure></p>
 <p>在web的监听器里面初始下这个就可以了</p>
 <p>下面是log4j的配置文件</p>
@@ -91,7 +97,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/10/System.setOut/" data-id="cio1lkldl00011sybhsklsyun" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/05/10/System.setOut/" data-id="cio2f1gki0004u8jwfs6rs7nk" class="article-share-link">分享</a>
       
       
     </footer>
@@ -99,6 +105,15 @@
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/05/11/JavaScript面向对象编程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JavaScript面向对象编程
+        
+      </div>
+    </a>
   
   
     <a href="/2016/05/10/Linux常见问题解决方法/" id="article-nav-older" class="article-nav-link-wrap">
@@ -109,6 +124,24 @@
 </nav>
 
   
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="cio2f1gki0004u8jwfs6rs7nk" data-title="System.setOut" data-url="http://yanwuyang.github.io/2016/05/10/System.setOut/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
 </article>
 
 </section>
@@ -116,6 +149,13 @@
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li></ul>
+    </div>
+  </div>
+
 
   
     
@@ -127,7 +167,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li></ul>
     </div>
   </div>
 
@@ -140,6 +180,10 @@
       <ul>
         
           <li>
+            <a href="/2016/05/11/JavaScript面向对象编程/">JavaScript面向对象编程</a>
+          </li>
+        
+          <li>
             <a href="/2016/05/10/System.setOut/">System.setOut</a>
           </li>
         
@@ -149,6 +193,10 @@
         
           <li>
             <a href="/2016/05/10/博客搭建/">博客搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/08/Hadoop集群完全分布式部署/">Hadoop集群完全分布式部署</a>
           </li>
         
       </ul>
@@ -189,6 +237,9 @@
 
 <script src="/js/script.js"></script>
 
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
   </div>
 </body>
 </html>
