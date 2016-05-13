@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>浅谈BSF | 东写西读</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="BSF是什么 BSF(Bean Scripting Framework)是一个支持在java应用程序内调用脚本语言，并且支持脚本语言直接访问java对象和方法的一个开源项目，有了他，你能在你的java application中使用javascript、Python、XSLT、tcl等等。反过来也可以在script language中调用任何注册过了的javaBean、java Object 它提供">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈BSF">
+<meta property="og:url" content="http://yanwuyang.github.io/2013/01/30/浅谈BSF/index.html">
+<meta property="og:site_name" content="东写西读">
+<meta property="og:description" content="BSF是什么 BSF(Bean Scripting Framework)是一个支持在java应用程序内调用脚本语言，并且支持脚本语言直接访问java对象和方法的一个开源项目，有了他，你能在你的java application中使用javascript、Python、XSLT、tcl等等。反过来也可以在script language中调用任何注册过了的javaBean、java Object 它提供">
+<meta property="og:updated_time" content="2016-05-13T14:35:46.795Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈BSF">
+<meta name="twitter:description" content="BSF是什么 BSF(Bean Scripting Framework)是一个支持在java应用程序内调用脚本语言，并且支持脚本语言直接访问java对象和方法的一个开源项目，有了他，你能在你的java application中使用javascript、Python、XSLT、tcl等等。反过来也可以在script language中调用任何注册过了的javaBean、java Object 它提供">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/css.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">东写西读</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-浅谈BSF" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2013/01/30/浅谈BSF/" class="article-date">
+  <time datetime="2013-01-30T13:28:01.000Z" itemprop="datePublished">2013-01-30</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/BSF/">BSF</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      浅谈BSF
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+		<div id="toc" class="toc-article">
+		<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#BSF是什么"><span class="toc-number">1.</span> <span class="toc-text">BSF是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#如何使用"><span class="toc-number">2.</span> <span class="toc-text">如何使用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-Bean中"><span class="toc-number">3.</span> <span class="toc-text">Java Bean中</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#脚步"><span class="toc-number">4.</span> <span class="toc-text">脚步</span></a></li></ol>
+		</div>
+		
+        <h3 id="BSF是什么"><a href="#BSF是什么" class="headerlink" title="BSF是什么"></a>BSF是什么</h3><p> BSF(Bean Scripting Framework)是一个支持在java应用程序内调用脚本语言，并且支持脚本语言直接访问java对象和方法的一个开源项目，有了他，你能在你的java application中使用javascript、Python、XSLT、tcl等等。反过来也可以在script language中调用任何注册过了的javaBean、java Object 它提供了完整的API实现通过Java访问脚本语言的引擎。</p>
+<a id="more"></a>
+<h3 id="如何使用"><a href="#如何使用" class="headerlink" title="如何使用"></a>如何使用</h3><p> 在你的java 应用程序中导入bsf.jar包如果你使用的脚本是javascript那还需要导入js.jar包，其他脚本语言类似导入相对应的jar即可下面我就以javascript为列简单说明下BSF的使用将会已代码的形式展示给大家。</p>
+<h3 id="Java-Bean中"><a href="#Java-Bean中" class="headerlink" title="Java Bean中"></a>Java Bean中</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> cn.com.bsf.test; </span><br><span class="line">         </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BeanDemo</span></span>&#123; </span><br><span class="line">     <span class="keyword">private</span> String name; </span><br><span class="line">              </span><br><span class="line">     <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setName</span><span class="params">(String name)</span></span>&#123; </span><br><span class="line">         <span class="keyword">this</span>.name=name; </span><br><span class="line">     &#125; </span><br><span class="line">     <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123; </span><br><span class="line">          <span class="keyword">return</span> name </span><br><span class="line">     &#125; </span><br><span class="line">&#125; </span><br><span class="line">         </span><br><span class="line"><span class="keyword">package</span> cn.com.bsf.test; </span><br><span class="line"><span class="keyword">import</span> java.io.BufferedInputStream; </span><br><span class="line"><span class="keyword">import</span> java.io.BufferedReader; </span><br><span class="line"><span class="keyword">import</span> java.io.IOException; </span><br><span class="line"><span class="keyword">import</span> java.io.InputStream; </span><br><span class="line"><span class="keyword">import</span> java.io.InputStreamReader; </span><br><span class="line"><span class="keyword">import</span> java.util.HashMap; </span><br><span class="line"><span class="keyword">import</span> java.util.Map; </span><br><span class="line">         </span><br><span class="line"><span class="keyword">import</span> org.apache.bsf.BSFEngine; </span><br><span class="line"><span class="keyword">import</span> org.apache.bsf.BSFException; </span><br><span class="line"><span class="keyword">import</span> org.apache.bsf.BSFManager; </span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">BSFExample</span></span>&#123; </span><br><span class="line">         </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span></span>&#123; </span><br><span class="line">        BSFManager bsfManager= <span class="keyword">new</span> BSFManager(); </span><br><span class="line">        BeanDemo demo= <span class="keyword">new</span> BeanDemo(); </span><br><span class="line">        <span class="comment">//在BSF中注册java bean </span></span><br><span class="line">        bsfManager.declareBean(<span class="string">"demo"</span>, demo, demo.getClass()); </span><br><span class="line">        bsfManager.declareBean(<span class="string">"out"</span>, System.out, System.out.getClass()); </span><br><span class="line">        <span class="comment">//得到BSF引擎 </span></span><br><span class="line">        BSFEngine bsfEngine = bsfManager.loadScriptingEngine(<span class="string">"javascript"</span>); </span><br><span class="line">        <span class="comment">//读取js文件 </span></span><br><span class="line">        InputStream stream = BSFDemo.class.getResourceAsStream(<span class="string">"/bsf_001.js"</span>); </span><br><span class="line">        InputStreamReader reader = <span class="keyword">new</span> InputStreamReader(<span class="keyword">new</span> BufferedInputStream(stream)); </span><br><span class="line">        BufferedReader bufR = <span class="keyword">new</span> BufferedReader(reader); </span><br><span class="line">        StringBuffer sb = <span class="keyword">new</span> StringBuffer(); </span><br><span class="line">        String content = bufR.readLine(); </span><br><span class="line">        <span class="keyword">while</span> (content != <span class="keyword">null</span>) &#123; </span><br><span class="line">           sb.append(content); </span><br><span class="line">           content = bufR.readLine(); </span><br><span class="line">        &#125; </span><br><span class="line">        bsfEngine.exec(<span class="string">"javascript"</span>, <span class="number">0</span>, <span class="number">0</span>, sb.toString()); </span><br><span class="line">       <span class="comment">//执行脚本中的某个方法 </span></span><br><span class="line">        Object o = bsfEngine.eval(<span class="string">"javascript"</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="string">"test()"</span>);  </span><br><span class="line">        Map map = (HashMap) o; </span><br><span class="line">        System.out.println(map.get(<span class="string">"age"</span>)); </span><br><span class="line">        System.out.println(demo.getName()); </span><br><span class="line">    &#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">hello world </span><br><span class="line">10</span><br><span class="line">张三</span><br></pre></td></tr></table></figure></p>
+<h3 id="脚步"><a href="#脚步" class="headerlink" title="脚步"></a>脚步</h3><p><strong><em> bsf_001.js</em></strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">importPackage(java.util); </span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>)</span>&#123; </span><br><span class="line">    reflection.setName(<span class="string">"张三"</span>); </span><br><span class="line">    out.println(<span class="string">"hello world"</span>); </span><br><span class="line">    <span class="keyword">var</span> map = <span class="keyword">new</span> HashMap(); </span><br><span class="line">    map.put(<span class="string">"name"</span>,<span class="string">"张三"</span>); </span><br><span class="line">    map.put(<span class="string">"age"</span>,<span class="string">"10"</span>); </span><br><span class="line">    <span class="keyword">return</span> map; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong><em> bsf_002.js</em></strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">importClass(Packages.cn.com.bsf.test.AppDemo); </span><br><span class="line"><span class="keyword">var</span> appDemo = <span class="keyword">new</span> AppDemo(); </span><br><span class="line"><span class="keyword">var</span> str=appDemo.query(<span class="string">"select * from bsf"</span>); </span><br><span class="line">out.println(str);</span><br></pre></td></tr></table></figure></p>
+<p>bsf_002.js与bsf_001.js的不同的是脚本代码没有包含在function中所以bsf执行稍微会有所不同<br>Object o = bsfEngine.eval(“javascript”, 0, 0, “bsf_002.js的脚本内容”);</p>
+<p>不知道大家注意到了importClass、importPackage没有，下面我就解释下他们的用处</p>
+<p><strong><em>importClass 是在我们的脚本中引入我们的javaBean如果是jdk中自带的javaBea不需要packages关键字反之需要例如</em></strong><br><strong><em>importClass(Packages.cn.com.bsf.test.BeanDemo);</em></strong><br><strong><em>importClass(java.util.HashMap);</em></strong><br><strong><em>importPackage是在我们的脚本中引入包 引入包后就可以使用这个包中所有javaBean其语法如下他会importClass类似自定义的java包需要加Packages为前缀。</em></strong><br><strong><em>importPackage(Packages.cn.com.bsf.test）;</em></strong><br><strong><em>importPackage(java.util);</em></strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2013/01/30/浅谈BSF/" data-id="cio5uhgn30004o0ybbrfbmeys" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/04/30/Oracle常用脚本/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Oracle常用脚本
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2012/12/03/财务管理系统项目技术经验总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">北京交通运输职业学院网络财务管理系统项目技术经验总结</div>
+    </a>
+  
+</nav>
+
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="cio5uhgn30004o0ybbrfbmeys" data-title="浅谈BSF" data-url="http://yanwuyang.github.io/2013/01/30/浅谈BSF/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/11/JavaScript面向对象编程/">JavaScript面向对象编程</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/10/System.setOut/">System.setOut</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/10/Linux常见问题解决方法/">Linux常见问题解决方法</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/10/博客搭建/">博客搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/26/解决问题心得/">解决问题心得</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 yanwuyang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+  </div>
+</body>
+</html>

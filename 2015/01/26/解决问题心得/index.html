@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>解决问题心得 | 东写西读</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="自从接手公司平台到现在已有一年半年之久，在期间一直以解决客户、平台问题为主，也是我成长最快的一年，经统计大概解决的问题不下五百，其中问题种类多，有难有易。在解决问题上不谦虚的说自有一番心得，特此总结，一来梳理回顾过去是如何发现问题，解决问题的思路，二来以备忘记。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="解决问题心得">
+<meta property="og:url" content="http://yanwuyang.github.io/2015/01/26/解决问题心得/index.html">
+<meta property="og:site_name" content="东写西读">
+<meta property="og:description" content="自从接手公司平台到现在已有一年半年之久，在期间一直以解决客户、平台问题为主，也是我成长最快的一年，经统计大概解决的问题不下五百，其中问题种类多，有难有易。在解决问题上不谦虚的说自有一番心得，特此总结，一来梳理回顾过去是如何发现问题，解决问题的思路，二来以备忘记。">
+<meta property="og:updated_time" content="2016-05-13T14:09:35.520Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="解决问题心得">
+<meta name="twitter:description" content="自从接手公司平台到现在已有一年半年之久，在期间一直以解决客户、平台问题为主，也是我成长最快的一年，经统计大概解决的问题不下五百，其中问题种类多，有难有易。在解决问题上不谦虚的说自有一番心得，特此总结，一来梳理回顾过去是如何发现问题，解决问题的思路，二来以备忘记。">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/css.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">东写西读</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-解决问题心得" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/01/26/解决问题心得/" class="article-date">
+  <time datetime="2015-01-26T13:28:01.000Z" itemprop="datePublished">2015-01-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/心得体会/">心得体会</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      解决问题心得
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+        <p> 自从接手公司平台到现在已有一年半年之久，在期间一直以解决客户、平台问题为主，也是我成长最快的一年，经统计大概解决的问题不下五百，其中问题种类多，有难有易。在解决问题上不谦虚的说自有一番心得，特此总结，一来梳理回顾过去是如何发现问题，解决问题的思路，二来以备忘记。<br> <a id="more"></a><br>在这一年半主要解决问题大概分为如下几大类，中间件、浏览器兼容、操作系统、java虚拟机、jdk、数据库、IDE、webservice。各个问题各自关联各自影响。其中中间件兼容常见问题一般是包冲突，请求乱码，数据源操作数据库引发数据库死锁（这个问题主要是在使用金蝶中间件过程中遇到的，现象是使用jdbc 直连接正常在这里为什么要使用jdbc直连测试，是为了排除jdbc驱动包的原因。使用数据源对数据库进行操作不提交不释放锁，不过大家可以放心，使用标准的数据源工具是不会有这个问题的，据了解金蝶有对数据源进行了重写）。在中间件中还有就是集群session共享、jsp编译、不能远程访问等等问题。而浏览器兼容问题一般情况都会与javascript相关。能写出更好兼容的javascript代码需要有一定功底。但我们解决问题就不需要了，只需要能有这方面的意识即可。常见与操作系统有关的问题那就是环境变量设置有关了。其他不至于人品那么差了。java虚拟机一般就是内存溢出，线程溢出这个问题一般好解决就是针对不同的异常来进行设置，解决这个问题一般设置完加大参数即可但前提要求主机配置性能得到达一定要求，jdk的话一般也包含了jvm的问题这个一般有版本不同、供应商不同而引发的问题。还有就是版本不同所提供到的支持也不一样。例如在jdk1.5中是对内存有最大的限制，数据库的话那一般就是死锁、连接失败、连接会话不够，大小写、字符编码、用户权限等等问题。</p>
+<p>很难说有固定的模式固定的方法能解决平时开发中遇到的所有问题，但思路是不变的，一般思路是，分析问题（一般可以通过看日志调试代码）、采用对比排除法缩小产生问题的原因的范围，找到问题的本质、在解决问题。现象一样但引发问题的原因可能并不一样，问题原因是因环境改变而不同，解决问题的大忌就是慌张，心态很重要。每个问题都有其根本的原因，只有抓住了问题的根本原因才能解决问题。如果硬是解决不了可以通过其他的手段绕过其问题寻求其他方法实现现在的功能。</p>
+<p>有些问题看上去很难其实反而很简单，经常有人跟我反映，系统运行一段时间久卡在了很久没有反映只有重启中间件才能正常操作，而且这个问题也不是每次都出现。碰到这样的问题，应该第一反应就是看日志，二看数据库，看看是不是数据库因死锁了导致系统线程停止。根据日志提供的信息分析问题是如何产生的。然后就是不断缩小引起问题的范围最后落实到一段代码一个配置一个参数上面。例如这几天有个同事向我反映在IE6下使用软航在线编辑器修改流程正文（word）在节点1出修改后提交到节点2在节点2中可以看到修改的内容但在节点1出还显示的没有修改之前的。通过我同事对问题的反映我肯定的是这个问题跟软航无关因为如果软航有问题的话那在节点2应该看到的也是没有修改之前的。然后我也让我同事帮我确定了下在节点1上修改保存不提交关闭在打开看看能不能看到修改之后的反映是可以的。结合系统本身那就可以通过查看代码在分析锁定代码，很快就把这个问题解决了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2015/01/26/解决问题心得/" data-id="cio5uhgn30007o0ybg6dj3y0u" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/10/博客搭建/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          博客搭建
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/01/14/Nginx+Tomcat+Memcached集群/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Nginx+Tomcat+Memcached集群</div>
+    </a>
+  
+</nav>
+
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="cio5uhgn30007o0ybg6dj3y0u" data-title="解决问题心得" data-url="http://yanwuyang.github.io/2015/01/26/解决问题心得/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/11/JavaScript面向对象编程/">JavaScript面向对象编程</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/10/System.setOut/">System.setOut</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/10/Linux常见问题解决方法/">Linux常见问题解决方法</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/10/博客搭建/">博客搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/26/解决问题心得/">解决问题心得</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 yanwuyang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+  </div>
+</body>
+</html>
