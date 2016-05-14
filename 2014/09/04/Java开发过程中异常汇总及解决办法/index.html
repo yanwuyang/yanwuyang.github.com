@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java开发过程中异常汇总及解决办法 | 东写西读</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="org.apache.jasper.JasperException:Unable to initialize TldLocationsCache:null
+异常详细描叙">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java开发过程中异常汇总及解决办法">
+<meta property="og:url" content="http://yanwuyang.github.io/2014/09/04/Java开发过程中异常汇总及解决办法/index.html">
+<meta property="og:site_name" content="东写西读">
+<meta property="og:description" content="org.apache.jasper.JasperException:Unable to initialize TldLocationsCache:null
+异常详细描叙">
+<meta property="og:image" content="http://yanwuyang.github.io/cdbf6c81800a19d86e32661230fa828ba61e46f0.jpg">
+<meta property="og:image" content="http://yanwuyang.github.io/b03533fa828ba61e7fad2a384234970a304e5962.jpg">
+<meta property="og:image" content="http://yanwuyang.github.io/5366d0160924ab1893c50c2036fae6cd7a890bd1.jpg">
+<meta property="og:image" content="http://yanwuyang.github.io/7aec54e736d12f2e1dbd40774cc2d56285356869.jpg">
+<meta property="og:image" content="http://yanwuyang.github.io/58ee3d6d55fbb2fb1bceb6054c4a20a44723dcc4.jpg">
+<meta property="og:updated_time" content="2016-05-14T08:30:36.572Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java开发过程中异常汇总及解决办法">
+<meta name="twitter:description" content="org.apache.jasper.JasperException:Unable to initialize TldLocationsCache:null
+异常详细描叙">
+<meta name="twitter:image" content="http://yanwuyang.github.io/cdbf6c81800a19d86e32661230fa828ba61e46f0.jpg">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/css.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">东写西读</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+	    
+			<input type="text" class="st-default-search-input" style="width: 110px">
+		
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Java开发过程中异常汇总及解决办法" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/09/04/Java开发过程中异常汇总及解决办法/" class="article-date">
+  <time datetime="2014-09-04T13:28:01.000Z" itemprop="datePublished">2014-09-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java开发过程中异常汇总及解决办法
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+        <p><strong><em>org.apache.jasper.JasperException:Unable to initialize TldLocationsCache:null</em></strong></p>
+<p>异常详细描叙<a id="more"></a><br><img src="cdbf6c81800a19d86e32661230fa828ba61e46f0.jpg" alt="JasperException"></p>
+<p><strong><em>环境： </em></strong>操作系统：linux    中交件：jboss  jdk：1.5<br><strong><em>解决办法：</em></strong>添加对jdk如下设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line">PATH=$JAVA_HOME/bin:$PATH</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><strong><em>org.apache.jasper.JasperException:Unable to compile class for JSP</em></strong></p>
+<p>异常详细描叙<br><img src="b03533fa828ba61e7fad2a384234970a304e5962.jpg" alt="JasperException"><br><strong><em>环境：</em></strong>  操作系统：linux    中交件：jboss  jdk：1.5<br><strong><em>解决办法：</em></strong>添加对jdk如下设置<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar</span><br><span class="line">PATH=$JAVA_HOME/bin:$PATH</span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><strong><em>附件下载docx、xlsx、pptx 提示无法复制文件：无法读取文件或磁盘</em></strong></p>
+<p>问题详细描述<br><img src="5366d0160924ab1893c50c2036fae6cd7a890bd1.jpg" alt="无法读取文件或磁盘"><br><strong><em>解决办法</em></strong>：在下载的方法中添加<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(filetype.indexOf(<span class="string">".docx"</span>) ==<span class="number">0</span>) &#123;</span><br><span class="line">    response.setContentType(<span class="string">"application/vnd.openxmlformats-officedocument.wordprocessingml.document"</span>);</span><br><span class="line">&#125;elseif(filetype.indexOf(<span class="string">".xlsx"</span>) ==<span class="number">0</span>) &#123;</span><br><span class="line">    response.setContentType(<span class="string">"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"</span>);</span><br><span class="line">&#125;elseif(filetype.indexOf(<span class="string">".pptx"</span>) ==<span class="number">0</span>) &#123;    </span><br><span class="line">    response.setContentType(<span class="string">"application/vnd.openxmlformats-officedocument.presentationml.presentation"</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在web.xml中添加<br> <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mime-mapping</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">extension</span>&gt;</span>docx<span class="tag">&lt;/<span class="name">extension</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">mime-type</span>&gt;</span>application/vnd.openxmlformats-officedocument.wordprocessingml.document<span class="tag">&lt;/<span class="name">mime-type</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mime-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mime-mapping</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">extension</span>&gt;</span>xlsx<span class="tag">&lt;/<span class="name">extension</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">mime-type</span>&gt;</span>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet<span class="tag">&lt;/<span class="name">mime-type</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mime-mapping</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mime-mapping</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">extension</span>&gt;</span>pptx<span class="tag">&lt;/<span class="name">extension</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;<span class="name">mime-type</span>&gt;</span>application/vnd.openxmlformats-officedocument.presentationml.presentation<span class="tag">&lt;/<span class="name">mime-type</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mime-mapping</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<p><strong><em>java.lang.IllegalArgumentException: Illegal group reference</em></strong></p>
+<p>异常详细描叙<br> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">2014-05-19 10:11:31,306 ERROR [STDERR] java.lang.IllegalArgumentException: Illegal group reference</span><br><span class="line">2014-05-19 10:11:31,306 ERROR [STDERR] at java.util.regex.Matcher.appendReplacement(Matcher.java:706)</span><br><span class="line">2014-05-19 10:11:31,307 ERROR [STDERR] at java.util.regex.Matcher.replaceAll(Matcher.java:806)</span><br><span class="line">2014-05-19 10:11:31,307 ERROR [STDERR] at java.lang.String.replaceAll(String.java:2000)</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>异常产生原因： </em></strong> 在使用String的replaceAll方法中因为字符中含有字符 “$”与replaceAll方法中使用的“$”起冲突导致<br><strong><em>解决办法： </em></strong>将字符“$”转义 “\$” 或使用StringUtils的.replaceAll方法</p>
+<hr>
+<p><strong><em>org.apache.bsf.BSFException:javaScript Error:Function importClass must be called with a class:had”[…..]”</em></strong></p>
+<p>详细描述<br><img src="7aec54e736d12f2e1dbd40774cc2d56285356869.jpg" alt="BSFException"><br><strong><em>解决办法：</em></strong> 将jdk1.5换成1.6</p>
+<hr>
+<p><strong><em>java.sql.SQLException:ORA-01795:列表中的最大表达式数为1000</em></strong></p>
+<p>详细描述<br><img src="58ee3d6d55fbb2fb1bceb6054c4a20a44723dcc4.jpg" alt="SQLException"><br><strong><em>异常分析：</em></strong>oracle 查询 in（）查询列表树最大支持1000<br><strong><em>解决办法：</em></strong> 使用where col in (1…1000) or col in (1001….)</p>
+<hr>
+<p><strong><em>点击运行jboss run.bat 窗口一闪而过，提示“findstr”不是内部或外部命令</em></strong></p>
+<p><strong><em>环境：</em></strong>windows2008<br><strong><em>解决办法：</em></strong> 在环境变量PATH中添加%SystemRoot%\system32;%SystemRoot%;</p>
+<hr>
+<p><strong><em>通过request.getRemoteAddr() 获取到值为0:0:0:0:0:0:0:1的问题</em></strong></p>
+<p><strong><em>解决办法：</em></strong><br>1、linux<br>/etc/hosts 注释掉文件中的 # ::1 localhost 这一行<br>2、windows<br>C:\Windows\System32\drivers\etc\hosts 注释掉文件中的 # ::1 localhost 这一行</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2014/09/04/Java开发过程中异常汇总及解决办法/" data-id="cio6vlw9500054kybnbe9t0x8" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/10/08/虚拟机联网方式设置/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          虚拟机联网方式设置
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/09/04/中间件远程调试设置/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">中间件远程调试设置</div>
+    </a>
+  
+</nav>
+
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-Java开发过程中异常汇总及解决办法" data-title="Java开发过程中异常汇总及解决办法" data-url="http://yanwuyang.github.io/2014/09/04/Java开发过程中异常汇总及解决办法/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/11/JavaScript面向对象编程/">JavaScript面向对象编程</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/10/System.setOut/">System.setOut</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/10/Linux常见问题解决方法/">Linux常见问题解决方法</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/10/博客搭建/">博客搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2015/01/26/解决问题心得/">解决问题心得</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 yanwuyang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript">
+(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','cfMrgJ_UF1xJcNuMGgKs','2.0.0');
+</script>
+            
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+  </div>
+</body>
+</html>

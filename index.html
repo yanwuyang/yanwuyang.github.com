@@ -231,7 +231,7 @@
       
 		<!-- Table of Contents -->
 		
-        <p>2016年5月10号基于github搭建我的第一个博客</p>
+        <p><strong><em>坚持写作、总结经验、分享心得</em></strong><br>2016年5月10号基于github搭建我的第一个博客</p>
 <p>个人简历: <a href="/about/index.html">关于我</a></p>
 
       
@@ -519,14 +519,14 @@
 
 
   
-    <article id="post-Oracle常用脚本" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-虚拟机联网方式设置" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/04/30/Oracle常用脚本/" class="article-date">
-  <time datetime="2014-04-30T13:28:01.000Z" itemprop="datePublished">2014-04-30</time>
+    <a href="/2014/10/08/虚拟机联网方式设置/" class="article-date">
+  <time datetime="2014-10-07T16:00:00.000Z" itemprop="datePublished">2014-10-08</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Oracle/">Oracle</a>
+    <a class="article-category-link" href="/categories/VMware/">VMware</a>
   </div>
 
   </div>
@@ -537,7 +537,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2014/04/30/Oracle常用脚本/">Oracle常用脚本</a>
+      <a class="article-title" href="/2014/10/08/虚拟机联网方式设置/">虚拟机联网方式设置</a>
     </h1>
   
 
@@ -545,16 +545,16 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="建表空间"><a href="#建表空间" class="headerlink" title="建表空间"></a>建表空间</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">temporary</span> <span class="keyword">tablespace</span> bjjtxx_space_temp </span><br><span class="line">tempfile <span class="string">'D:/oracle/product/10.2.0/oradata/orcl/bjjtxx_temp.dbf'</span> </span><br><span class="line"><span class="keyword">size</span> <span class="number">32</span>m </span><br><span class="line"><span class="keyword">autoextend</span> <span class="keyword">on</span> </span><br><span class="line"><span class="keyword">next</span> <span class="number">32</span>m <span class="keyword">maxsize</span> <span class="number">2048</span>m</span><br><span class="line"><span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>; </span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> bjjtxx_space</span><br><span class="line"><span class="keyword">logging</span></span><br><span class="line"><span class="keyword">datafile</span> <span class="string">'D:/oracle/product/10.2.0/oradata/orcl/bjjtxx.dbf'</span> </span><br><span class="line"><span class="keyword">size</span> <span class="number">32</span>m </span><br><span class="line"><span class="keyword">autoextend</span> <span class="keyword">on</span> </span><br><span class="line"><span class="keyword">next</span> <span class="number">32</span>m <span class="keyword">maxsize</span> <span class="number">2048</span>m</span><br><span class="line"><span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>;</span><br></pre></td></tr></table></figure>
+        <h2 id="Bridging（桥接）"><a href="#Bridging（桥接）" class="headerlink" title="Bridging（桥接）"></a>Bridging（桥接）</h2><p>这种方式是最简单的只需要设置虚拟机如下图就可以进行联网了。包括虚拟机IP、网关、DNS等都不需要进行设置，宿主主机也不需要进行共享<br>
         
           <p class="article-more-link">
-            <a href="/2014/04/30/Oracle常用脚本/#more">阅读全文</a>
+            <a href="/2014/10/08/虚拟机联网方式设置/#more">阅读全文</a>
           </p>
         
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2014/04/30/Oracle常用脚本/" data-id="cio5uhgmn0001o0yb2cdt3uen" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2014/10/08/虚拟机联网方式设置/" data-id="cio6v5rl900024kybokn07zf9" class="article-share-link">分享</a>
       
       
     </footer>
@@ -568,7 +568,7 @@
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
   </nav>
 </section>
         
@@ -578,7 +578,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a></li></ul>
     </div>
   </div>
 
@@ -593,7 +593,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li></ul>
     </div>
   </div>
 
