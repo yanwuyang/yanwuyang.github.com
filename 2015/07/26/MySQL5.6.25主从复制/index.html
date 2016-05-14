@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>MySQL5.6.25主从复制 | 东写西读</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="配置主节点配置日志和服务ID , Linux是在/etc/my.cnf window是在my.ini文件下
+12345[mysqld]log-bin=mysql-binserver-id=1#binlog-do-db=testDB //需要备份的数据库名多个库以逗号分隔不写表示全部#log_bin_trust_function_creates=TRUE //涉及到同步函数或存储过程需要设置">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL5.6.25主从复制">
+<meta property="og:url" content="http://yanwuyang.github.io/2015/07/26/MySQL5.6.25主从复制/index.html">
+<meta property="og:site_name" content="东写西读">
+<meta property="og:description" content="配置主节点配置日志和服务ID , Linux是在/etc/my.cnf window是在my.ini文件下
+12345[mysqld]log-bin=mysql-binserver-id=1#binlog-do-db=testDB //需要备份的数据库名多个库以逗号分隔不写表示全部#log_bin_trust_function_creates=TRUE //涉及到同步函数或存储过程需要设置">
+<meta property="og:image" content="http://yanwuyang.github.io/1.png">
+<meta property="og:image" content="http://yanwuyang.github.io/2.png">
+<meta property="og:image" content="http://yanwuyang.github.io/3.png">
+<meta property="og:image" content="http://yanwuyang.github.io/4.png">
+<meta property="og:updated_time" content="2016-05-14T11:05:16.180Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL5.6.25主从复制">
+<meta name="twitter:description" content="配置主节点配置日志和服务ID , Linux是在/etc/my.cnf window是在my.ini文件下
+12345[mysqld]log-bin=mysql-binserver-id=1#binlog-do-db=testDB //需要备份的数据库名多个库以逗号分隔不写表示全部#log_bin_trust_function_creates=TRUE //涉及到同步函数或存储过程需要设置">
+<meta name="twitter:image" content="http://yanwuyang.github.io/1.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/css.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">东写西读</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+	    
+			<input type="text" class="st-default-search-input" style="width: 110px">
+		
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-MySQL5.6.25主从复制" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/26/MySQL5.6.25主从复制/" class="article-date">
+  <time datetime="2015-07-25T16:00:00.000Z" itemprop="datePublished">2015-07-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      MySQL5.6.25主从复制
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+		<div id="toc" class="toc-article">
+		<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#配置主节点"><span class="toc-number">1.</span> <span class="toc-text">配置主节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置从节点"><span class="toc-number">2.</span> <span class="toc-text">配置从节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#为复制创建用户"><span class="toc-number">3.</span> <span class="toc-text">为复制创建用户</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#获取二进制日志文件路径"><span class="toc-number">4.</span> <span class="toc-text">获取二进制日志文件路径</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用mysqldump创建数据快照-可选"><span class="toc-number">5.</span> <span class="toc-text">使用mysqldump创建数据快照(可选)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用原数据创建数据快照（可选）"><span class="toc-number">6.</span> <span class="toc-text">使用原数据创建数据快照（可选）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#在从节点中设置主配置"><span class="toc-number">7.</span> <span class="toc-text">在从节点中设置主配置</span></a></li></ol>
+		</div>
+		
+        <h3 id="配置主节点"><a href="#配置主节点" class="headerlink" title="配置主节点"></a>配置主节点</h3><p>配置日志和服务ID , Linux是在/etc/my.cnf window是在my.ini文件下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log-bin=mysql-bin</span><br><span class="line">server-id=1</span><br><span class="line">#binlog-do-db=testDB //需要备份的数据库名多个库以逗号分隔不写表示全部</span><br><span class="line">#log_bin_trust_function_creates=TRUE //涉及到同步函数或存储过程需要设置</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p><strong><em>备注</em></strong><br>如果您省略了服务器标识（或将其设置为其默认值为0），则该主拒绝来自于奴隶的任何连接。</p>
+<h3 id="配置从节点"><a href="#配置从节点" class="headerlink" title="配置从节点"></a>配置从节点</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">server-id=2</span><br><span class="line">#relay-log=mysqld-relay-bin 可选</span><br></pre></td></tr></table></figure>
+<h3 id="为复制创建用户"><a href="#为复制创建用户" class="headerlink" title="为复制创建用户"></a>为复制创建用户</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CREATE USER 'repl'@'%' IDENTIFIED BY 'slavepass';</span><br><span class="line">mysql&gt; GRANT REPLICATION SLAVE ON *.* TO 'repl'@'%';</span><br></pre></td></tr></table></figure>
+<h3 id="获取二进制日志文件路径"><a href="#获取二进制日志文件路径" class="headerlink" title="获取二进制日志文件路径"></a>获取二进制日志文件路径</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; FLUSH TABLES WITH READ LOCK;</span><br></pre></td></tr></table></figure>
+<p>在主的不同的会话中，使用显示主状态语句来确定当前二进制日志文件名和位置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql &gt; SHOW MASTER STATUS;</span><br><span class="line">+---------------+----------+--------------+------------------+</span><br><span class="line">| File             | Position | Binlog_Do_DB | Binlog_Ignore_DB |</span><br><span class="line">+---------------+----------+--------------+------------------+</span><br><span class="line">| mysql-bin.000003 | 73       | test         | manual,mysql     |</span><br><span class="line">+------------------+----------+--------------+---------------+</span><br></pre></td></tr></table></figure></p>
+<p>该文件列显示的日志文件名和位置显示该文件中的位置。在这个例子中，二进制日志文件mysql-bin.000003和位置73。记录这些值。当你在建立奴隶的时候，你需要他们。他们代表的复制坐标，在该坐标的奴隶应该开始处理新的更新，从主。如果主已经运行以前没有二进制启用日志记录，日志文件的名称和位置值以显示主人的地位或就显示——主数据将是空的。在这种情况下，在指定从属的日志文件和位置是空字符串（“”）和4。</p>
+<h3 id="使用mysqldump创建数据快照-可选"><a href="#使用mysqldump创建数据快照-可选" class="headerlink" title="使用mysqldump创建数据快照(可选)"></a>使用mysqldump创建数据快照(可选)</h3><p>这里显示的例子将所有数据库文件命名为dbdump.db，包括——主数据选项，自动将改变主人要求奴隶开始复制过程的声明：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysqldump --all-databases --master-data &gt; dbdump.db</span><br></pre></td></tr></table></figure></p>
+<h3 id="使用原数据创建数据快照（可选）"><a href="#使用原数据创建数据快照（可选）" class="headerlink" title="使用原数据创建数据快照（可选）"></a>使用原数据创建数据快照（可选）</h3><p>1.获取二进制日志文件路径参照第四步<br>2.关闭主服务<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; mysqladmin shutdown</span><br></pre></td></tr></table></figure></p>
+<p>3.复制数据库文件下面的命令只需要选择一个<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; tar cf /tmp/db.tar ./data</span><br><span class="line">shell&gt; zip -r /tmp/db.zip ./data</span><br><span class="line">shell&gt; rsync --recursive ./data /tmp/dbdata</span><br></pre></td></tr></table></figure></p>
+<p>4.重启主节点服务<br>如果你不是使用的InnoDB 表没有mysqladmin shutdown这个步骤</p>
+<h3 id="在从节点中设置主配置"><a href="#在从节点中设置主配置" class="headerlink" title="在从节点中设置主配置"></a>在从节点中设置主配置</h3><p>要建立与复制的主通信的从属关系，您必须告诉从属连接信息。要做到这一点，执行下面的语句，对从系统的实际值替换选项值：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; CHANGE MASTER TO</span><br><span class="line">    -&gt;     MASTER_HOST='master_host_name',</span><br><span class="line">    -&gt;     MASTER_USER='replication_user_name',</span><br><span class="line">    -&gt;     MASTER_PASSWORD='replication_password',</span><br><span class="line">    -&gt;     MASTER_LOG_FILE='recorded_log_file_name',</span><br><span class="line">    -&gt;     MASTER_LOG_POS=recorded_log_position;</span><br></pre></td></tr></table></figure></p>
+<p>其中MASTER_LOG_FILE 对应的是Master 的日志文件名称，获取方法参考第四步。在我们这里是mysql-bin.000003<br>查看从节点运行状态<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show slave status\G;</span><br></pre></td></tr></table></figure></p>
+<p><img src="1.png" alt=""><br><img src="2.png" alt=""></p>
+<p>MySQL Replication中Slave机器中有两个关键进程，死一个都不行，一个是Slave_SQL_Runing 一个是Slave_IO_Runing他们一个是负责自己的Slave MySQL进程，一个负责组建的IO通信。<br>看到 Slave_IO_Runing为NO表示从节点服务没有启动成功，然后我们看Last_IO_Error 显示的错误信息<br>Fatal error: The slave I/O thread stops because master and slave have equal MySQL server UUIDs; these UUIDs must be different for replication to work<br>从错误信息中可以看出从节点的UUID和UUID相同，造成出现这个错误有两种原因<br>第一：/etc/my.cnf文件中的server_id 相同我们可以通过<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; show variables like ‘server_id';</span><br></pre></td></tr></table></figure></p>
+<p>如果相同修改重启mysql服务。<br>第二：如果不同查看主从server-uuid是否相同如果相同按照16进制规则修改其中任意库重启mysql服务即可。<br>找出这样的原因主要是因为直接copy mysql文件造成<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt; cat /var/lib/mysql/auto.cnf;</span><br></pre></td></tr></table></figure></p>
+<p><img src="3.png" alt=""><br><img src="4.png" alt=""><br>现在 Slave_IO_Runing和Slave_SQL_Running都为YES启动成功<br>启动slave开始复制<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; start slave;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2015/07/26/MySQL5.6.25主从复制/" data-id="cio71acff000358ybksiqm58l" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/07/27/MySQL+Keepalived实现双机热备/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          MySQL+Keepalived实现双机热备
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/07/25/MySQL5.6.25在CentOS6.6的安装步骤/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">MySQL5.6在CentOS6.6安装步骤</div>
+    </a>
+  
+</nav>
+
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-MySQL5.6.25主从复制" data-title="MySQL5.6.25主从复制" data-url="http://yanwuyang.github.io/2015/07/26/MySQL5.6.25主从复制/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/05/11/JavaScript面向对象编程/">JavaScript面向对象编程</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/10/System.setOut/">System.setOut</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/10/Linux常见问题解决方法/">Linux常见问题解决方法</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/10/博客搭建/">博客搭建</a>
+          </li>
+        
+          <li>
+            <a href="/2015/07/27/MySQL+Keepalived实现双机热备/">MySQL+Keepalived实现双机热备</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 yanwuyang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+<script type="text/javascript">
+(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+_st('install','cfMrgJ_UF1xJcNuMGgKs','2.0.0');
+</script>
+            
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+  </div>
+</body>
+</html>
