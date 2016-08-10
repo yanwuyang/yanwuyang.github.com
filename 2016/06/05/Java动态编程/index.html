@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Java动态编程 | 东写西读</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="动态编程指的是在运行时动态修改代码逻辑。
+java运行原理java的运行机制是开发工程师编写java源代码通过javac（java编译器）生产class文件，然后在通过java类加载器装载到jvm（java虚拟机）中，解析Class文件内的信息，生产对应的Class对象。class字节码文件是根据jvm虚拟机规范中规定的字节码组织规则生产。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java动态编程">
+<meta property="og:url" content="http://yanwuyang.github.io/2016/06/05/Java动态编程/index.html">
+<meta property="og:site_name" content="东写西读">
+<meta property="og:description" content="动态编程指的是在运行时动态修改代码逻辑。
+java运行原理java的运行机制是开发工程师编写java源代码通过javac（java编译器）生产class文件，然后在通过java类加载器装载到jvm（java虚拟机）中，解析Class文件内的信息，生产对应的Class对象。class字节码文件是根据jvm虚拟机规范中规定的字节码组织规则生产。">
+<meta property="og:image" content="http://yanwuyang.github.io/43918004_1.png">
+<meta property="og:image" content="http://yanwuyang.github.io/43918004_2.png">
+<meta property="og:updated_time" content="2016-08-09T06:00:54.696Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Java动态编程">
+<meta name="twitter:description" content="动态编程指的是在运行时动态修改代码逻辑。
+java运行原理java的运行机制是开发工程师编写java源代码通过javac（java编译器）生产class文件，然后在通过java类加载器装载到jvm（java虚拟机）中，解析Class文件内的信息，生产对应的Class对象。class字节码文件是根据jvm虚拟机规范中规定的字节码组织规则生产。">
+<meta name="twitter:image" content="http://yanwuyang.github.io/43918004_1.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/css.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">东写西读</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">坚持写作、总结经验、分享心得、原著为上</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+	    
+			<input type="text" class="st-default-search-input" style="width: 110px">
+		
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Java动态编程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/06/05/Java动态编程/" class="article-date">
+  <time datetime="2016-06-05T08:55:01.000Z" itemprop="datePublished">2016-06-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Java动态编程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+		<div id="toc" class="toc-article">
+		<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#java运行原理"><span class="toc-number">1.</span> <span class="toc-text">java运行原理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#动态修改字节码"><span class="toc-number">2.</span> <span class="toc-text">动态修改字节码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#asm"><span class="toc-number">2.1.</span> <span class="toc-text">asm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cglib"><span class="toc-number">2.2.</span> <span class="toc-text">cglib</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#javassist"><span class="toc-number">2.3.</span> <span class="toc-text">javassist</span></a></li></ol></li></ol>
+		</div>
+		
+        <p>动态编程指的是在运行时动态修改代码逻辑。</p>
+<h2 id="java运行原理"><a href="#java运行原理" class="headerlink" title="java运行原理"></a>java运行原理</h2><p>java的运行机制是开发工程师编写java源代码通过javac（java编译器）生产class文件，然后在通过java类加载器装载到jvm（java虚拟机）中，解析Class文件内的信息，生产对应的Class对象。<br>class字节码文件是根据jvm虚拟机规范中规定的字节码组织规则生产。<br><a id="more"></a><br><img src="43918004_1.png" alt=""><br>由于jvm通过字节码的二进制信息加载类，那么，如果我们在运行期系统中，遵循java编译系统组织.class文件的格式和结构，生产相应的二进制数据，然后在吧这个二进制数据加载转换成对应的类，这样，就完成了在代码中，动态创建、修改一个类的能力了。<br><img src="43918004_2.png" alt=""></p>
+<h2 id="动态修改字节码"><a href="#动态修改字节码" class="headerlink" title="动态修改字节码"></a>动态修改字节码</h2><p><strong><em>能实现java动态编程的框架有三种分别是 asm、cglib、javassist</em></strong><br>asm性能最佳、技术难度大<br>cglib是对asm的封装,技术难度低<br>Javassist 性能弱于asm、技术难度低</p>
+<h3 id="asm"><a href="#asm" class="headerlink" title="asm"></a>asm</h3><h3 id="cglib"><a href="#cglib" class="headerlink" title="cglib"></a>cglib</h3><h3 id="javassist"><a href="#javassist" class="headerlink" title="javassist"></a>javassist</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Demo.java</span></span><br><span class="line"><span class="keyword">package</span> com.dynamic.demo;</span><br><span class="line">  <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Demo</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//DemoSuper.java</span></span><br><span class="line"><span class="keyword">package</span> com.dynamic.demo.supers;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoSuper</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">sysHello</span><span class="params">()</span></span>&#123;</span><br><span class="line">	System.out.println(<span class="string">"hello world"</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//JavassistTest.java</span></span><br><span class="line"><span class="keyword">package</span> com.dynamic.test;</span><br><span class="line"><span class="keyword">import</span> java.lang.reflect.Method;</span><br><span class="line"><span class="keyword">import</span> com.dynamic.demo.Demo;</span><br><span class="line"><span class="keyword">import</span> javassist.ClassPool;</span><br><span class="line"><span class="keyword">import</span> javassist.CtClass;</span><br><span class="line"><span class="keyword">import</span> javassist.CtMethod;</span><br><span class="line"><span class="keyword">import</span> javassist.CtNewMethod;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">JavassistTest</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">  <span class="comment">/**</span><br><span class="line">  * <span class="doctag">@param</span> args</span><br><span class="line">  * <span class="doctag">@throws</span> Exception </span><br><span class="line">  */</span></span><br><span class="line">  <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">	ClassPool pool = ClassPool.getDefault();</span><br><span class="line">	CtClass cc = pool.get(<span class="string">"com.dynamic.demo.Demo"</span>);</span><br><span class="line">	cc.setSuperclass(pool.get(<span class="string">"com.dynamic.demo.supers.DemoSuper"</span>));<span class="comment">//添加父类</span></span><br><span class="line">	CtMethod mthd = CtNewMethod.make(<span class="string">"public void sysHello() &#123; &#125;"</span>, cc);<span class="comment">//创建方法</span></span><br><span class="line">	cc.addMethod(mthd);<span class="comment">//添加方法</span></span><br><span class="line">	CtMethod m = cc.getDeclaredMethod(<span class="string">"sysHello"</span>);</span><br><span class="line">	m.insertBefore(<span class="string">"&#123; super.sysHello(); &#125;"</span>);</span><br><span class="line">	cc.writeFile();<span class="comment">//保存class文件</span></span><br><span class="line">	Class c = cc.toClass();</span><br><span class="line">	Method method = c.getMethod(<span class="string">"sysHello"</span>, <span class="keyword">null</span>);</span><br><span class="line">	method.invoke(c.newInstance(), <span class="keyword">null</span>);</span><br><span class="line">	</span><br><span class="line">	Demo e = <span class="keyword">new</span> Demo();</span><br><span class="line">	Class cl = Class.forName(<span class="string">"com.dynamic.demo.Demo"</span>);</span><br><span class="line">	Method mm = cl.getMethod(<span class="string">"sysHello"</span>, <span class="keyword">null</span>);</span><br><span class="line">	mm.invoke(e, <span class="keyword">null</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>最后控制台打印结果分别是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hello world</span><br><span class="line">hello world</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/06/05/Java动态编程/" data-id="ciro91ei8000110jwh4e441ho" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/10/Java中的IO技术：BIO,NIO,AIO/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java中的IO技术：BIO,NIO,AIO
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/30/开发管理的一些建议/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">开发管理的一些建议</div>
+    </a>
+  
+</nav>
+
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-Java动态编程" data-title="Java动态编程" data-url="http://yanwuyang.github.io/2016/06/05/Java动态编程/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/java/">java</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/10/Java中的IO技术：BIO,NIO,AIO/">Java中的IO技术：BIO,NIO,AIO</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/05/Java动态编程/">Java动态编程</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/30/开发管理的一些建议/">开发管理的一些建议</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/19/Android反编译与混淆技术完全解析/">Android反编译与混淆技术完全解析</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/17/漫谈工程师的三观/">漫谈工程师的三观</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 yanwuyang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+ 
+	<script type="text/javascript">
+	(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+	(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+	e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+	})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+	_st('install','cfMrgJ_UF1xJcNuMGgKs','2.0.0');
+  
+</script>
+            
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+  </div>
+</body>
+</html>
