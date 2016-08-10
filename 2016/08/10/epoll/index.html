@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>epoll | 东写西读</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="首先我们来定义流的概念，一个流可以是文件，socket，pipe等等可以进行I/O操作的内核对象。不管是文件，还是套接字，还是管道，我们都可以把他们看作流。之后我们来讨论I/O的操作，通过read，我们可以从流中读入数据；通过write，我们可以往流写入数据。现在假定一个情形，我们需要从流中读数据，但是流中还没有数据，（典型的例子为，客户端要从socket读如数据，但是服务器还没有把数据传回来），">
+<meta property="og:type" content="article">
+<meta property="og:title" content="epoll">
+<meta property="og:url" content="http://yanwuyang.github.io/2016/08/10/epoll/index.html">
+<meta property="og:site_name" content="东写西读">
+<meta property="og:description" content="首先我们来定义流的概念，一个流可以是文件，socket，pipe等等可以进行I/O操作的内核对象。不管是文件，还是套接字，还是管道，我们都可以把他们看作流。之后我们来讨论I/O的操作，通过read，我们可以从流中读入数据；通过write，我们可以往流写入数据。现在假定一个情形，我们需要从流中读数据，但是流中还没有数据，（典型的例子为，客户端要从socket读如数据，但是服务器还没有把数据传回来），">
+<meta property="og:updated_time" content="2016-08-10T06:59:34.060Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="epoll">
+<meta name="twitter:description" content="首先我们来定义流的概念，一个流可以是文件，socket，pipe等等可以进行I/O操作的内核对象。不管是文件，还是套接字，还是管道，我们都可以把他们看作流。之后我们来讨论I/O的操作，通过read，我们可以从流中读入数据；通过write，我们可以往流写入数据。现在假定一个情形，我们需要从流中读数据，但是流中还没有数据，（典型的例子为，客户端要从socket读如数据，但是服务器还没有把数据传回来），">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/css.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">东写西读</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">坚持写作、总结经验、分享心得、原著为上</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+	    
+			<input type="text" class="st-default-search-input" style="width: 110px">
+		
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-epoll" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/10/epoll/" class="article-date">
+  <time datetime="2016-08-09T16:00:00.000Z" itemprop="datePublished">2016-08-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      epoll
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+		<div id="toc" class="toc-article">
+		<strong class="toc-title">文章目录</strong>
+		
+		</div>
+		
+        <p>首先我们来定义流的概念，一个流可以是文件，socket，pipe等等可以进行I/O操作的内核对象。<br>不管是文件，还是套接字，还是管道，我们都可以把他们看作流。<br>之后我们来讨论I/O的操作，通过read，我们可以从流中读入数据；通过write，我们可以往流写入数据。现在假定一个情形，我们需要从流中读数据，但是流中还没有数据，（典型的例子为，客户端要从socket读如数据，但是服务器还没有把数据传回来），这时候该怎么办？<br><a id="more"></a><br>阻塞：阻塞是个什么概念呢？比如某个时候你在等快递，但是你不知道快递什么时候过来，而且你没有别的事可以干（或者说接下来的事要等快递来了才能做）；那么你可以去睡觉了，因为你知道快递把货送来时一定会给你打个电话（假定一定能叫醒你）。</p>
+<p>非阻塞忙轮询：接着上面等快递的例子，如果用忙轮询的方法，那么你需要知道快递员的手机号，然后每分钟给他挂个电话：“你到了没？”<br>很明显一般人不会用第二种做法，不仅显很无脑，浪费话费不说，还占用了快递员大量的时间。<br>大部分程序也不会用第二种做法，因为第一种方法经济而简单，经济是指消耗很少的CPU时间，如果线程睡眠了，就掉出了系统的调度队列，暂时不会去瓜分CPU宝贵的时间片了。</p>
+<p>为了了解阻塞是如何进行的，我们来讨论缓冲区，以及内核缓冲区，最终把I/O事件解释清楚。缓冲区的引入是为了减少频繁I/O操作而引起频繁的系统调用（你知道它很慢的），当你操作一个流时，更多的是以缓冲区为单位进行操作，这是相对于用户空间而言。对于内核来说，也需要缓冲区。</p>
+<p>假设有一个管道，进程A为管道的写入方，Ｂ为管道的读出方。<br>假设一开始内核缓冲区是空的，B作为读出方，被阻塞着。然后首先A往管道写入，这时候内核缓冲区由空的状态变到非空状态，内核就会产生一个事件告诉Ｂ该醒来了，这个事件姑且称之为“缓冲区非空”。<br>但是“缓冲区非空”事件通知B后，B却还没有读出数据；且内核许诺了不能把写入管道中的数据丢掉这个时候，Ａ写入的数据会滞留在内核缓冲区中，如果内核也缓冲区满了，B仍未开始读数据，最终内核缓冲区会被填满，这个时候会产生一个I/O事件，告诉进程A，你该等等（阻塞）了，我们把这个事件定义为“缓冲区满”。</p>
+<p>假设后来Ｂ终于开始读数据了，于是内核的缓冲区空了出来，这时候内核会告诉A，内核缓冲区有空位了，你可以从长眠中醒来了，继续写数据了，我们把这个事件叫做“缓冲区非满”<br>也许事件Y1已经通知了A，但是A也没有数据写入了，而Ｂ继续读出数据，知道内核缓冲区空了。这个时候内核就告诉B，你需要阻塞了！，我们把这个时间定为“缓冲区空”。</p>
+<p>这四个情形涵盖了四个I/O事件，缓冲区满，缓冲区空，缓冲区非空，缓冲区非满（注都是说的内核缓冲区，且这四个术语都是我生造的，仅为解释其原理而造）。这四个I/O事件是进行阻塞同步的根本。（如果不能理解“同步”是什么概念，请学习操作系统的锁，信号量，条件变量等任务同步方面的相关知识）。<br>然后我们来说说阻塞I/O的缺点。但是阻塞I/O模式下，一个线程只能处理一个流的I/O事件。如果想要同时处理多个流，要么多进程(fork)，要么多线程(pthread_create)，很不幸这两种方法效率都不高。<br>于是再来考虑非阻塞忙轮询的I/O方式，我们发现我们可以同时处理多个流了（把一个流从阻塞模式切换到非阻塞模式再此不予讨论）：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="keyword">true</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> i in stream[]; &#123;</span><br><span class="line">        <span class="keyword">if</span> i has data</span><br><span class="line">            read until unavailable</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我们只要不停的把所有流从头到尾问一遍，又从头开始。这样就可以处理多个流了，但这样的做法显然不好，因为如果所有的流都没有数据，那么只会白白浪费CPU。这里要补充一点，阻塞模式下，内核对于I/O事件的处理是阻塞或者唤醒，而非阻塞模式下则把I/O事件交给其他对象（后文介绍的select以及epoll）处理甚至直接忽略。<br>为了避免CPU空转，可以引进了一个代理（一开始有一位叫做select的代理，后来又有一位叫做poll的代理，不过两者的本质是一样的）。这个代理比较厉害，可以同时观察许多流的I/O事件，在空闲的时候，会把当前线程阻塞掉，当有一个或多个流有I/O事件时，就从阻塞态中醒来，于是我们的程序就会轮询一遍所有的流（于是我们可以把“忙”字去掉了）。代码长这样:<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="keyword">true</span> &#123;</span><br><span class="line">    select(streams[])</span><br><span class="line">    <span class="keyword">for</span> i in streams[] &#123;</span><br><span class="line">        <span class="keyword">if</span> i has data</span><br><span class="line">            read until unavailable</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>于是，如果没有I/O事件产生，我们的程序就会阻塞在select处。但是依然有个问题，我们从select那里仅仅知道了，有I/O事件发生了，但却并不知道是那几个流（可能有一个，多个，甚至全部），我们只能无差别轮询所有流，找出能读出数据，或者写入数据的流，对他们进行操作。<br>但是使用select，我们有O(n)的无差别轮询复杂度，同时处理的流越多，没一次无差别轮询时间就越长。再次<br>说了这么多，终于能好好解释epoll了<br>epoll可以理解为event poll，不同于忙轮询和无差别轮询，epoll之会把哪个流发生了怎样的I/O事件通知我们。此时我们对这些流的操作都是有意义的。（复杂度降低到了O(1)）<br>在讨论epoll的实现细节之前，先把epoll的相关操作列出：</p>
+<p>epoll_create(int size)<br>创建一个epoll的句柄，size用来告诉内核这个监听的数目一共有多大。这个参数不同于select()中的第一个参数，给出最大监听的fd+1的值。需要注意的是，当创建好epoll句柄后，它就是会占用一个fd值，在linux下如果查看/proc/进程id/fd/，是能够看到这个fd的，所以在使用完epoll后，必须调用close()关闭，否则可能导致fd被耗尽</p>
+<p>epoll_ctl(int epfd, int op, int fd, struct epoll_event *event)<br>epoll的事件注册函数，它不同与select()是在监听事件时告诉内核要监听什么类型的事件，而是在这里先注册要监听的事件类型。第一个参数是epoll_create()的返回值，第二个参数表示动作，用三个宏来表示：<br>EPOLL_CTL_ADD：注册新的fd到epfd中；<br>EPOLL_CTL_MOD：修改已经注册的fd的监听事件；<br>EPOLL_CTL_DEL：从epfd中删除一个fd；<br>第三个参数是需要监听的fd，第四个参数是告诉内核需要监听什么事<br>比如<br>epoll_ctl(epollfd, EPOLL_CTL_ADD, socket, EPOLLIN);//注册缓冲区非空事件，即有数据流入<br>epoll_ctl(epollfd, EPOLL_CTL_DEL, socket, EPOLLOUT);//注册缓冲区非满事件，即流可以被写入</p>
+<p>events可以是以下几个宏的集合：<br>EPOLLIN ：表示对应的文件描述符可以读（包括对端SOCKET正常关闭）；<br>EPOLLOUT：表示对应的文件描述符可以写；<br>EPOLLPRI：表示对应的文件描述符有紧急的数据可读（这里应该表示有带外数据到来）；<br>EPOLLERR：表示对应的文件描述符发生错误；<br>EPOLLHUP：表示对应的文件描述符被挂断；<br>EPOLLET： 将EPOLL设为边缘触发(Edge Triggered)模式，这是相对于水平触发(Level Triggered)来说的。<br>EPOLLONESHOT：只监听一次事件，当监听完这次事件之后，如果还需要继续监听这个socket的话，需要再次把这个socket加入到EPOLL队列里</p>
+<p>epoll_wait(int epfd, struct epoll_event * events, int maxevents, int timeout);<br>等待事件的产生，类似于select()调用。参数events用来从内核得到事件的集合，maxevents告之内核这个events有多大，这个 maxevents的值不能大于创建epoll_create()时的size，参数timeout是超时时间（毫秒，0会立即返回，-1将不确定，也有说法说是永久阻塞）。该函数返回需要处理的事件数目，如返回0表示已超时。<br>一个epoll模式的代码大概的样子是：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">while</span> <span class="keyword">true</span> &#123;</span><br><span class="line">    active_stream[] = epoll_wait(epollfd)</span><br><span class="line">    <span class="keyword">for</span> i in active_stream[] &#123;</span><br><span class="line">        read or write till</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>完整实例代码</em></strong><br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;iostream&gt;</span><br><span class="line">#include &lt;sys/socket.h&gt;</span><br><span class="line">#include &lt;sys/epoll.h&gt;</span><br><span class="line">#include &lt;netinet/in.h&gt;</span><br><span class="line">#include &lt;arpa/inet.h&gt;</span><br><span class="line">#include &lt;fcntl.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;errno.h&gt;</span><br><span class="line"></span><br><span class="line">using namespace std;</span><br><span class="line"></span><br><span class="line">#define MAXLINE 5</span><br><span class="line">#define OPEN_MAX 100</span><br><span class="line">#define LISTENQ 20</span><br><span class="line">#define SERV_PORT 5000</span><br><span class="line">#define INFTIM 1000</span><br><span class="line"></span><br><span class="line">void setnonblocking(int sock)&#123;</span><br><span class="line">    int opts;</span><br><span class="line">    opts=fcntl(sock,F_GETFL);</span><br><span class="line">    if(opts&lt;0)&#123;</span><br><span class="line">        perror("fcntl(sock,GETFL)");</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line">    opts = opts|O_NONBLOCK;</span><br><span class="line">    if(fcntl(sock,F_SETFL,opts)&lt;0)&#123;</span><br><span class="line">        perror("fcntl(sock,SETFL,opts)");</span><br><span class="line">        exit(1);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char* argv[])&#123;</span><br><span class="line">    int i, maxi, listenfd, connfd, sockfd,epfd,nfds, portnumber;</span><br><span class="line">    ssize_t n;</span><br><span class="line">    char line[MAXLINE];</span><br><span class="line">    socklen_t clilen;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    if ( 2 == argc )&#123;</span><br><span class="line">        if( (portnumber = atoi(argv[1])) &lt; 0 )&#123;</span><br><span class="line">            fprintf(stderr,"Usage:%s portnumber/a/n",argv[0]);</span><br><span class="line">            return 1;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;else&#123;</span><br><span class="line">        fprintf(stderr,"Usage:%s portnumber/a/n",argv[0]);</span><br><span class="line">        return 1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    //声明epoll_event结构体的变量,ev用于注册事件,数组用于回传要处理的事件</span><br><span class="line"></span><br><span class="line">    struct epoll_event ev,events[20];</span><br><span class="line">    //生成用于处理accept的epoll专用的文件描述符</span><br><span class="line"></span><br><span class="line">    epfd=epoll_create(256);</span><br><span class="line">    struct sockaddr_in clientaddr;</span><br><span class="line">    struct sockaddr_in serveraddr;</span><br><span class="line">    listenfd = socket(AF_INET, SOCK_STREAM, 0);</span><br><span class="line">    //把socket设置为非阻塞方式</span><br><span class="line"></span><br><span class="line">    //setnonblocking(listenfd);</span><br><span class="line"></span><br><span class="line">    //设置与要处理的事件相关的文件描述符</span><br><span class="line"></span><br><span class="line">    ev.data.fd=listenfd;</span><br><span class="line">    //设置要处理的事件类型</span><br><span class="line"></span><br><span class="line">    ev.events=EPOLLIN|EPOLLET;</span><br><span class="line">    //ev.events=EPOLLIN;</span><br><span class="line"></span><br><span class="line">    //注册epoll事件</span><br><span class="line">    epoll_ctl(epfd,EPOLL_CTL_ADD,listenfd,&amp;ev);</span><br><span class="line">    bzero(&amp;serveraddr, sizeof(serveraddr));</span><br><span class="line">    serveraddr.sin_family = AF_INET;</span><br><span class="line">    char *local_addr="127.0.0.1";</span><br><span class="line">    inet_aton(local_addr,&amp;(serveraddr.sin_addr));//htons(portnumber);</span><br><span class="line"></span><br><span class="line">    serveraddr.sin_port=htons(portnumber);</span><br><span class="line">    bind(listenfd,(sockaddr *)&amp;serveraddr, sizeof(serveraddr));</span><br><span class="line">    listen(listenfd, LISTENQ);</span><br><span class="line">    maxi = 0;</span><br><span class="line">    for ( ; ; ) &#123;</span><br><span class="line">        //等待epoll事件的发生</span><br><span class="line"></span><br><span class="line">        nfds=epoll_wait(epfd,events,20,500);</span><br><span class="line">        //处理所发生的所有事件</span><br><span class="line"></span><br><span class="line">        for(i=0;i&lt;nfds;++i)&#123;</span><br><span class="line">            if(events[i].data.fd==listenfd)&#123;//如果新监测到一个SOCKET用户连接到了绑定的SOCKET端口，建立新的连接。</span><br><span class="line">                connfd = accept(listenfd,(sockaddr *)&amp;clientaddr, &amp;clilen);</span><br><span class="line">                if(connfd&lt;0)&#123;</span><br><span class="line">                    perror("connfd&lt;0");</span><br><span class="line">                    exit(1);</span><br><span class="line">                &#125;</span><br><span class="line">                //setnonblocking(connfd);</span><br><span class="line"></span><br><span class="line">                char *str = inet_ntoa(clientaddr.sin_addr);</span><br><span class="line">                cout &lt;&lt; "accapt a connection from " &lt;&lt; str &lt;&lt; endl;</span><br><span class="line">                //设置用于读操作的文件描述符</span><br><span class="line"></span><br><span class="line">                ev.data.fd=connfd;</span><br><span class="line">                //设置用于注测的读操作事件</span><br><span class="line"></span><br><span class="line">                ev.events=EPOLLIN|EPOLLET;</span><br><span class="line">                //ev.events=EPOLLIN;</span><br><span class="line"></span><br><span class="line">                //注册ev</span><br><span class="line"></span><br><span class="line">                epoll_ctl(epfd,EPOLL_CTL_ADD,connfd,&amp;ev);</span><br><span class="line">            &#125;else if(events[i].events&amp;EPOLLIN)&#123;//如果是已经连接的用户，并且收到数据，那么进行读入。</span><br><span class="line">            </span><br><span class="line">                cout &lt;&lt; "EPOLLIN" &lt;&lt; endl;</span><br><span class="line">                if ( (sockfd = events[i].data.fd) &lt; 0)</span><br><span class="line">                    continue;</span><br><span class="line">                if ( (n = read(sockfd, line, MAXLINE)) &lt; 0) &#123;</span><br><span class="line">                    if (errno == ECONNRESET) &#123;</span><br><span class="line">                        close(sockfd);</span><br><span class="line">                        events[i].data.fd = -1;</span><br><span class="line">                    &#125; else</span><br><span class="line">                        std::cout&lt;&lt;"readline error"&lt;&lt;std::endl;</span><br><span class="line">                &#125; else if (n == 0) &#123;</span><br><span class="line">                    close(sockfd);</span><br><span class="line">                    events[i].data.fd = -1;</span><br><span class="line">                &#125;</span><br><span class="line">                line[n] = '/0';</span><br><span class="line">                cout &lt;&lt; "read " &lt;&lt; line &lt;&lt; endl;</span><br><span class="line">                //设置用于写操作的文件描述符</span><br><span class="line"></span><br><span class="line">                ev.data.fd=sockfd;</span><br><span class="line">                //设置用于注测的写操作事件</span><br><span class="line"></span><br><span class="line">                ev.events=EPOLLOUT|EPOLLET;</span><br><span class="line">                //修改sockfd上要处理的事件为EPOLLOUT</span><br><span class="line"></span><br><span class="line">                //epoll_ctl(epfd,EPOLL_CTL_MOD,sockfd,&amp;ev);</span><br><span class="line"></span><br><span class="line">            &#125; else if(events[i].events&amp;EPOLLOUT) &#123;// 如果有数据发送</span><br><span class="line">                sockfd = events[i].data.fd;</span><br><span class="line">                write(sockfd, line, n);</span><br><span class="line">                //设置用于读操作的文件描述符</span><br><span class="line"></span><br><span class="line">                ev.data.fd=sockfd;</span><br><span class="line">                //设置用于注测的读操作事件</span><br><span class="line"></span><br><span class="line">                ev.events=EPOLLIN|EPOLLET;</span><br><span class="line">                //修改sockfd上要处理的事件为EPOLIN</span><br><span class="line"></span><br><span class="line">                epoll_ctl(epfd,EPOLL_CTL_MOD,sockfd,&amp;ev);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/08/10/epoll/" data-id="cirojkwh9000z8sjwskmw69q8" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/08/10/Java中的IO技术：BIO,NIO,AIO/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java中的IO技术：BIO,NIO,AIO</div>
+    </a>
+  
+</nav>
+
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-epoll" data-title="epoll" data-url="http://yanwuyang.github.io/2016/08/10/epoll/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/10/epoll/">epoll</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/10/Java中的IO技术：BIO,NIO,AIO/">Java中的IO技术：BIO,NIO,AIO</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/05/Java动态编程/">Java动态编程</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/30/开发管理的一些建议/">开发管理的一些建议</a>
+          </li>
+        
+          <li>
+            <a href="/2016/05/19/Android反编译与混淆技术完全解析/">Android反编译与混淆技术完全解析</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 yanwuyang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+ 
+	<script type="text/javascript">
+	(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+	(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+	e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+	})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+	_st('install','cfMrgJ_UF1xJcNuMGgKs','2.0.0');
+  
+</script>
+            
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+  </div>
+</body>
+</html>
