@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>JDK常用性能分析命令行工具 | 东写西读</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="jpsjps（JVM Process Status Too)可以列出正在运行的虚拟机进程，并显示虚拟机执行主类（Main Class,main（）函数所在的类）名称以及这些进程的本地虚拟机唯一ID（Local Virtual Machine Identifier,LVMID）。虽然功能比较单一，但它是使用频率最高的JDK命令行工具，因为其他的JDK工具大多需要输入它查询到的LVMID来确定要监控的">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JDK常用性能分析命令行工具">
+<meta property="og:url" content="http://yanwuyang.github.io/2016/08/22/JDK常用性能分析命令行工具/index.html">
+<meta property="og:site_name" content="东写西读">
+<meta property="og:description" content="jpsjps（JVM Process Status Too)可以列出正在运行的虚拟机进程，并显示虚拟机执行主类（Main Class,main（）函数所在的类）名称以及这些进程的本地虚拟机唯一ID（Local Virtual Machine Identifier,LVMID）。虽然功能比较单一，但它是使用频率最高的JDK命令行工具，因为其他的JDK工具大多需要输入它查询到的LVMID来确定要监控的">
+<meta property="og:updated_time" content="2016-08-22T07:47:24.187Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JDK常用性能分析命令行工具">
+<meta name="twitter:description" content="jpsjps（JVM Process Status Too)可以列出正在运行的虚拟机进程，并显示虚拟机执行主类（Main Class,main（）函数所在的类）名称以及这些进程的本地虚拟机唯一ID（Local Virtual Machine Identifier,LVMID）。虽然功能比较单一，但它是使用频率最高的JDK命令行工具，因为其他的JDK工具大多需要输入它查询到的LVMID来确定要监控的">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/css.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">东写西读</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">坚持写作、总结经验、分享心得、原著为上</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+	    
+			<input type="text" class="st-default-search-input" style="width: 110px">
+		
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JDK常用性能分析命令行工具" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/22/JDK常用性能分析命令行工具/" class="article-date">
+  <time datetime="2016-08-22T05:56:33.000Z" itemprop="datePublished">2016-08-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JDK常用性能分析命令行工具
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+		<div id="toc" class="toc-article">
+		<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#jps"><span class="toc-number">1.</span> <span class="toc-text">jps</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jinfo"><span class="toc-number">2.</span> <span class="toc-text">jinfo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jmap"><span class="toc-number">3.</span> <span class="toc-text">jmap</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jhat"><span class="toc-number">4.</span> <span class="toc-text">jhat</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jstat"><span class="toc-number">5.</span> <span class="toc-text">jstat</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#jstack"><span class="toc-number">6.</span> <span class="toc-text">jstack</span></a></li></ol>
+		</div>
+		
+        <h1 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h1><p>jps（JVM Process Status Too)可以列出正在运行的虚拟机进程，并显示虚拟机执行主类（Main Class,main（）函数所在的类）名称以及这些进程的本地虚拟机唯一ID（Local Virtual Machine Identifier,LVMID）。虽然功能比较单一，但它是使用频率最高的JDK命令行工具，因为其他的JDK工具大多需要输入它查询到的LVMID来确定要监控的是哪一个虚拟机进程。对于本地虚拟机进程来说，LVMID与操作系统的进程ID（Process Identifier,PID）是一致的，使用Windows的任务管理器或者UNIX的ps命令也可以查询到虚拟机进程的LVMID，但如果同时启动了多个虚拟机进程，无法根据进程名称定位时，那就只能依赖jps命令显示主类的功能才能区分了。<br><a id="more"></a><br><strong><em>语法:</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jps [-q] [-mlvV] [&lt;hostid&gt;]</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>可用的options:</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">描叙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-l</td>
+<td style="text-align:left">输出应用程序main class的完整package名 或者 应用程序的jar文件完整路径名</td>
+</tr>
+<tr>
+<td style="text-align:left">-m</td>
+<td style="text-align:left">输出传递给main 方法的参数</td>
+</tr>
+<tr>
+<td style="text-align:left">-q</td>
+<td style="text-align:left">显示pid</td>
+</tr>
+<tr>
+<td style="text-align:left">-v</td>
+<td style="text-align:left">输出传递给JVM的参数</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>实例:</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# jps -l -m</span><br><span class="line">63706 sun.tools.jps.Jps -l -m</span><br><span class="line">79105 org.apache.catalina.startup.Bootstrap start</span><br><span class="line">80838 com.yonyouup.openapi.netty.startup.Bootstrap</span><br></pre></td></tr></table></figure></p>
+<h1 id="jinfo"><a href="#jinfo" class="headerlink" title="jinfo"></a>jinfo</h1><p>jinfo(Java Configuration Information)，主要用于查看指定Java进程(或核心文件、远程调试服务器)的Java配置信息。<br><strong><em>语法:</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#指定进程号(pid)的进程</span><br><span class="line">jinfo [option] &lt;pid&gt;</span><br><span class="line">#指定核心文件</span><br><span class="line">jinfo [option] &lt;executable &lt;core&gt;</span><br><span class="line">#指定远程调试服务器</span><br><span class="line">jinfo [option] [server_id@]&lt;remote server IP or hostname&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>参数:</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">描叙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">options</td>
+<td style="text-align:left">选项参数是互斥的(不可同时使用)。想要使用选项参数，直接跟在命令名称后即可。</td>
+</tr>
+<tr>
+<td style="text-align:left">pid</td>
+<td style="text-align:left">需要打印配置信息的进程ID。该进程必须是一个Java进程。想要获取运行的Java进程列表，你可以使用jps。</td>
+</tr>
+<tr>
+<td style="text-align:left">executable</td>
+<td style="text-align:left">产生核心dump的Java可执行文件。</td>
+</tr>
+<tr>
+<td style="text-align:left">core</td>
+<td style="text-align:left">需要打印配置信息的核心文件。</td>
+</tr>
+<tr>
+<td style="text-align:left">remote-hostname-or-IP</td>
+<td style="text-align:left">远程调试服务器的(请查看jsadebugd)主机名或IP地址。</td>
+</tr>
+<tr>
+<td style="text-align:left">server-id</td>
+<td style="text-align:left">可选的唯一id，如果相同的远程主机上运行了多台调试服务器，用此选项参数标识服务器。</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>可用的options:</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">描叙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">none</td>
+<td style="text-align:left">打印命令行标识参数和系统属性键值对</td>
+</tr>
+<tr>
+<td style="text-align:left">-flag name</td>
+<td style="text-align:left">打印指定的命令行标识参数的名称和值</td>
+</tr>
+<tr>
+<td style="text-align:left">-flag [+/-]name</td>
+<td style="text-align:left">启用或禁用指定的boolean类型的命令行标识参数</td>
+</tr>
+<tr>
+<td style="text-align:left">-flag name=value</td>
+<td style="text-align:left">为给定的命令行标识参数设置指定的值</td>
+</tr>
+<tr>
+<td style="text-align:left">-flags</td>
+<td style="text-align:left">成对打印传递给JVM的命令行标识参数</td>
+</tr>
+<tr>
+<td style="text-align:left">-sysprops</td>
+<td style="text-align:left">以键值对形式打印Java系统属性</td>
+</tr>
+<tr>
+<td style="text-align:left">-h</td>
+<td style="text-align:left">打印帮助信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-help</td>
+<td style="text-align:left">打印帮助信息</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>实例:</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# jinfo 80838</span><br><span class="line">Attaching to process ID 80838, please wait...</span><br><span class="line">Debugger attached successfully.</span><br><span class="line">Server compiler detected.</span><br><span class="line">JVM version is 24.65-b04</span><br><span class="line">Java System Properties:</span><br><span class="line">此处省略n行。。。。</span><br><span class="line">VM Flags:</span><br><span class="line"></span><br><span class="line">-Xms512m -Xmx1024m -Dnettyserver_home=/data/server/NettyServer</span><br></pre></td></tr></table></figure></p>
+<h1 id="jmap"><a href="#jmap" class="headerlink" title="jmap"></a>jmap</h1><p>jmap是java虚拟机自带的一种内存映像工具。（如：产生那些对象，及其数量）。<br><strong><em>语法:</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#指定进程号(pid)的进程</span><br><span class="line">jmap [option] &lt;pid&gt;</span><br><span class="line">#指定核心文件</span><br><span class="line">jmap [option] &lt;executable &lt;core&gt;</span><br><span class="line">#指定远程调试服务器</span><br><span class="line">jmap [option] [server_id@]&lt;remote server IP or hostname&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>参数:</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">描叙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">options</td>
+<td style="text-align:left">选项参数是互斥的(不可同时使用)。想要使用选项参数，直接跟在命令名称后即可。</td>
+</tr>
+<tr>
+<td style="text-align:left">pid</td>
+<td style="text-align:left">需要打印配置信息的进程ID。该进程必须是一个Java进程。想要获取运行的Java进程列表，你可以使用jps。</td>
+</tr>
+<tr>
+<td style="text-align:left">executable</td>
+<td style="text-align:left">产生核心dump的Java可执行文件。</td>
+</tr>
+<tr>
+<td style="text-align:left">core</td>
+<td style="text-align:left">需要打印配置信息的核心文件。</td>
+</tr>
+<tr>
+<td style="text-align:left">remote-hostname-or-IP</td>
+<td style="text-align:left">远程调试服务器的(请查看jsadebugd)主机名或IP地址。</td>
+</tr>
+<tr>
+<td style="text-align:left">server-id</td>
+<td style="text-align:left">可选的唯一id，如果相同的远程主机上运行了多台调试服务器，用此选项参数标识服务器。</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>可用的options:</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">描叙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-heap</td>
+<td style="text-align:left">打印jvm heap的情况</td>
+</tr>
+<tr>
+<td style="text-align:left">-histo[:live]</td>
+<td style="text-align:left">打印每个class的实例数目,内存占用,类全名信息. VM的内部类名字开头会加上前缀”*”. 如果live子参数加上后,只统计活的对象数量.</td>
+</tr>
+<tr>
+<td style="text-align:left">-permstat</td>
+<td style="text-align:left">打印classload和jvm heap长久层的信息. 包含每个classloader的名字,活泼性,地址,父classloader和加载的class数量. 另外,内部String的数量和占用内存数也会打印出来.</td>
+</tr>
+<tr>
+<td style="text-align:left">-finalizerinfo</td>
+<td style="text-align:left">打印正等候回收的对象的信息.</td>
+</tr>
+<tr>
+<td style="text-align:left">-dump:dump-options</td>
+<td style="text-align:left">使用hprof二进制形式,输出jvm的heap内容到文件=. live子选项是可选的，假如指定live选项,那么只输出活的对象到文件.</td>
+</tr>
+<tr>
+<td style="text-align:left">-F</td>
+<td style="text-align:left">强迫.在pid没有相应的时候使用-dump或者-histo参数. 在这个模式下,live子参数无效.</td>
+</tr>
+<tr>
+<td style="text-align:left">-h/-help</td>
+<td style="text-align:left">打印帮助信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-j</td>
+<td style="text-align:left">传递参数给jmap启动的jvm.</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>实例:</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# jmap -heap 80838</span><br><span class="line">Attaching to process ID 80838, please wait...</span><br><span class="line">Debugger attached successfully.</span><br><span class="line">Server compiler detected.</span><br><span class="line">JVM version is 24.65-b04</span><br><span class="line"></span><br><span class="line">using thread-local object allocation.</span><br><span class="line">Parallel GC with 4 thread(s)</span><br><span class="line"></span><br><span class="line">Heap Configuration:</span><br><span class="line">   MinHeapFreeRatio = 0</span><br><span class="line">   MaxHeapFreeRatio = 100</span><br><span class="line">   MaxHeapSize      = 1073741824 (1024.0MB)</span><br><span class="line">   NewSize          = 1310720 (1.25MB)</span><br><span class="line">   MaxNewSize       = 17592186044415 MB</span><br><span class="line">   OldSize          = 5439488 (5.1875MB)</span><br><span class="line">   NewRatio         = 2</span><br><span class="line">   SurvivorRatio    = 8</span><br><span class="line">   PermSize         = 21757952 (20.75MB)</span><br><span class="line">   MaxPermSize      = 85983232 (82.0MB)</span><br><span class="line">   G1HeapRegionSize = 0 (0.0MB)</span><br><span class="line"></span><br><span class="line">Heap Usage:</span><br><span class="line">PS Young Generation</span><br><span class="line">Eden Space:</span><br><span class="line">   capacity = 135266304 (129.0MB)</span><br><span class="line">   used     = 94343312 (89.97279357910156MB)</span><br><span class="line">   free     = 40922992 (39.02720642089844MB)</span><br><span class="line">   69.74635161170664% used</span><br><span class="line">From Space:</span><br><span class="line">   capacity = 22020096 (21.0MB)</span><br><span class="line">   used     = 17064032 (16.273529052734375MB)</span><br><span class="line">   free     = 4956064 (4.726470947265625MB)</span><br><span class="line">   77.49299548921131% used</span><br><span class="line">To Space:</span><br><span class="line">   capacity = 22020096 (21.0MB)</span><br><span class="line">   used     = 0 (0.0MB)</span><br><span class="line">   free     = 22020096 (21.0MB)</span><br><span class="line">   0.0% used</span><br><span class="line">PS Old Generation</span><br><span class="line">   capacity = 358088704 (341.5MB)</span><br><span class="line">   used     = 4098176 (3.9083251953125MB)</span><br><span class="line">   free     = 353990528 (337.5916748046875MB)</span><br><span class="line">   1.1444583295204978% used</span><br><span class="line">PS Perm Generation</span><br><span class="line">   capacity = 25690112 (24.5MB)</span><br><span class="line">   used     = 25659024 (24.470352172851562MB)</span><br><span class="line">   free     = 31088 (0.0296478271484375MB)</span><br><span class="line">   99.87898846061863% used</span><br><span class="line"></span><br><span class="line">9192 interned Strings occupying 743744 bytes.</span><br></pre></td></tr></table></figure></p>
+<p>或者<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]#jmap -dump:format=b,file=netty.bin 80838</span><br><span class="line">Attaching to process ID 80838, please wait...</span><br><span class="line">Debugger attached successfully.</span><br><span class="line">Server compiler detected.</span><br><span class="line">JVM version is 20.10-b01</span><br><span class="line">Dumping heap to tomcat.bin ...</span><br><span class="line">Finding object size using Printezis bits and skipping over...</span><br><span class="line">Heap dump file created</span><br></pre></td></tr></table></figure></p>
+<h1 id="jhat"><a href="#jhat" class="headerlink" title="jhat"></a>jhat</h1><p>jhat(Java Heap Analysis Tool)，是JDK自带的Java堆内存分析工具</p>
+<p><strong><em>语法:</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jhat [ options ] &lt;heap-dump-file&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>参数:</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">描叙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">options</td>
+<td style="text-align:left">选项参数.如果使用，请直接跟在命令名称之后</td>
+</tr>
+<tr>
+<td style="text-align:left">heap-dump-file</td>
+<td style="text-align:left">指定用于浏览的Java二进制heap dump文件。对于一个包含多个heap dump的dump文件，你可以在文件名称后面追加”#<number>“来指定文件中的某个dump</number></td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>可用的options:</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">描叙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-stack false/true</td>
+<td style="text-align:left">关闭跟踪对象分配调用堆栈。注意，如果heap dump中的分配位置信息不可用，你必须设置此标识为false。此选项的默认值为</td>
+</tr>
+<tr>
+<td style="text-align:left">-refs false/true</td>
+<td style="text-align:left">关闭对象的引用跟踪。默认为true。默认情况下，反向指针(指向给定对象的对象，又叫做引用或外部引用)用于计算堆中的所有对象</td>
+</tr>
+<tr>
+<td style="text-align:left">-port port-number</td>
+<td style="text-align:left">设置jhat的HTTP服务器的端口号。默认为7000</td>
+</tr>
+<tr>
+<td style="text-align:left">-exclude exclude-file</td>
+<td style="text-align:left">指定一个数据成员列表的文件，这些数据成员将被排除在”reachable objects”查询的范围之外。举个例子，如果文件列有java.lang.String.value，那么，当计算指定对象”o”的可达对象列表时，涉及到java.lang.String.value字段的引用路径将会被忽略掉</td>
+</tr>
+<tr>
+<td style="text-align:left">-baseline baseline-dump-file</td>
+<td style="text-align:left">指定一个基线heap dump。在两个heap dump(当前heap dump和基线heap dump)中存在相同对象ID的对象，不会被标记为”new”。其他的对象将被标记为”new”。这在比较两个不同的heap dump时非常有用</td>
+</tr>
+<tr>
+<td style="text-align:left">-debug int</td>
+<td style="text-align:left">设置此工具的调试级别。0意味着没有调试输出。设置的值越高，输出的信息就越详细</td>
+</tr>
+<tr>
+<td style="text-align:left">-version</td>
+<td style="text-align:left">报告版本号并退出</td>
+</tr>
+<tr>
+<td style="text-align:left">-h</td>
+<td style="text-align:left">输出帮助信息并退出</td>
+</tr>
+<tr>
+<td style="text-align:left">-help</td>
+<td style="text-align:left">输出帮助信息并退出</td>
+</tr>
+<tr>
+<td style="text-align:left">-J</td>
+<td style="text-align:left">将运行时参数传递给运行jhat的JVM。例如，-J-Xmx512m设置使用的最大堆内存大小为512MB</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>实例:</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# jhat netty.bin</span><br><span class="line">.....</span><br><span class="line">Started HTTP server on port 7000</span><br><span class="line">Server is ready.</span><br></pre></td></tr></table></figure></p>
+<p>访问 <a href="http://localhost:7000，就可以查看详细的内存信息" target="_blank" rel="external">http://localhost:7000，就可以查看详细的内存信息</a><br>有时你dump出来的堆很大，在启动时会报堆空间不足的错误，可以使用如下参数：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# jhat -J-Xmx512m &lt;heap dump file&gt;</span><br></pre></td></tr></table></figure></p>
+<h1 id="jstat"><a href="#jstat" class="headerlink" title="jstat"></a>jstat</h1><p>jstat（JVM Statistics Monitoring Tool）是用于监视虚拟机各种运行状态信息的命令行工具。它可以显示本地或者远程虚拟机进程中的类装载、内存、垃圾收集、JIT编译等运行数据，在没有GUI图形界面，只提供了纯文本控制台环境的服务器上，它将是运行期定位虚拟机性能问题的首选工具。</p>
+<p><strong><em>语法：</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstat -&lt;option&gt; [-t] [-h&lt;lines&gt;] &lt;vmid&gt; [&lt;interval&gt; [&lt;count&gt;]]</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>参数：</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">参数</th>
+<th style="text-align:left">描叙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">options</td>
+<td style="text-align:left">选项，主要有-gcutil,-class,-gcnew，我们一般使用 -gcutil 查看gc情况</td>
+</tr>
+<tr>
+<td style="text-align:left">vmid</td>
+<td style="text-align:left">VM的进程号，即当前运行的java进程号</td>
+</tr>
+<tr>
+<td style="text-align:left">interval</td>
+<td style="text-align:left">间隔时间，单位为秒或者毫秒</td>
+</tr>
+<tr>
+<td style="text-align:left">count</td>
+<td style="text-align:left">打印次数，如果缺省则打印无数次</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>可用的options:</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">描叙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-class</td>
+<td style="text-align:left">监视类装载、卸载数量、总空间以及类装载所耗时间</td>
+</tr>
+<tr>
+<td style="text-align:left">-compiler</td>
+<td style="text-align:left">输出JIT编译器编译的方法，耗时等信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-gc</td>
+<td style="text-align:left">监视Java堆状况，包括Eden区，两个survivor区，老年代，永久代等的容量，已用空间，GC时间合计信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-gccapacity</td>
+<td style="text-align:left">监视内容与-gc基本相同，但输出主要关注Java堆各个区域使用到的最大，最小空间</td>
+</tr>
+<tr>
+<td style="text-align:left">-gccause</td>
+<td style="text-align:left">与-gcutil功能一样，单输出主要关注已使用空间占总空间的百分比</td>
+</tr>
+<tr>
+<td style="text-align:left">-gcnew</td>
+<td style="text-align:left">监视新生代GC状况</td>
+</tr>
+<tr>
+<td style="text-align:left">-gcnewcapacity</td>
+<td style="text-align:left">监视内容yu-gcnew基本相同，输出主要关注使用到的最大、最少空间</td>
+</tr>
+<tr>
+<td style="text-align:left">-gcold</td>
+<td style="text-align:left">监视老年代GC状况</td>
+</tr>
+<tr>
+<td style="text-align:left">-gcoldcapacity</td>
+<td style="text-align:left">监视内容与-gcold基本相同,输出主要关注使用到的最大、最少空间</td>
+</tr>
+<tr>
+<td style="text-align:left">-gcpermcapacity</td>
+<td style="text-align:left">输出永久代使用到的最大、最少空间</td>
+</tr>
+<tr>
+<td style="text-align:left">-gcutil</td>
+<td style="text-align:left">与-gc功能基本相同，单输出主要关注已使用空间占总空间的百分比</td>
+</tr>
+<tr>
+<td style="text-align:left">-printcompilation</td>
+<td style="text-align:left">输出已经被JIT编译的方法</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>实例:</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# jstat -gcutil 80838 100 5</span><br><span class="line">  S0     S1     E      O      P     YGC     YGCT    FGC    FGCT     GCT   </span><br><span class="line"> 77.49   0.00  69.75   1.14  99.88      2    4.719     0    0.000    4.719</span><br><span class="line"> 77.49   0.00  69.75   1.14  99.88      2    4.719     0    0.000    4.719</span><br><span class="line"> 77.49   0.00  69.75   1.14  99.88      2    4.719     0    0.000    4.719</span><br><span class="line"> 77.49   0.00  69.75   1.14  99.88      2    4.719     0    0.000    4.719</span><br><span class="line"> 77.49   0.00  69.75   1.14  99.88      2    4.719     0    0.000    4.719</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>数据含义:</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">列</th>
+<th style="text-align:left">说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">S0</td>
+<td style="text-align:left">Heap上的 Survivor space 0 区已使用空间的百分比</td>
+</tr>
+<tr>
+<td style="text-align:left">S1</td>
+<td style="text-align:left">Heap上的 Survivor space 1 区已使用空间的百分比</td>
+</tr>
+<tr>
+<td style="text-align:left">E</td>
+<td style="text-align:left">Heap上的 Eden space 区已使用空间的百分比</td>
+</tr>
+<tr>
+<td style="text-align:left">O</td>
+<td style="text-align:left">Heap上的 Old space 区已使用空间的百分比</td>
+</tr>
+<tr>
+<td style="text-align:left">P</td>
+<td style="text-align:left">Perm space 区已使用空间的百分比</td>
+</tr>
+<tr>
+<td style="text-align:left">YGC</td>
+<td style="text-align:left">从应用程序启动到采样时发生 Young GC 的次数</td>
+</tr>
+<tr>
+<td style="text-align:left">YGCT</td>
+<td style="text-align:left">从应用程序启动到采样时 Young GC 所用的时间(单位秒)</td>
+</tr>
+<tr>
+<td style="text-align:left">FGC</td>
+<td style="text-align:left">从应用程序启动到采样时发生 Full GC 的次数</td>
+</tr>
+<tr>
+<td style="text-align:left">FGCT</td>
+<td style="text-align:left">从应用程序启动到采样时 Full GC 所用的时间(单位秒)</td>
+</tr>
+<tr>
+<td style="text-align:left">GCT</td>
+<td style="text-align:left">从应用程序启动到采样时用于垃圾回收的总时间(单位秒)</td>
+</tr>
+</tbody>
+</table>
+<h1 id="jstack"><a href="#jstack" class="headerlink" title="jstack"></a>jstack</h1><p>jstack: 查看进程线程栈信息<br>如果java程序崩溃生成core文件，jstack工具可以用来获得core文件的java stack和native stack的信息，从而可以轻松地知道java程序是如何崩溃和在程序何处发生问题。 如果运行的java程序呈现hung的状态，jstack可以查看线程堆栈。</p>
+<p><strong><em>语法：</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#指定进程号(pid)的进程</span><br><span class="line">jstack [-l] &lt;pid&gt;</span><br><span class="line">jstack -F [-m] [-l] &lt;pid&gt;</span><br><span class="line">#指定核心文件</span><br><span class="line">jstack [-m] [-l] &lt;executable&gt; &lt;core&gt;</span><br><span class="line">#指定远程调试服务器</span><br><span class="line">jstack [-m] [-l] [server_id@]&lt;remote server IP or hostname&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>可用的options:</em></strong></p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">选项</th>
+<th style="text-align:left">描叙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">-F</td>
+<td style="text-align:left">pid无法响应时，强制打印堆栈</td>
+</tr>
+<tr>
+<td style="text-align:left">-m</td>
+<td style="text-align:left">打印混合模式(Java和本地C/C++帧)的堆栈跟踪信息</td>
+</tr>
+<tr>
+<td style="text-align:left">-l</td>
+<td style="text-align:left">长列表. 打印关于锁的附加信息,例如属于java.util.concurrent的ownable synchronizers列表</td>
+</tr>
+<tr>
+<td style="text-align:left">-h</td>
+<td style="text-align:left">输出帮助信息</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>实例:</em></strong><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost bin]# jstack -l 80838</span><br><span class="line">2016-08-22 15:40:02</span><br><span class="line">Full thread dump Java HotSpot(TM) 64-Bit Server VM (24.65-b04 mixed mode):</span><br><span class="line"></span><br><span class="line">&quot;RMI Scheduler(0)&quot; daemon prio=10 tid=0x00007feb98005800 nid=0xea72 waiting on condition [0x00007febac1e5000]</span><br><span class="line">   java.lang.Thread.State: WAITING (parking)</span><br><span class="line">        at sun.misc.Unsafe.park(Native Method)</span><br><span class="line">        - parking to wait for  &lt;0x00000000f4174500&gt; (a java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject)</span><br><span class="line">        at java.util.concurrent.locks.LockSupport.park(LockSupport.java:186)</span><br><span class="line">        at java.util.concurrent.locks.AbstractQueuedSynchronizer$ConditionObject.await(AbstractQueuedSynchronizer.java:2043)</span><br><span class="line">        at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:1079)</span><br><span class="line">        at java.util.concurrent.ScheduledThreadPoolExecutor$DelayedWorkQueue.take(ScheduledThreadPoolExecutor.java:807)</span><br><span class="line">        at java.util.concurrent.ThreadPoolExecutor.getTask(ThreadPoolExecutor.java:1068)</span><br><span class="line">        at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1130)</span><br><span class="line">        at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:615)</span><br><span class="line">        at java.lang.Thread.run(Thread.java:745)</span><br><span class="line"></span><br><span class="line">   Locked ownable synchronizers:</span><br><span class="line">        - None</span><br><span class="line">.......</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">&quot;VM Thread&quot; prio=10 tid=0x00007fec1c068800 nid=0x13bcc runnable </span><br><span class="line"></span><br><span class="line">&quot;GC task thread#0 (ParallelGC)&quot; prio=10 tid=0x00007fec1c01e800 nid=0x13bc8 runnable </span><br><span class="line"></span><br><span class="line">&quot;GC task thread#1 (ParallelGC)&quot; prio=10 tid=0x00007fec1c020800 nid=0x13bc9 runnable </span><br><span class="line"></span><br><span class="line">&quot;GC task thread#2 (ParallelGC)&quot; prio=10 tid=0x00007fec1c022800 nid=0x13bca runnable </span><br><span class="line"></span><br><span class="line">&quot;GC task thread#3 (ParallelGC)&quot; prio=10 tid=0x00007fec1c024800 nid=0x13bcb runnable </span><br><span class="line"></span><br><span class="line">&quot;VM Periodic Task Thread&quot; prio=10 tid=0x00007fec1c0a8000 nid=0x13bd3 waiting on condition </span><br><span class="line"></span><br><span class="line">JNI global references: 255</span><br></pre></td></tr></table></figure></p>
+<p>将线程栈信息输出到指定文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[root@localhost logs]# jstack -l 80838 &gt; netty.stack</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/08/22/JDK常用性能分析命令行工具/" data-id="cis5mo2aw0000r4jwsn9d0aiu" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/08/22/分析Java进程中消耗CPU最高的线程/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">分析Java进程中消耗CPU最高的线程</div>
+    </a>
+  
+</nav>
+
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-JDK常用性能分析命令行工具" data-title="JDK常用性能分析命令行工具" data-url="http://yanwuyang.github.io/2016/08/22/JDK常用性能分析命令行工具/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">7</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/08/22/JDK常用性能分析命令行工具/">JDK常用性能分析命令行工具</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/22/分析Java进程中消耗CPU最高的线程/">分析Java进程中消耗CPU最高的线程</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/10/epoll/">epoll</a>
+          </li>
+        
+          <li>
+            <a href="/2016/08/10/Java中的IO技术：BIO,NIO,AIO/">Java中的IO技术：BIO,NIO,AIO</a>
+          </li>
+        
+          <li>
+            <a href="/2016/06/05/Java动态编程/">Java动态编程</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 yanwuyang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+ 
+	<script type="text/javascript">
+	(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+	(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+	e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+	})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+	_st('install','cfMrgJ_UF1xJcNuMGgKs','2.0.0');
+  
+</script>
+            
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+  </div>
+</body>
+</html>
