@@ -3,27 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>虚拟机联网方式设置 | 东写西读</title>
+  <title>Java线程中断interrupt | 东写西读</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Bridging（桥接）这种方式是最简单的只需要设置虚拟机如下图就可以进行联网了。包括虚拟机IP、网关、DNS等都不需要进行设置，宿主主机也不需要进行共享">
+  <meta name="description" content="首先一个线程的终止不应该由其他线程来强制中断或停止。而是应该由线程自己自行停止。所以线程的stop,suspend,resume 都已经被抛弃了。而线程interrupt的作用也不是中断线程，而是通知线程应该中断了。具体到底中断还是继续运行，应该有被通知的线程自己处理。">
 <meta property="og:type" content="article">
-<meta property="og:title" content="虚拟机联网方式设置">
-<meta property="og:url" content="http://yanwuyang.github.io/2014/10/08/虚拟机联网方式设置/index.html">
+<meta property="og:title" content="Java线程中断interrupt">
+<meta property="og:url" content="http://yanwuyang.github.io/2016/09/12/Java线程中断interrupt/index.html">
 <meta property="og:site_name" content="东写西读">
-<meta property="og:description" content="Bridging（桥接）这种方式是最简单的只需要设置虚拟机如下图就可以进行联网了。包括虚拟机IP、网关、DNS等都不需要进行设置，宿主主机也不需要进行共享">
-<meta property="og:image" content="http://yanwuyang.github.io/6c224f4a20a4462399c138119b22720e0cf3d7be.jpg">
-<meta property="og:image" content="http://yanwuyang.github.io/241f95cad1c8a786c6c1d77d6409c93d71cf50dd.jpg">
-<meta property="og:image" content="http://yanwuyang.github.io/d31b0ef41bd5ad6ef751f89982cb39dbb6fd3c1c.jpg">
-<meta property="og:image" content="http://yanwuyang.github.io/203fb80e7bec54e72f564b6aba389b504fc26a0f.jpg">
-<meta property="og:image" content="http://yanwuyang.github.io/e7cd7b899e510fb3728324e3da33c895d1430c2f.jpg">
-<meta property="og:image" content="http://yanwuyang.github.io/d8f9d72a6059252d3cf04e70379b033b5ab5b9db.jpg">
-<meta property="og:image" content="http://yanwuyang.github.io/aec379310a55b31966f8dc0140a98226cffc1744.jpg">
-<meta property="og:image" content="http://yanwuyang.github.io/a6efce1b9d16fdfa3265015bb48f8c5494ee7b7e.jpg">
-<meta property="og:updated_time" content="2016-05-16T01:17:12.782Z">
+<meta property="og:description" content="首先一个线程的终止不应该由其他线程来强制中断或停止。而是应该由线程自己自行停止。所以线程的stop,suspend,resume 都已经被抛弃了。而线程interrupt的作用也不是中断线程，而是通知线程应该中断了。具体到底中断还是继续运行，应该有被通知的线程自己处理。">
+<meta property="og:updated_time" content="2016-09-12T08:55:55.540Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="虚拟机联网方式设置">
-<meta name="twitter:description" content="Bridging（桥接）这种方式是最简单的只需要设置虚拟机如下图就可以进行联网了。包括虚拟机IP、网关、DNS等都不需要进行设置，宿主主机也不需要进行共享">
-<meta name="twitter:image" content="http://yanwuyang.github.io/6c224f4a20a4462399c138119b22720e0cf3d7be.jpg">
+<meta name="twitter:title" content="Java线程中断interrupt">
+<meta name="twitter:description" content="首先一个线程的终止不应该由其他线程来强制中断或停止。而是应该由线程自己自行停止。所以线程的stop,suspend,resume 都已经被抛弃了。而线程interrupt的作用也不是中断线程，而是通知线程应该中断了。具体到底中断还是继续运行，应该有被通知的线程自己处理。">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -76,14 +67,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-虚拟机联网方式设置" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-Java线程中断interrupt" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2014/10/08/虚拟机联网方式设置/" class="article-date">
-  <time datetime="2014-10-07T16:00:00.000Z" itemprop="datePublished">2014-10-08</time>
+    <a href="/2016/09/12/Java线程中断interrupt/" class="article-date">
+  <time datetime="2016-09-12T08:55:01.000Z" itemprop="datePublished">2016-09-12</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/VMware/">VMware</a>
+    <a class="article-category-link" href="/categories/Java/">Java</a>
   </div>
 
   </div>
@@ -94,7 +85,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      虚拟机联网方式设置
+      Java线程中断interrupt
     </h1>
   
 
@@ -104,23 +95,14 @@
       
 		<!-- Table of Contents -->
 		
-		<div id="toc" class="toc-article">
-		<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Bridging（桥接）"><span class="toc-number">1.</span> <span class="toc-text">Bridging（桥接）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#NAT连接"><span class="toc-number">2.</span> <span class="toc-text">NAT连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#拓展知识"><span class="toc-number">3.</span> <span class="toc-text">拓展知识</span></a></li></ol>
-		</div>
-		
-        <h2 id="Bridging（桥接）"><a href="#Bridging（桥接）" class="headerlink" title="Bridging（桥接）"></a>Bridging（桥接）</h2><p>这种方式是最简单的只需要设置虚拟机如下图就可以进行联网了。包括虚拟机IP、网关、DNS等都不需要进行设置，宿主主机也不需要进行共享<br><a id="more"></a><br><img src="6c224f4a20a4462399c138119b22720e0cf3d7be.jpg" alt="桥接"></p>
-<h2 id="NAT连接"><a href="#NAT连接" class="headerlink" title="NAT连接"></a>NAT连接</h2><p>第一、需要宿主主机对网络进行共享到VMware Network Adapter VMnet8 网络连接 VMware Network Adapter VMnet8的IP使用默认分配。<br>第二、虚拟机设置如下图<br><img src="241f95cad1c8a786c6c1d77d6409c93d71cf50dd.jpg" alt="NAT连接"><br>第三、设置虚拟机IP<br>例如VMware Network Adapter VMnet8 的IP地址为192.168.137.1 虚拟机的IP就在 192.168.137.2~192.168.137.255之间了<br>网关设置为192.168.137.1，子网掩码设置为255.255.255.0，DNS可以设置为192.168.137.1 后者同宿主主机的DNS相同也可以<br>通过 ipconfig /all可以获得宿主主机的DNS，如下图。<br><img src="d31b0ef41bd5ad6ef751f89982cb39dbb6fd3c1c.jpg" alt="虚拟机IP"></p>
-<p>通过上面的设置就可以上网了<br>虚拟机网络设置 在Edit——》Virtual Nework Editor<br><img src="203fb80e7bec54e72f564b6aba389b504fc26a0f.jpg" alt="网络设置"><br>VMnet0 默认使用的是桥接方式（以一台主机的方式加入局域网局域网内是互通的） VMent1使用的主机模式（Host-only） VMent8默认使用的是网络地址转换模式（NAT）。<br>如果虚拟机使用的是NAT模式如果自动获取IP，IP的范围取决于 DHCP Settings的的设置 这里是 128~254<br><img src="e7cd7b899e510fb3728324e3da33c895d1430c2f.jpg" alt="网络设置"><br>默认网关在NAT Setting中设置 如果想要手动设置只要在虚拟机中设置跟下面相同即可<br><img src="d8f9d72a6059252d3cf04e70379b033b5ab5b9db.jpg" alt="网络设置"><br> 这样自动获取的IP可能还不能与宿住主机ping同，不用急只要对宿主主机的VMware Network Adapter VMnet8 的IP设置与上图同一网段即可对于虚拟机的网关 即可以设置为 VMware Network Adapter VMnet8的IP也可以设置为Net Setting中的网关。这样设置完以后就可以与主机ping通了但可能依然不能连接公网，我们只要对虚拟机设置下DNS就可以了 ，如何获取DNS先要保证宿主主机是能连接外网的 然后我们通过ipconfig /all获取到DNS 然后设置虚拟机中就可以连接公网了。<br> <img src="aec379310a55b31966f8dc0140a98226cffc1744.jpg" alt="网络拓扑图"> </p>
-<h2 id="拓展知识"><a href="#拓展知识" class="headerlink" title="拓展知识"></a>拓展知识</h2><p>网关： 网关是一种充当转换重任的计算机系统或设备。在使用不同的通信协议、数据格式或语言，甚至体系结构完全不同的两种系统之间，网关是一个翻译器。</p>
-<p>那么网关到底是什么呢？网关实质上是一个网络通向其他网络的IP地址。比如有网络A和网络B，网络A的IP地址范围为“192.168.1.1~192. 168.1.254”，子网掩码为255.255.255.0；网络B的IP地址范围为“192.168.2.1~192.168.2.254”，子网掩码为255.255.255.0。在没有路由器的情况下，两个网络之间是不能进行TCP/IP通信的，即使是两个网络连接在同一台交换机（或集线器）上，TCP/IP协议也会根据子网掩码（255.255.255.0）判定两个网络中的主机处在不同的网络里。而要实现这两个网络之间的通信，则必须通过网关。如果网络A中的主机发现数据包的目的主机不在本地网络中，就把数据包转发给它自己的网关，再由网关转发给网络B的网关，网络B的网关再转发给网络B的某个主机（如附图所示）。网络A向网络B转发数据包的过程。</p>
-<p><strong><em>举例说明</em></strong><br>假设你的名字叫小不点(很小)，你住在一个大院子里，你的邻居有很多小伙伴，父母是你的网关。当你想跟院子里的某个小伙伴玩，只要你在院子里大喊一声他的名字，他听到了就会回应你，并且跑出来跟你玩。<br>但是你家长不允许你走出大门，你想与外界发生的一切联系，都必须由父母（网关）用电话帮助你联系。假如你想找你的同学小明聊天，小明家住在很远的另外一个院子里，他家里也有父母（小明的网关）。但是你不知道小明家的电话号码，不过你的班主任老师有一份你们班全体同学的名单和电话号码对照表，你的老师就是你的DNS服务器。于是你在家里和父母有了下面的对话：</p>
-<p>小不点：妈妈(或爸爸),我想找班主任查一下小明的电话号码行吗？<br><img src="a6efce1b9d16fdfa3265015bb48f8c5494ee7b7e.jpg" alt="网络拓扑图"><br>家长：好，你等着。（接着你家长给你的班主任挂了一个电话，问清楚了小明的电话）问到了，他家的号码是211.99.99.99</p>
+        <p>首先一个线程的终止不应该由其他线程来强制中断或停止。而是应该由线程自己自行停止。所以线程的stop,suspend,resume 都已经被抛弃了。而线程interrupt的作用也不是<br>中断线程，而是通知线程应该中断了。具体到底中断还是继续运行，应该有被通知的线程自己处理。<br><a id="more"></a><br>在以前通过一个线程去stop停止一个线程，这种方式太过暴力而且是很不安全的。怎么说呢，线程A调用线程B的stop方法来停止线程B,调用这个方法的时候线程A并不知道线程<br>线程B的执行情况，这种突然间的停止会导致线程B的一些清理工作无法完成还有一个情况是执行stop方法后线程B会马上释放锁，这有可能会引发数据不同步问题。基于以上这些问题，<br>stop()方法被抛弃了。</p>
+<p>如果线程在调用 Object 类的 wait()、wait(long) 或 wait(long, int) 方法，或者该类的 join()、join(long)、join(long, int)、sleep(long) 或 sleep(long, int) 方法过程中受阻，<br>则其中断状态将被清除，它还将收到一个 InterruptedException。<br>如果该线程在可中断的通道上的 I/O 操作中受阻，则该通道将被关闭，该线程的中断状态将被设置并且该线程将收到一个 ClosedByInterruptException。<br>如果该线程在一个 Selector 中受阻，则该线程的中断状态将被设置，它将立即从选择操作返回，并可能带有一个非零值，就好像调用了选择器的 wakeup 方法一样。 </p>
+<p>至于为什么如果线程在调用 Object 类的 wait()、wait(long) 或 wait(long, int) 方法，或者该类的 join()、join(long)、join(long, int)、sleep(long) 或 sleep(long, int) 方法过程中受阻，<br>会清除中断状态，还会收到一个InterruptedException异常。调用线程interrupt方法表示线程应该终止，其他的阻塞中断也没有意义。如果继续阻塞线程也没办法收到中断信号。<br>所以对象的阻塞状态都会终止。并且通过异常的方式告诉对象，你的阻塞是被interrupt清除的。不是通过正常的notify(), notifyAll() 释放等待。由此可见java的设计是很合理的。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2014/10/08/虚拟机联网方式设置/" data-id="ciszth1xq0023a0jwo1uenegr" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/09/12/Java线程中断interrupt/" data-id="ciszth1tn000fa0jw9x6i3qi1" class="article-share-link">分享</a>
       
       
     </footer>
@@ -129,19 +111,10 @@
     
 <nav id="article-nav">
   
-    <a href="/2014/12/10/Nginx+Tomcat集群/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
-      <div class="article-nav-title">
-        
-          Nginx+Tomcat集群
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/09/04/中间件远程调试设置/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/08/22/JDK常用性能分析命令行工具/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">中间件远程调试设置</div>
+      <div class="article-nav-title">JDK常用性能分析命令行工具</div>
     </a>
   
 </nav>
@@ -149,7 +122,7 @@
   
   
   <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="post-虚拟机联网方式设置" data-title="虚拟机联网方式设置" data-url="http://yanwuyang.github.io/2014/10/08/虚拟机联网方式设置/"></div>
+	<div class="ds-thread" data-thread-key="post-Java线程中断interrupt" data-title="Java线程中断interrupt" data-url="http://yanwuyang.github.io/2016/09/12/Java线程中断interrupt/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">
