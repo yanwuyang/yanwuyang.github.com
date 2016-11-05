@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>第十六章 变更管理 | 东写西读</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="项目变更基本概念
+在信息系统项目实施过程中，由于项目环境或者其他原因而对项目产品的功能、性能、架构、技术指标、集成方法、项目的范围基准、进度基准和成本基准等方面做出的改变。
+变更管理的实质，是根据项目推进过程中越来越丰富的项目认知，不断调整项目努力方向和资源配置，最大程度地满足客户等项目干系人的需求，提升项目价值。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第十六章 变更管理">
+<meta property="og:url" content="http://yanwuyang.github.io/2016/10/12/第十六章 变更管理/index.html">
+<meta property="og:site_name" content="东写西读">
+<meta property="og:description" content="项目变更基本概念
+在信息系统项目实施过程中，由于项目环境或者其他原因而对项目产品的功能、性能、架构、技术指标、集成方法、项目的范围基准、进度基准和成本基准等方面做出的改变。
+变更管理的实质，是根据项目推进过程中越来越丰富的项目认知，不断调整项目努力方向和资源配置，最大程度地满足客户等项目干系人的需求，提升项目价值。">
+<meta property="og:updated_time" content="2016-11-05T14:41:25.186Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第十六章 变更管理">
+<meta name="twitter:description" content="项目变更基本概念
+在信息系统项目实施过程中，由于项目环境或者其他原因而对项目产品的功能、性能、架构、技术指标、集成方法、项目的范围基准、进度基准和成本基准等方面做出的改变。
+变更管理的实质，是根据项目推进过程中越来越丰富的项目认知，不断调整项目努力方向和资源配置，最大程度地满足客户等项目干系人的需求，提升项目价值。">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/css.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">东写西读</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">实践是最好的成长，发表是最好的记忆</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+	    
+			<input type="text" class="st-default-search-input" style="width: 110px">
+		
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-第十六章 变更管理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/12/第十六章 变更管理/" class="article-date">
+  <time datetime="2016-10-12T15:57:33.000Z" itemprop="datePublished">2016-10-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/系统集成项目管理/">系统集成项目管理</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      第十六章 变更管理
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+		<div id="toc" class="toc-article">
+		<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#项目变更基本概念"><span class="toc-number">1.</span> <span class="toc-text">项目变更基本概念</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#变更含义"><span class="toc-number">1.1.</span> <span class="toc-text">变更含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变更分类"><span class="toc-number">1.2.</span> <span class="toc-text">变更分类</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变更产生的原因"><span class="toc-number">1.3.</span> <span class="toc-text">变更产生的原因</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#变更管理的基本原则"><span class="toc-number">2.</span> <span class="toc-text">变更管理的基本原则</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#角色职责"><span class="toc-number">2.1.</span> <span class="toc-text">角色职责</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#工作程序"><span class="toc-number">2.2.</span> <span class="toc-text">工作程序</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#变更管理相关事项"><span class="toc-number">3.</span> <span class="toc-text">变更管理相关事项</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#操作要点"><span class="toc-number">3.1.</span> <span class="toc-text">操作要点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变更管理和整体管理及配置管理的关系"><span class="toc-number">3.2.</span> <span class="toc-text">变更管理和整体管理及配置管理的关系</span></a></li></ol></li></ol>
+		</div>
+		
+        <h1 id="项目变更基本概念"><a href="#项目变更基本概念" class="headerlink" title="项目变更基本概念"></a>项目变更基本概念</h1><ul>
+<li>在信息系统项目实施过程中，由于项目环境或者其他原因而对项目产品的功能、性能、架构、技术指标、集成方法、项目的范围基准、进度基准和成本基准等方面做出的改变。</li>
+<li>变更管理的实质，是根据项目推进过程中越来越丰富的项目认知，不断调整项目努力方向和资源配置，最大程度地满足客户等项目干系人的需求，提升项目价值。<a id="more"></a>
+</li>
+</ul>
+<h2 id="变更含义"><a href="#变更含义" class="headerlink" title="变更含义"></a>变更含义</h2><ul>
+<li>变更管理是为了使项目实际执行情况和项目基准相一致而对项目变更进行管理，其可能的结果是拒绝变更或调整基准</li>
+<li>从资源增值视觉看，变更的实质是在项目过程中，按一定的流程、根据变化了的情况更新方案、调整资源的配置方式或将储备资源运用于项目中，以满足客户等相关干系人的需求。</li>
+</ul>
+<h2 id="变更分类"><a href="#变更分类" class="headerlink" title="变更分类"></a>变更分类</h2><ul>
+<li>1、按变更性质分为重大变更、重要变更和一般变更，可通过不同的审批权限控制。</li>
+<li>2、按变更的迫切性分为紧急变更和非紧急变更，可通过不同的变更处理流程进行控制</li>
+<li>3、按变更所发生的领域和阶段，可分为进度变更、成本变更、质量变更、设计变更、实施变更和工作（产品）范围变更</li>
+<li>4、按变更来源可分为内部变更和外部变更</li>
+</ul>
+<h2 id="变更产生的原因"><a href="#变更产生的原因" class="headerlink" title="变更产生的原因"></a>变更产生的原因</h2><ul>
+<li>项目具有逐渐完善的基本特征，这就意味着早期的共识会随着对项目的逐步细化，在实施过程不可避免地发生变化。</li>
+<li>变更原因常见有</li>
+<li>1、产品范围（成果）定义的过失或者疏忽</li>
+<li>2、项目范围（工作）定义的过失或者疏忽</li>
+<li>3、客户提出新的需求</li>
+<li>4、应对风险的紧急措施或规避措施</li>
+<li>5、项目执行过程与项目基准要求不一致带来的被动调整（进度、质量、成本）</li>
+<li>6、项目团队人员调整</li>
+<li>7、技术革新的要求</li>
+<li>8、外部事件（例如政策变动或自然环境的变化）</li>
+</ul>
+<h1 id="变更管理的基本原则"><a href="#变更管理的基本原则" class="headerlink" title="变更管理的基本原则"></a>变更管理的基本原则</h1><ul>
+<li>1、基准管理</li>
+<li>2、建立变更控制流程</li>
+<li>3、建立变更控制委员会</li>
+<li>4、完整体现变更的影响</li>
+</ul>
+<h2 id="角色职责"><a href="#角色职责" class="headerlink" title="角色职责"></a>角色职责</h2><ul>
+<li>1、变更申请人<ul>
+<li>提出变更申请的相关人，项目的任何干系人都可以提出变更</li>
+</ul>
+</li>
+<li>2、项目经理<ul>
+<li>项目经理对项目负责，也对整个项目变更管理过程负责。</li>
+<li>项目经理负责变更申请的影响，负责召开变更控制委员会会议，负责监控变更及已批准变更的正确实施</li>
+</ul>
+</li>
+<li>3、变更控制委员会（CCB）<ul>
+<li>一个正式的组织，负责审查、评价、批准、推迟或者否决项目变更</li>
+</ul>
+</li>
+<li>4、变更实施人</li>
+<li>5、配置管理员<ul>
+<li>变更过程的相关产物应纳入配置管理系统中，配置管理员负责把变更后的基准纳入整个项目基准中，变更过程中的其他记录文件也应纳入配置管理系统。</li>
+</ul>
+</li>
+</ul>
+<h2 id="工作程序"><a href="#工作程序" class="headerlink" title="工作程序"></a>工作程序</h2><ul>
+<li>1、提出变更申请<ul>
+<li>以文档的形式向变更控制委员会提出变更申请，所有的申请必须书面形式记录。并纳入配置管理系统中</li>
+</ul>
+</li>
+<li>2、变更影响分析</li>
+<li>3、CCB审查批准</li>
+<li>4、实施变更</li>
+<li>5、监控变更实施</li>
+<li>6、结束变更</li>
+</ul>
+<h1 id="变更管理相关事项"><a href="#变更管理相关事项" class="headerlink" title="变更管理相关事项"></a>变更管理相关事项</h1><h2 id="操作要点"><a href="#操作要点" class="headerlink" title="操作要点"></a>操作要点</h2><ul>
+<li>1、对变更产生的因素施加影响，防止不必要的变更，减小无谓的评估，提高必要变更的通过效率</li>
+<li>2、变更的操作过程应当规范化</li>
+<li>3、对变更的确认应当正式化</li>
+</ul>
+<h2 id="变更管理和整体管理及配置管理的关系"><a href="#变更管理和整体管理及配置管理的关系" class="headerlink" title="变更管理和整体管理及配置管理的关系"></a>变更管理和整体管理及配置管理的关系</h2><ul>
+<li>变更管理是项目整体管理的一部分，属于项目整体变更控制的范畴。应变更管理涉及范围、进度、成本、质量、人力资源和合同管理等多个方面，且重要性不可忽视。</li>
+<li>配置管理重点关注可交付产品及各过程文档，而变更管理则着眼于识别、记录、批准或否决对项目文件、可交付产品或基准的变更</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/10/12/第十六章 变更管理/" data-id="civ5a4u1q0030zgybugthzryy" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/10/24/第九章 项目成本管理/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          第九章 项目成本管理
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/09/12/Java线程中断interrupt/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java线程中断interrupt</div>
+    </a>
+  
+</nav>
+
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-第十六章 变更管理" data-title="第十六章 变更管理" data-url="http://yanwuyang.github.io/2016/10/12/第十六章 变更管理/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">5</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/11/04/第一章 信息化知识/">第一章 信息化知识</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/03/第二章 信息系统集成及服务管理/">第二章 信息系统集成及服务管理</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/02/第三章 信息系统集成专业技术知识/">第三章 信息系统集成专业技术知识</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/24/第九章 项目成本管理/">第九章 项目成本管理</a>
+          </li>
+        
+          <li>
+            <a href="/2016/10/12/第十六章 变更管理/">第十六章 变更管理</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 yanwuyang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+ 
+	<script type="text/javascript">
+	(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+	(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+	e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+	})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+	_st('install','cfMrgJ_UF1xJcNuMGgKs','2.0.0');
+  
+</script>
+            
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+  </div>
+</body>
+</html>
