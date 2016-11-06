@@ -68,6 +68,98 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-epoll" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/10/epoll/" class="article-date">
+  <time datetime="2016-08-09T16:00:00.000Z" itemprop="datePublished">2016-08-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/10/epoll/">epoll</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先我们来定义流的概念，一个流可以是文件，socket，pipe等等可以进行I/O操作的内核对象。<br>不管是文件，还是套接字，还是管道，我们都可以把他们看作流。<br>之后我们来讨论I/O的操作，通过read，我们可以从流中读入数据；通过write，我们可以往流写入数据。现在假定一个情形，我们需要从流中读数据，但是流中还没有数据，（典型的例子为，客户端要从socket读如数据，但是服务器还没有把数据传回来），这时候该怎么办？<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/08/10/epoll/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/08/10/epoll/" data-id="civ6nnhm20022psybf95y6lq5" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-Java中的IO技术：BIO,NIO,AIO" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/10/Java中的IO技术：BIO,NIO,AIO/" class="article-date">
+  <time datetime="2016-08-09T16:00:00.000Z" itemprop="datePublished">2016-08-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/10/Java中的IO技术：BIO,NIO,AIO/">Java中的IO技术：BIO,NIO,AIO</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="同步异步、阻塞非阻塞概念"><a href="#同步异步、阻塞非阻塞概念" class="headerlink" title="同步异步、阻塞非阻塞概念"></a>同步异步、阻塞非阻塞概念</h1><p>同步和异步是针对应用程序和内核的交互而言的，阻塞和非阻塞是针对于进程在访问数据的时候，根据IO操作的就绪状态来采取的不同方式，说白了是一种读取或者写入操作函数的实现方式，阻塞方式下读取或者写入函数将一直等待，而非阻塞方式下，读取或者写入函数会立即返回一个状态值。<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/08/10/Java中的IO技术：BIO,NIO,AIO/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/08/10/Java中的IO技术：BIO,NIO,AIO/" data-id="civ6nnhjk0014psybi1c9m0td" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
     <article id="post-Java动态编程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/06/05/Java动态编程/" class="article-date">
@@ -104,7 +196,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/06/05/Java动态编程/" data-id="civ5a1wi7000gzgyb76mkz6m3" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/06/05/Java动态编程/" data-id="civ6nnhhm0009psybil9i0ktx" class="article-share-link">分享</a>
       
       
     </footer>
@@ -150,7 +242,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/30/开发管理的一些建议/" data-id="civ5a1wjv001ozgyb2gwrr2vt" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/05/30/开发管理的一些建议/" data-id="civ6nnhko001jpsybsssc0vfn" class="article-share-link">分享</a>
       
       
     </footer>
@@ -196,7 +288,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/19/Android反编译与混淆技术完全解析/" data-id="civ5a1wgt0001zgybqf4zawz4" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/05/19/Android反编译与混淆技术完全解析/" data-id="civ6nnhh20001psybl8okc8g3" class="article-share-link">分享</a>
       
       
     </footer>
@@ -245,7 +337,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/17/漫谈工程师的三观/" data-id="civ5a1wkf001xzgybmiw6c4ze" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/05/17/漫谈工程师的三观/" data-id="civ6nnhm2002bpsyb53z0o11b" class="article-share-link">分享</a>
       
       
     </footer>
@@ -291,7 +383,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/16/构建单页Web应用/" data-id="civ5a1wk5001rzgybtnl575r2" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/05/16/构建单页Web应用/" data-id="civ6nnhli001opsyb576bzxnn" class="article-share-link">分享</a>
       
       
     </footer>
@@ -337,7 +429,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/16/Web应用组件化的权衡/" data-id="civ5a1wjb0019zgybmq72pga2" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/05/16/Web应用组件化的权衡/" data-id="civ6nnhmm002xpsyblg2s48do" class="article-share-link">分享</a>
       
       
     </footer>
@@ -385,7 +477,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/16/框架那么多学习那个好/" data-id="civ5a1wk5001tzgybcr9iibfc" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/05/16/框架那么多学习那个好/" data-id="civ6nnhli001qpsybv6708hrb" class="article-share-link">分享</a>
       
       
     </footer>
@@ -432,103 +524,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/11/JavaScript面向对象编程/" data-id="civ5a1wi7000bzgybzvpih99j" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-  
-</article>
-
-
-  
-    <article id="post-System.setOut" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/10/System.setOut/" class="article-date">
-  <time datetime="2016-05-10T12:10:33.000Z" itemprop="datePublished">2016-05-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Java/">Java</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/10/System.setOut/">System.setOut</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;今天一同事问我System.out.println()输出的内容为什么没有输出到日志文件中。他告诉我的是他使用的weblogic中间件。说起这个真的平时没太注意。因为我之前一直使用的是jboss，查看日志也是看的jboss日志文件，通过System.out.println输出的内容也显示在了日志文件中。带着好奇心去看了下自己系统下的日志文件果然没有。于是打开jboss的log4j.xml 与自己系统下的log4j.xml进行了一下对比发现并无不同。于是打开jboss代码看了下发现jboss org.jboss.logging.Log4jService  installSystemAdapters方法中对System.setOut 有设置。<br>   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;表示对于System.setOut不懂到网上百度了下，官方说明是通过System.setOut方法允许程序员自行定义System.out输出流， 我们可以将我们改造好的PrintStream替换java原来的System.out对象。于是他这个问题就很好解决了。<br>
-        
-          <p class="article-more-link">
-            <a href="/2016/05/10/System.setOut/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/10/System.setOut/" data-id="civ5a1wjb0017zgybersxne1j" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-  
-</article>
-
-
-  
-    <article id="post-Linux常见问题解决方法" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/10/Linux常见问题解决方法/" class="article-date">
-  <time datetime="2016-05-10T12:05:33.000Z" itemprop="datePublished">2016-05-10</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Linux/">Linux</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/10/Linux常见问题解决方法/">Linux常见问题解决方法</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="使用SSH登陆Linux的时候提示"><a href="#使用SSH登陆Linux的时候提示" class="headerlink" title="使用SSH登陆Linux的时候提示"></a>使用SSH登陆Linux的时候提示</h3><ol>
-<li>问题描述<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The host &apos;192.168.1.240&apos; is unreachable.</span><br><span class="line">the host may be down,or there may be a problem with the network connection.Sometimes such problems can also be caused by a misconfigured firewall</span><br></pre></td></tr></table></figure>
-</li>
-</ol>
-<p><strong>解决办法</strong><br>
-        
-          <p class="article-more-link">
-            <a href="/2016/05/10/Linux常见问题解决方法/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/10/Linux常见问题解决方法/" data-id="civ5a1wir000qzgybzj5wqqal" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/05/11/JavaScript面向对象编程/" data-id="civ6nnhhc0005psybx9kvxdv7" class="article-share-link">分享</a>
       
       
     </footer>
@@ -552,7 +548,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">5</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">7</span></li></ul>
     </div>
   </div>
 
@@ -567,7 +563,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -592,11 +588,11 @@
           </li>
         
           <li>
-            <a href="/2016/10/24/第九章 项目成本管理/">第九章 项目成本管理</a>
+            <a href="/2016/10/25/第八章 项目进度管理/">第八章 项目进度管理</a>
           </li>
         
           <li>
-            <a href="/2016/10/12/第十六章 变更管理/">第十六章 变更管理</a>
+            <a href="/2016/10/24/第九章 项目成本管理/">第九章 项目成本管理</a>
           </li>
         
       </ul>
