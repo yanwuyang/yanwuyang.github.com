@@ -68,6 +68,100 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-MySQL5.6.25主从复制" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/26/MySQL5.6.25主从复制/" class="article-date">
+  <time datetime="2015-07-25T16:00:00.000Z" itemprop="datePublished">2015-07-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/26/MySQL5.6.25主从复制/">MySQL5.6.25主从复制</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="配置主节点"><a href="#配置主节点" class="headerlink" title="配置主节点"></a>配置主节点</h3><p>配置日志和服务ID , Linux是在/etc/my.cnf window是在my.ini文件下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log-bin=mysql-bin</span><br><span class="line">server-id=1</span><br><span class="line">#binlog-do-db=testDB //需要备份的数据库名多个库以逗号分隔不写表示全部</span><br><span class="line">#log_bin_trust_function_creates=TRUE //涉及到同步函数或存储过程需要设置</span><br></pre></td></tr></table></figure>
+        
+          <p class="article-more-link">
+            <a href="/2015/07/26/MySQL5.6.25主从复制/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2015/07/26/MySQL5.6.25主从复制/" data-id="civaku8vq0014dsjw82fjejii" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-MySQL5.6.25在CentOS6.6的安装步骤" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/07/25/MySQL5.6.25在CentOS6.6的安装步骤/" class="article-date">
+  <time datetime="2015-07-24T16:00:00.000Z" itemprop="datePublished">2015-07-25</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/07/25/MySQL5.6.25在CentOS6.6的安装步骤/">MySQL5.6在CentOS6.6安装步骤</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>此文档主要介绍的是通过yum 在CentOS6.6安装MySQL5.6.25。注意每个MySQL的版本在不同的系统上安装步骤可能有些不同。所以不能保证按照此方法能保证其他版本安装成功。</p>
+<h3 id="下载MySQL-Yum-Repository"><a href="#下载MySQL-Yum-Repository" class="headerlink" title="下载MySQL Yum Repository"></a>下载MySQL Yum Repository</h3><p>为什么需要下载呢？注意原因是在CentOS Yum Repository还没有收入MySQL最新版本的安装库。<br>针对每个每个系统所下载的Yum Repository是不一样所以我们需要对着下载，今天说的是CentOS6.6所以我们只需要下载如下包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shell wget http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm</span><br><span class="line">其他版本对照下载</span><br><span class="line">Red Hat Enterprise Linux 7 / Oracle Linux 7</span><br><span class="line">shell wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm</span><br><span class="line">Red Hat Enterprise Linux 5 / Oracle Linux 5</span><br><span class="line">shell wget http://dev.mysql.com/get/mysql-community-release-fc22-5.noarch.rpm</span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/2015/07/25/MySQL5.6.25在CentOS6.6的安装步骤/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2015/07/25/MySQL5.6.25在CentOS6.6的安装步骤/" data-id="civaku8v3000udsjw7u7wenl1" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
     <article id="post-解决问题心得" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/01/26/解决问题心得/" class="article-date">
@@ -103,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2015/01/26/解决问题心得/" data-id="civ9l4nw0003epgyb0iac7zqn" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2015/01/26/解决问题心得/" data-id="civaku8y0002idsjwfyi4h9ue" class="article-share-link">分享</a>
       
       
     </footer>
@@ -149,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2015/01/14/Nginx+Tomcat+Memcached集群/" data-id="civ9l4nsz0010pgybh7inmzck" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2015/01/14/Nginx+Tomcat+Memcached集群/" data-id="civaku8va000wdsjw6uakd2gb" class="article-share-link">分享</a>
       
       
     </footer>
@@ -218,7 +312,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2015/01/08/Hadoop集群完全分布式部署/" data-id="civ9l4nro0009pgybd2s5isfe" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2015/01/08/Hadoop集群完全分布式部署/" data-id="civaku8r00001dsjwgb249cw8" class="article-share-link">分享</a>
       
       
     </footer>
@@ -264,7 +358,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2015/01/05/Java设计模式之观察者模式/" data-id="civ9l4nsj000qpgybcpw6atel" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2015/01/05/Java设计模式之观察者模式/" data-id="civaku8un000kdsjwss60zoc1" class="article-share-link">分享</a>
       
       
     </footer>
@@ -328,7 +422,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2014/12/10/Nginx+Tomcat集群/" data-id="civ9l4nsz0012pgybvwevoyor" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2014/12/10/Nginx+Tomcat集群/" data-id="civaku8vc000zdsjw0iderr4u" class="article-share-link">分享</a>
       
       
     </footer>
@@ -374,7 +468,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2014/10/08/虚拟机联网方式设置/" data-id="civ9l4nv5002hpgybd4xti6z1" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2014/10/08/虚拟机联网方式设置/" data-id="civaku8y2002ldsjw1jt5dy8m" class="article-share-link">分享</a>
       
       
     </footer>
@@ -421,7 +515,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2014/09/04/Java开发过程中异常汇总及解决办法/" data-id="civ9l4ns4000jpgybiz42jmxt" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2014/09/04/Java开发过程中异常汇总及解决办法/" data-id="civaku8uj000hdsjw0w5whdx1" class="article-share-link">分享</a>
       
       
     </footer>
@@ -468,99 +562,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2014/09/04/中间件远程调试设置/" data-id="civ9l4ntu001spgybgkfbf3i2" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-  
-</article>
-
-
-  
-    <article id="post-Oracle常用脚本" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/04/30/Oracle常用脚本/" class="article-date">
-  <time datetime="2014-04-30T13:28:01.000Z" itemprop="datePublished">2014-04-30</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/Oracle/">Oracle</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/04/30/Oracle常用脚本/">Oracle常用脚本</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="建表空间"><a href="#建表空间" class="headerlink" title="建表空间"></a>建表空间</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">temporary</span> <span class="keyword">tablespace</span> bjjtxx_space_temp </span><br><span class="line">tempfile <span class="string">'D:/oracle/product/10.2.0/oradata/orcl/bjjtxx_temp.dbf'</span> </span><br><span class="line"><span class="keyword">size</span> <span class="number">32</span>m </span><br><span class="line"><span class="keyword">autoextend</span> <span class="keyword">on</span> </span><br><span class="line"><span class="keyword">next</span> <span class="number">32</span>m <span class="keyword">maxsize</span> <span class="number">2048</span>m</span><br><span class="line"><span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>; </span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">tablespace</span> bjjtxx_space</span><br><span class="line"><span class="keyword">logging</span></span><br><span class="line"><span class="keyword">datafile</span> <span class="string">'D:/oracle/product/10.2.0/oradata/orcl/bjjtxx.dbf'</span> </span><br><span class="line"><span class="keyword">size</span> <span class="number">32</span>m </span><br><span class="line"><span class="keyword">autoextend</span> <span class="keyword">on</span> </span><br><span class="line"><span class="keyword">next</span> <span class="number">32</span>m <span class="keyword">maxsize</span> <span class="number">2048</span>m</span><br><span class="line"><span class="keyword">extent</span> <span class="keyword">management</span> <span class="keyword">local</span>;</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2014/04/30/Oracle常用脚本/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2014/04/30/Oracle常用脚本/" data-id="civ9l4nsz0015pgyb865f7oi4" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-  
-</article>
-
-
-  
-    <article id="post-JavaScript常用脚本" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2014/02/13/JavaScript常用脚本/" class="article-date">
-  <time datetime="2014-02-13T13:28:01.000Z" itemprop="datePublished">2014-02-13</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2014/02/13/JavaScript常用脚本/">JavaScript常用脚本</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="字符串函数"><a href="#字符串函数" class="headerlink" title="字符串函数"></a>字符串函数</h2><h3 id="是否包含"><a href="#是否包含" class="headerlink" title="是否包含"></a>是否包含</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">String</span>.prototype.Contains = <span class="function"><span class="keyword">function</span> (<span class="params">A</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (<span class="keyword">this</span>.indexOf(A) &gt; <span class="number">-1</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2014/02/13/JavaScript常用脚本/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2014/02/13/JavaScript常用脚本/" data-id="civ9l4nr80005pgybd2iy3jqa" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2014/09/04/中间件远程调试设置/" data-id="civaku8we001idsjwkksqup8a" class="article-share-link">分享</a>
       
       
     </footer>
@@ -584,7 +586,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">10</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -599,7 +601,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">7</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -624,11 +626,11 @@
           </li>
         
           <li>
-            <a href="/2016/10/28/第六章 项目整体管理/">第六章 项目整体管理</a>
+            <a href="/2016/11/01/第四章 项目管理一般知识/">第四章 项目管理一般知识</a>
           </li>
         
           <li>
-            <a href="/2016/10/27/第七章 项目范围管理/">第七章 项目范围管理</a>
+            <a href="/2016/10/28/第六章 项目整体管理/">第六章 项目整体管理</a>
           </li>
         
       </ul>
