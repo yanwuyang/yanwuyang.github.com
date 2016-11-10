@@ -13,7 +13,7 @@
 <meta property="og:site_name" content="东写西读">
 <meta property="og:description" content="信息系统建设信息系统生命周期
 信息系统建设的内容主要包括设备采购、系统集成、软件开发和运维服务。系统集成是指将计算机软件、硬件、网络通信、信息安全等技术和产品集成为能够满足用户特定需求的信息系统。">
-<meta property="og:updated_time" content="2016-11-08T02:44:54.322Z">
+<meta property="og:updated_time" content="2016-11-10T16:14:10.704Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第三章 信息系统集成专业技术知识">
 <meta name="twitter:description" content="信息系统建设信息系统生命周期
@@ -100,7 +100,7 @@
 		
 		<div id="toc" class="toc-article">
 		<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#信息系统建设"><span class="toc-number">1.</span> <span class="toc-text">信息系统建设</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#信息系统生命周期"><span class="toc-number">1.1.</span> <span class="toc-text">信息系统生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统开发方法"><span class="toc-number">1.2.</span> <span class="toc-text">系统开发方法</span></a></li></ol></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#信息系统建设"><span class="toc-number">1.</span> <span class="toc-text">信息系统建设</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#信息系统生命周期"><span class="toc-number">1.1.</span> <span class="toc-text">信息系统生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#系统开发方法"><span class="toc-number">1.2.</span> <span class="toc-text">系统开发方法</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#计算机网络知识"><span class="toc-number">2.</span> <span class="toc-text">计算机网络知识</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#网络技术标准与协议"><span class="toc-number">2.1.</span> <span class="toc-text">网络技术标准与协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#OSI七层协议"><span class="toc-number">2.1.1.</span> <span class="toc-text">OSI七层协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络协议和标准"><span class="toc-number">2.1.2.</span> <span class="toc-text">网络协议和标准</span></a></li></ol></li></ol></li></ol>
 		</div>
 		
         <h1 id="信息系统建设"><a href="#信息系统建设" class="headerlink" title="信息系统建设"></a>信息系统建设</h1><h2 id="信息系统生命周期"><a href="#信息系统生命周期" class="headerlink" title="信息系统生命周期"></a>信息系统生命周期</h2><ul>
@@ -157,11 +157,40 @@
 </ul>
 </li>
 </ul>
+<h1 id="计算机网络知识"><a href="#计算机网络知识" class="headerlink" title="计算机网络知识"></a>计算机网络知识</h1><h2 id="网络技术标准与协议"><a href="#网络技术标准与协议" class="headerlink" title="网络技术标准与协议"></a>网络技术标准与协议</h2><h3 id="OSI七层协议"><a href="#OSI七层协议" class="headerlink" title="OSI七层协议"></a>OSI七层协议</h3><ul>
+<li><strong>1、物理层：</strong>该层包括物理联网媒介，如电缆连线连接器。该层的协议产生并检测电压以便发送和接收携带数据信号。具体标准有RS232、V.35、RJ-45、FDDI</li>
+<li><strong>2、数据链路层：</strong>它控制网络层与物理层直接的通信。它的主要功能是将从网络层接收到的数据分割层特定的可被物理层传输的帧。常见的协议有IEEE802.3/.2、HDLC、PPP、ATM</li>
+<li><strong>3、网络层：</strong>其主要功能是将网络地址（例如，IP地址）翻译成对应的物理地址（例如，网卡地址），并决定如何将数据从发送方路由到接收方。在TCP/IP协议中，网络层具体协议有IP、ICMP、IGMP、IPX、ARP等</li>
+<li><strong>4、传输层：</strong>主要负责确保数据可靠、顺序、无错地从A点到传输到B点。如提供建立、维护和拆除传送连接的功能；选择网络层提供最适合的服务；在系统之间提供可靠的透明的数据传送，提供端到端的错误恢复和流量控制。具体协议有TCP、UDP、SPX</li>
+<li><strong>5、会话层：</strong>负责在网络中的两节点之间建立和维持通信，以及提供交互会话的管理功能，如三种数据流方向的控制，即一路交互、两路交替和两路同时会话模式。常见的协议有RPC、SQL、NFS</li>
+<li><strong>6、表示层：</strong>如同应用程式和网络之间的翻译官，在表示层，数据将按照网络能理解的方案进行格式化；这种格式化也因所使用网络的类型不同而不同，表示层管理数据的解密加密、数据转换、格式化和文本压缩。常见的协议有JPEG、ASCII、GIF、DES、MPEG</li>
+<li><strong>7、应用层：</strong>负责对软件提供接口以使程序能使用网络服务、如事物处理程序、文件传送协议和网络管理等。在TCP\IP协议中，常见的协议有HTTP、Telnet、FTP、SMTP</li>
+</ul>
+<h3 id="网络协议和标准"><a href="#网络协议和标准" class="headerlink" title="网络协议和标准"></a>网络协议和标准</h3><ul>
+<li>IEEE 802规范定义了网卡如何访问传输介质（如光缆、双绞线、无线等），以及如何在传输的介质上传输数据的方法，还定义了传输信息的网络设备之间连接建立、维护和拆除的路径。</li>
+<li><strong>802.1：</strong>802协议概论</li>
+<li><strong>802.2：</strong>逻辑链路控制层LLC协议</li>
+<li><strong>802.3：</strong>以太网的CSMA/CD载波监听多路访问/冲突检测协议</li>
+<li><strong>802.4：</strong>令牌总线Token Bus协议</li>
+<li><strong>802.5：</strong>令牌环Token Ring协议</li>
+<li><strong>802.6：</strong>城域网MAN协议</li>
+<li><strong>802.7：</strong>FDDI宽带技术协议</li>
+<li><strong>802.8：</strong>光纤技术协议</li>
+<li><strong>802.9：</strong>局域网上的语音/数据集成规范</li>
+<li><strong>802.10：</strong>局域网安全互操作标准</li>
+<li><strong>802.11：</strong>无线局域网WLAN标准协议</li>
+<li>以太网规范IEEE 802.3是重要的局域网协议，内容包括<ul>
+<li><strong>IEEE 802.3</strong>        标准以太网       10MB/s          传输介质为细同轴电缆</li>
+<li><strong>IEEE 802.3u</strong>       快速以太网       100MB/s         双绞线</li>
+<li><strong>IEEE 802.3z</strong>       千兆以太网       1000MB/s        光纤或双绞线</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/11/02/第三章 信息系统集成专业技术知识/" data-id="civaku8x60020dsjw68jaxpor" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/11/02/第三章 信息系统集成专业技术知识/" data-id="civcjyf0a002550ybcer9c01b" class="article-share-link">分享</a>
       
       
     </footer>
