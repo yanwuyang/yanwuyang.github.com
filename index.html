@@ -68,6 +68,129 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-模块定义规范" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/29/模块定义规范/" class="article-date">
+  <time datetime="2016-12-28T16:00:00.000Z" itemprop="datePublished">2016-12-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/29/模块定义规范/">模块定义规范</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+		<div id="toc" class="toc-article">
+		<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CMD"><span class="toc-number">1.</span> <span class="toc-text">CMD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AMD"><span class="toc-number">2.</span> <span class="toc-text">AMD</span></a></li></ol>
+		</div>
+		
+        <h2 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h2><ul>
+<li>通用模块定义规范，一般用于后端，采用同步加载的方式。nodejs的npm实现了此标准。</li>
+<li>规范中指定一个文件对应一个模块</li>
+<li>代表：CommonJS<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//demo1.js </span></span><br><span class="line">exports.add = <span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//demo2.js</span></span><br><span class="line"><span class="built_in">module</span>.exports  = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"hello world demo2"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//demo3.js</span></span><br><span class="line"><span class="keyword">var</span> Demo3 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">this</span>.sysHello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"hello world Demo3"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports.Demo3 = Demo3;</span><br><span class="line"></span><br><span class="line"><span class="comment">//demo4.js</span></span><br><span class="line"><span class="keyword">var</span> Demo4 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">this</span>.sysHello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"hello world Demo4"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">exports.Demo4 = Demo4;</span><br><span class="line"></span><br><span class="line"><span class="comment">//demo5.js</span></span><br><span class="line">exports = [<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//demo6.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = [<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//mian.js</span></span><br><span class="line"><span class="keyword">var</span> demo1 = <span class="built_in">require</span>(<span class="string">'./demo1'</span>);</span><br><span class="line"><span class="keyword">var</span> demo2 = <span class="built_in">require</span>(<span class="string">'./demo2'</span>);</span><br><span class="line"><span class="keyword">var</span> Demo3= <span class="built_in">require</span>(<span class="string">'./demo3'</span>).Demo3;</span><br><span class="line"><span class="keyword">var</span> demo3_ = <span class="built_in">require</span>(<span class="string">'./demo3'</span>);</span><br><span class="line"><span class="keyword">var</span> demo4 = <span class="built_in">require</span>(<span class="string">'./demo4'</span>);</span><br><span class="line"><span class="keyword">var</span> demo5 = <span class="built_in">require</span>(<span class="string">'./demo5'</span>);</span><br><span class="line"><span class="keyword">var</span> demo6 = <span class="built_in">require</span>(<span class="string">'./demo6'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(demo1.add(<span class="number">1</span>,<span class="number">2</span>));</span><br><span class="line">demo2();</span><br><span class="line"><span class="keyword">var</span> demo3 = <span class="keyword">new</span> Demo3();</span><br><span class="line">demo3.sysHello();</span><br><span class="line"><span class="keyword">var</span> demo3_ = <span class="keyword">new</span> demo3_.Demo3();</span><br><span class="line">demo3_.sysHello();</span><br><span class="line"><span class="keyword">var</span> demo4 = <span class="keyword">new</span> demo4.Demo4();</span><br><span class="line">demo4.sysHello();</span><br><span class="line"><span class="built_in">console</span>.log(demo5)</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line">hello world demo2</span><br><span class="line">hello world Demo3</span><br><span class="line">hello world Demo3</span><br><span class="line">hello world Demo4</span><br><span class="line">&#123;&#125;</span><br><span class="line">[ <span class="number">1</span>, <span class="number">2</span> ]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong><em>总结：</em></strong></p>
+<ul>
+<li><strong>module.exports是真正的模块定义接口，exports只不过是它的辅助工具。推荐使用exports导出，除非你打算从原来的“实例化对象”改变成一个类型</strong></li>
+<li><strong>module.exports 导出的是一个类型或实例对象 而exports返回的是一个实例对象</strong></li>
+</ul>
+<p>参考网站：<a href="http://wiki.commonjs.org/wiki/Modules/1.1.1" target="_blank" rel="external">commonjs</a></p>
+<h2 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h2><ul>
+<li>异步加载模块定义规范，也是一个文件对应一个模块。一般用于前端浏览器。因为浏览器加载javascript的时候回停止浏览器渲染引擎工作。阻塞页面渲染。页面显示空白对用户体验不好</li>
+<li>原理就是在&lt;script async/&gt;标签中添加了async属性。只不过async是属于html5中的属性在浏览器IE9以下不支持<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">对模块的返回值类型并没有强制为一定是个object，任何函数的返回值都是允许的。此处是一个返回了函数的模块定义</span><br><span class="line">*/</span></span><br><span class="line">define([<span class="string">"./cart"</span>, <span class="string">"./inventory"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">cart, inventory</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//return an object to define the "my/shirt" module.</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            color: <span class="string">"blue"</span>,</span><br><span class="line">            size: <span class="string">"large"</span>,</span><br><span class="line">            addToCart: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                inventory.decrement(<span class="keyword">this</span>);</span><br><span class="line">                cart.add(<span class="keyword">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"><span class="comment">/*</span><br><span class="line">define()中包含了一个模块名称作为首个参数：这些常由优化工具生成。你也可以自己显式指定模块名称，</span><br><span class="line">但这使模块更不具备移植性——就是说若你将文件移动到其他目录下，你就得重命名。一般最好避免对模块硬编码，</span><br><span class="line">而是交给优化工具去生成。优化工具需要生成模块名以将多个模块打成一个包，加快到浏览器的载人速度。</span><br><span class="line">*/</span></span><br><span class="line">define(<span class="string">"foo/title"</span>, [<span class="string">"my/cart"</span>, <span class="string">"my/inventory"</span>],<span class="function"><span class="keyword">function</span>(<span class="params">cart, inventory</span>) </span>&#123;</span><br><span class="line">	<span class="comment">//Define foo/title object in here.</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//简单包装CommonJS来定义模块</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'a'</span>),</span><br><span class="line">	    b = <span class="built_in">require</span>(<span class="string">'b'</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Return the module value</span></span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> mod = <span class="built_in">require</span>(<span class="string">"./relative/name"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>参考网站：<a href="http://www.requirejs.cn/" target="_blank" rel="external">requirejs官网</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/12/29/模块定义规范/" data-id="ciw3kafxv0004xoybmwpdf25f" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-React学习总结一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/29/React学习总结一/" class="article-date">
+  <time datetime="2016-12-28T16:00:00.000Z" itemprop="datePublished">2016-12-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/29/React学习总结一/">React学习总结一</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="React是什么"><a href="#React是什么" class="headerlink" title="React是什么"></a>React是什么</h2><ul>
+<li>React是用于构建用户界面的Javascript库 </li>
+<li>1、仅仅是UI<ul>
+<li>许多人使用React作为MVC架构的V层。 尽管React并没有假设过你的其余技术栈， 但它仍可以作为一个小特征轻易地在已有项目中使用 </li>
+</ul>
+</li>
+<li>2、虚拟DOM<ul>
+<li>React为了更高超的性能而使用虚拟DOM作为其不同的实现。 它同时也可以由服务端Node.js渲染 － 而不需要过重的浏览器DOM支持 </li>
+</ul>
+</li>
+<li>3、数据流<ul>
+<li>React实现了单向响应的数据流，从而减少了重复代码，这也是它为什么比传统数据绑定更简单
+        
+          <p class="article-more-link">
+            <a href="/2016/12/29/React学习总结一/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/12/29/React学习总结一/" data-id="ciw3iy12m0002xoyb59elxhvj" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
     <article id="post-第一章 信息化知识" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/11/04/第一章 信息化知识/" class="article-date">
@@ -103,7 +226,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/11/04/第一章 信息化知识/" data-id="civcjyezu001x50ybviqelnit" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/11/04/第一章 信息化知识/" data-id="civducsnd00228oybr5k922xu" class="article-share-link">分享</a>
       
       
     </footer>
@@ -149,7 +272,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/11/03/第二章 信息系统集成及服务管理/" data-id="civcjyf0a002750ybnt0eqxg6" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/11/03/第二章 信息系统集成及服务管理/" data-id="civducso900348oybj9cy1w8q" class="article-share-link">分享</a>
       
       
     </footer>
@@ -196,7 +319,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/11/02/第三章 信息系统集成专业技术知识/" data-id="civcjyf0a002550ybcer9c01b" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/11/02/第三章 信息系统集成专业技术知识/" data-id="civducsmy001v8oybp3a4ksra" class="article-share-link">分享</a>
       
       
     </footer>
@@ -244,7 +367,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/11/01/第四章 项目管理一般知识/" data-id="civcjyf0p002k50ybiwl1bjh7" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/11/01/第四章 项目管理一般知识/" data-id="civducsqu003j8oybirc19ikv" class="article-share-link">分享</a>
       
       
     </footer>
@@ -292,7 +415,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/10/28/第六章 项目整体管理/" data-id="civcjyf0a002a50ybacgfpvxe" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/10/28/第六章 项目整体管理/" data-id="civducsnd00238oybme0o6xgk" class="article-share-link">分享</a>
       
       
     </footer>
@@ -346,7 +469,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/10/27/第七章 项目范围管理/" data-id="civcjyf0a002150ybk9ztuni8" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/10/27/第七章 项目范围管理/" data-id="civducsmy001t8oybr1zyhma9" class="article-share-link">分享</a>
       
       
     </footer>
@@ -418,7 +541,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/10/25/第八章 项目进度管理/" data-id="civcjyf0a002950ybtunyo79m" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/10/25/第八章 项目进度管理/" data-id="civducsnd002a8oybs74ts07s" class="article-share-link">分享</a>
       
       
     </footer>
@@ -467,7 +590,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/10/24/第九章 项目成本管理/" data-id="civcjyf0a002350ybf756vp3g" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/10/24/第九章 项目成本管理/" data-id="civducsnd00278oyb413jko85" class="article-share-link">分享</a>
       
       
     </footer>
@@ -520,7 +643,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/10/23/第十章 项目质量管理/" data-id="civcjyf0p002i50ybo9gxsayy" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/10/23/第十章 项目质量管理/" data-id="civducsnd002b8oybgav3jzv3" class="article-share-link">分享</a>
       
       
     </footer>
@@ -570,7 +693,150 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/10/22/第十三章 项目合同管理/" data-id="civcjyf0p002e50yb6y11ar47" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/10/22/第十三章 项目合同管理/" data-id="civducsnd00268oybged66bxt" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-第十六章 变更管理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/12/第十六章 变更管理/" class="article-date">
+  <time datetime="2016-10-12T15:57:33.000Z" itemprop="datePublished">2016-10-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/系统集成项目管理/">系统集成项目管理</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/12/第十六章 变更管理/">第十六章 变更管理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="项目变更基本概念"><a href="#项目变更基本概念" class="headerlink" title="项目变更基本概念"></a>项目变更基本概念</h1><ul>
+<li>在信息系统项目实施过程中，由于项目环境或者其他原因而对项目产品的功能、性能、架构、技术指标、集成方法、项目的范围基准、进度基准和成本基准等方面做出的改变。</li>
+<li>变更管理的实质，是根据项目推进过程中越来越丰富的项目认知，不断调整项目努力方向和资源配置，最大程度地满足客户等项目干系人的需求，提升项目价值。
+        
+          <p class="article-more-link">
+            <a href="/2016/10/12/第十六章 变更管理/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/10/12/第十六章 变更管理/" data-id="civducso900358oybap9xtnkz" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-第十九章 项目收尾管理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/10/09/第十九章 项目收尾管理/" class="article-date">
+  <time datetime="2016-10-09T15:57:33.000Z" itemprop="datePublished">2016-10-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/系统集成项目管理/">系统集成项目管理</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/10/09/第十九章 项目收尾管理/">第十九章 项目收尾管理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="项目验收"><a href="#项目验收" class="headerlink" title="项目验收"></a>项目验收</h1><ul>
+<li>项目验收时项目收尾管理中的首要环节，只有完成项目验收工作后，才能进入后续的项目总结、系统维护以及项目后面的评价等工作阶段。</li>
+<li>项目的正式验收包括验收项目产品、文档及已经完成的交付成果。对系统集成项目进行验收时需要根据项目前期所签署的合同内容以及对应的 技术工作内容，如果在项目执行过程中发生了合同变更，还因将变更内容也作为验收的评价依据。</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2016/10/09/第十九章 项目收尾管理/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/10/09/第十九章 项目收尾管理/" data-id="civducso900388oyba80gtkfb" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-Java线程中断interrupt" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/12/Java线程中断interrupt/" class="article-date">
+  <time datetime="2016-09-12T08:55:01.000Z" itemprop="datePublished">2016-09-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/12/Java线程中断interrupt/">Java线程中断interrupt</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先一个线程的终止不应该由其他线程来强制中断或停止。而是应该由线程自己自行停止。所以线程的stop,suspend,resume 都已经被抛弃了。而线程interrupt的作用也不是<br>中断线程，而是通知线程应该中断了。具体到底中断还是继续运行，应该有被通知的线程自己处理。<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/09/12/Java线程中断interrupt/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/09/12/Java线程中断interrupt/" data-id="civducsks000f8oybyu0q2v8x" class="article-share-link">分享</a>
       
       
     </footer>
@@ -584,7 +850,7 @@
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
   </nav>
 </section>
         
@@ -594,7 +860,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">5</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -609,7 +875,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -622,6 +888,14 @@
       <ul>
         
           <li>
+            <a href="/2016/12/29/模块定义规范/">模块定义规范</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/29/React学习总结一/">React学习总结一</a>
+          </li>
+        
+          <li>
             <a href="/2016/11/04/第一章 信息化知识/">第一章 信息化知识</a>
           </li>
         
@@ -631,14 +905,6 @@
         
           <li>
             <a href="/2016/11/02/第三章 信息系统集成专业技术知识/">第三章 信息系统集成专业技术知识</a>
-          </li>
-        
-          <li>
-            <a href="/2016/11/01/第四章 项目管理一般知识/">第四章 项目管理一般知识</a>
-          </li>
-        
-          <li>
-            <a href="/2016/10/28/第六章 项目整体管理/">第六章 项目整体管理</a>
           </li>
         
       </ul>

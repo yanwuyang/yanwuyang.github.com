@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>模块定义规范 | 东写西读</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="CMD
+通用模块定义规范，一般用于后端，采用同步加载的方式。nodejs的npm实现了此标准。
+规范中指定一个文件对应一个模块
+代表：CommonJS1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859//demo1.js expor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="模块定义规范">
+<meta property="og:url" content="http://yanwuyang.github.io/2016/12/29/模块定义规范/index.html">
+<meta property="og:site_name" content="东写西读">
+<meta property="og:description" content="CMD
+通用模块定义规范，一般用于后端，采用同步加载的方式。nodejs的npm实现了此标准。
+规范中指定一个文件对应一个模块
+代表：CommonJS1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859//demo1.js expor">
+<meta property="og:updated_time" content="2016-11-29T14:40:15.158Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模块定义规范">
+<meta name="twitter:description" content="CMD
+通用模块定义规范，一般用于后端，采用同步加载的方式。nodejs的npm实现了此标准。
+规范中指定一个文件对应一个模块
+代表：CommonJS1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859//demo1.js expor">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/css.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">东写西读</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">实践是最好的成长，发表是最好的记忆</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+	    
+			<input type="text" class="st-default-search-input" style="width: 110px">
+		
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-模块定义规范" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/29/模块定义规范/" class="article-date">
+  <time datetime="2016-12-28T16:00:00.000Z" itemprop="datePublished">2016-12-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      模块定义规范
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+		<div id="toc" class="toc-article">
+		<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#CMD"><span class="toc-number">1.</span> <span class="toc-text">CMD</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AMD"><span class="toc-number">2.</span> <span class="toc-text">AMD</span></a></li></ol>
+		</div>
+		
+        <h2 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h2><ul>
+<li>通用模块定义规范，一般用于后端，采用同步加载的方式。nodejs的npm实现了此标准。</li>
+<li>规范中指定一个文件对应一个模块</li>
+<li>代表：CommonJS<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//demo1.js </span></span><br><span class="line">exports.add = <span class="function"><span class="keyword">function</span> (<span class="params">a,b</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a+b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//demo2.js</span></span><br><span class="line"><span class="built_in">module</span>.exports  = <span class="function"><span class="keyword">function</span> (<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"hello world demo2"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//demo3.js</span></span><br><span class="line"><span class="keyword">var</span> Demo3 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">this</span>.sysHello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"hello world Demo3"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports.Demo3 = Demo3;</span><br><span class="line"></span><br><span class="line"><span class="comment">//demo4.js</span></span><br><span class="line"><span class="keyword">var</span> Demo4 = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">   <span class="keyword">this</span>.sysHello = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">     <span class="built_in">console</span>.log(<span class="string">"hello world Demo4"</span>);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line">exports.Demo4 = Demo4;</span><br><span class="line"></span><br><span class="line"><span class="comment">//demo5.js</span></span><br><span class="line">exports = [<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//demo6.js</span></span><br><span class="line"><span class="built_in">module</span>.exports = [<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">//mian.js</span></span><br><span class="line"><span class="keyword">var</span> demo1 = <span class="built_in">require</span>(<span class="string">'./demo1'</span>);</span><br><span class="line"><span class="keyword">var</span> demo2 = <span class="built_in">require</span>(<span class="string">'./demo2'</span>);</span><br><span class="line"><span class="keyword">var</span> Demo3= <span class="built_in">require</span>(<span class="string">'./demo3'</span>).Demo3;</span><br><span class="line"><span class="keyword">var</span> demo3_ = <span class="built_in">require</span>(<span class="string">'./demo3'</span>);</span><br><span class="line"><span class="keyword">var</span> demo4 = <span class="built_in">require</span>(<span class="string">'./demo4'</span>);</span><br><span class="line"><span class="keyword">var</span> demo5 = <span class="built_in">require</span>(<span class="string">'./demo5'</span>);</span><br><span class="line"><span class="keyword">var</span> demo6 = <span class="built_in">require</span>(<span class="string">'./demo6'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(demo1.add(<span class="number">1</span>,<span class="number">2</span>));</span><br><span class="line">demo2();</span><br><span class="line"><span class="keyword">var</span> demo3 = <span class="keyword">new</span> Demo3();</span><br><span class="line">demo3.sysHello();</span><br><span class="line"><span class="keyword">var</span> demo3_ = <span class="keyword">new</span> demo3_.Demo3();</span><br><span class="line">demo3_.sysHello();</span><br><span class="line"><span class="keyword">var</span> demo4 = <span class="keyword">new</span> demo4.Demo4();</span><br><span class="line">demo4.sysHello();</span><br><span class="line"><span class="built_in">console</span>.log(demo5)</span><br><span class="line"></span><br><span class="line"><span class="comment">//输出</span></span><br><span class="line"><span class="number">3</span></span><br><span class="line">hello world demo2</span><br><span class="line">hello world Demo3</span><br><span class="line">hello world Demo3</span><br><span class="line">hello world Demo4</span><br><span class="line">&#123;&#125;</span><br><span class="line">[ <span class="number">1</span>, <span class="number">2</span> ]</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong><em>总结：</em></strong></p>
+<ul>
+<li><strong>module.exports是真正的模块定义接口，exports只不过是它的辅助工具。推荐使用exports导出，除非你打算从原来的“实例化对象”改变成一个类型</strong></li>
+<li><strong>module.exports 导出的是一个类型或实例对象 而exports返回的是一个实例对象</strong></li>
+</ul>
+<p>参考网站：<a href="http://wiki.commonjs.org/wiki/Modules/1.1.1" target="_blank" rel="external">commonjs</a></p>
+<h2 id="AMD"><a href="#AMD" class="headerlink" title="AMD"></a>AMD</h2><ul>
+<li>异步加载模块定义规范，也是一个文件对应一个模块。一般用于前端浏览器。因为浏览器加载javascript的时候回停止浏览器渲染引擎工作。阻塞页面渲染。页面显示空白对用户体验不好</li>
+<li>原理就是在&lt;script async/&gt;标签中添加了async属性。只不过async是属于html5中的属性在浏览器IE9以下不支持<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/*</span><br><span class="line">对模块的返回值类型并没有强制为一定是个object，任何函数的返回值都是允许的。此处是一个返回了函数的模块定义</span><br><span class="line">*/</span></span><br><span class="line">define([<span class="string">"./cart"</span>, <span class="string">"./inventory"</span>], <span class="function"><span class="keyword">function</span>(<span class="params">cart, inventory</span>) </span>&#123;</span><br><span class="line">        <span class="comment">//return an object to define the "my/shirt" module.</span></span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            color: <span class="string">"blue"</span>,</span><br><span class="line">            size: <span class="string">"large"</span>,</span><br><span class="line">            addToCart: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                inventory.decrement(<span class="keyword">this</span>);</span><br><span class="line">                cart.add(<span class="keyword">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">);</span><br><span class="line"><span class="comment">/*</span><br><span class="line">define()中包含了一个模块名称作为首个参数：这些常由优化工具生成。你也可以自己显式指定模块名称，</span><br><span class="line">但这使模块更不具备移植性——就是说若你将文件移动到其他目录下，你就得重命名。一般最好避免对模块硬编码，</span><br><span class="line">而是交给优化工具去生成。优化工具需要生成模块名以将多个模块打成一个包，加快到浏览器的载人速度。</span><br><span class="line">*/</span></span><br><span class="line">define(<span class="string">"foo/title"</span>, [<span class="string">"my/cart"</span>, <span class="string">"my/inventory"</span>],<span class="function"><span class="keyword">function</span>(<span class="params">cart, inventory</span>) </span>&#123;</span><br><span class="line">	<span class="comment">//Define foo/title object in here.</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">//简单包装CommonJS来定义模块</span></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require, exports, module</span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="built_in">require</span>(<span class="string">'a'</span>),</span><br><span class="line">	    b = <span class="built_in">require</span>(<span class="string">'b'</span>);</span><br><span class="line"></span><br><span class="line">	<span class="comment">//Return the module value</span></span><br><span class="line">	<span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;&#125;;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">define(<span class="function"><span class="keyword">function</span>(<span class="params">require</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> mod = <span class="built_in">require</span>(<span class="string">"./relative/name"</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>参考网站：<a href="http://www.requirejs.cn/" target="_blank" rel="external">requirejs官网</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/12/29/模块定义规范/" data-id="ciw3kafxv0004xoybmwpdf25f" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/12/29/React学习总结一/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">React学习总结一</div>
+    </a>
+  
+</nav>
+
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-模块定义规范" data-title="模块定义规范" data-url="http://yanwuyang.github.io/2016/12/29/模块定义规范/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2016/12/29/模块定义规范/">模块定义规范</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/29/React学习总结一/">React学习总结一</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/04/第一章 信息化知识/">第一章 信息化知识</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/03/第二章 信息系统集成及服务管理/">第二章 信息系统集成及服务管理</a>
+          </li>
+        
+          <li>
+            <a href="/2016/11/02/第三章 信息系统集成专业技术知识/">第三章 信息系统集成专业技术知识</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2016 yanwuyang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+ 
+	<script type="text/javascript">
+	(function(w,d,t,u,n,s,e){w['SwiftypeObject']=n;w[n]=w[n]||function(){
+	(w[n].q=w[n].q||[]).push(arguments);};s=d.createElement(t);
+	e=d.getElementsByTagName(t)[0];s.async=1;s.src=u;e.parentNode.insertBefore(s,e);
+	})(window,document,'script','//s.swiftypecdn.com/install/v2/st.js','_st');
+
+	_st('install','cfMrgJ_UF1xJcNuMGgKs','2.0.0');
+  
+</script>
+            
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+  </div>
+</body>
+</html>
