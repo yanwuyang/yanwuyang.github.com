@@ -3,18 +3,48 @@
 <head>
   <meta charset="utf-8">
   
-  <title>为什么寄存器比内存快 | 东写西读</title>
+  <title>React学习总结一 | 东写西读</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="计算机的存储层次（memory hierarchy）之中，寄存器（register）最快，内存其次，最慢的是硬盘。同样都是晶体管存储设备，为什么寄存器比内存快呢？Mike Ash 写了一篇很好的解释，非常通俗地回答了这个问题，有助于加深对硬件的理解。下面就是我的简单翻译。">
+  <meta name="description" content="React是什么
+React是用于构建用户界面的Javascript库 
+1、仅仅是UI
+许多人使用React作为MVC架构的V层。 尽管React并没有假设过你的其余技术栈， 但它仍可以作为一个小特征轻易地在已有项目中使用 
+
+
+2、虚拟DOM
+React为了更高超的性能而使用虚拟DOM作为其不同的实现。 它同时也可以由服务端Node.js渲染 － 而不需要过重的浏览器DOM支持 
+
+
+3、数据">
 <meta property="og:type" content="article">
-<meta property="og:title" content="为什么寄存器比内存快">
-<meta property="og:url" content="http://yanwuyang.github.io/2013/10/15/为什么寄存器比内存快/index.html">
+<meta property="og:title" content="React学习总结一">
+<meta property="og:url" content="http://yanwuyang.github.io/2016/11/29/React学习总结一/index.html">
 <meta property="og:site_name" content="东写西读">
-<meta property="og:description" content="计算机的存储层次（memory hierarchy）之中，寄存器（register）最快，内存其次，最慢的是硬盘。同样都是晶体管存储设备，为什么寄存器比内存快呢？Mike Ash 写了一篇很好的解释，非常通俗地回答了这个问题，有助于加深对硬件的理解。下面就是我的简单翻译。">
-<meta property="og:updated_time" content="2016-05-14T09:46:05.710Z">
+<meta property="og:description" content="React是什么
+React是用于构建用户界面的Javascript库 
+1、仅仅是UI
+许多人使用React作为MVC架构的V层。 尽管React并没有假设过你的其余技术栈， 但它仍可以作为一个小特征轻易地在已有项目中使用 
+
+
+2、虚拟DOM
+React为了更高超的性能而使用虚拟DOM作为其不同的实现。 它同时也可以由服务端Node.js渲染 － 而不需要过重的浏览器DOM支持 
+
+
+3、数据">
+<meta property="og:updated_time" content="2016-12-05T14:03:22.890Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="为什么寄存器比内存快">
-<meta name="twitter:description" content="计算机的存储层次（memory hierarchy）之中，寄存器（register）最快，内存其次，最慢的是硬盘。同样都是晶体管存储设备，为什么寄存器比内存快呢？Mike Ash 写了一篇很好的解释，非常通俗地回答了这个问题，有助于加深对硬件的理解。下面就是我的简单翻译。">
+<meta name="twitter:title" content="React学习总结一">
+<meta name="twitter:description" content="React是什么
+React是用于构建用户界面的Javascript库 
+1、仅仅是UI
+许多人使用React作为MVC架构的V层。 尽管React并没有假设过你的其余技术栈， 但它仍可以作为一个小特征轻易地在已有项目中使用 
+
+
+2、虚拟DOM
+React为了更高超的性能而使用虚拟DOM作为其不同的实现。 它同时也可以由服务端Node.js渲染 － 而不需要过重的浏览器DOM支持 
+
+
+3、数据">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -67,14 +97,14 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="post-为什么寄存器比内存快" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-React学习总结一" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2013/10/15/为什么寄存器比内存快/" class="article-date">
-  <time datetime="2013-10-14T16:00:00.000Z" itemprop="datePublished">2013-10-15</time>
+    <a href="/2016/11/29/React学习总结一/" class="article-date">
+  <time datetime="2016-11-28T16:00:00.000Z" itemprop="datePublished">2016-11-29</time>
 </a>
     
   <div class="article-category">
-    <a class="article-category-link" href="/categories/Other/">Other</a>
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
   </div>
 
   </div>
@@ -85,7 +115,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      为什么寄存器比内存快
+      React学习总结一
     </h1>
   
 
@@ -97,20 +127,75 @@
 		
 		<div id="toc" class="toc-article">
 		<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#原因一：距离不同"><span class="toc-number">1.</span> <span class="toc-text">原因一：距离不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原因二：硬件设计不同"><span class="toc-number">2.</span> <span class="toc-text">原因二：硬件设计不同</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#原因三：工作方式不同"><span class="toc-number">3.</span> <span class="toc-text">原因三：工作方式不同</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#React是什么"><span class="toc-number">1.</span> <span class="toc-text">React是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React翻译器经历的几个阶段"><span class="toc-number">2.</span> <span class="toc-text">React翻译器经历的几个阶段</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#定义组件的三种方式"><span class="toc-number">3.</span> <span class="toc-text">定义组件的三种方式</span></a></li></ol>
 		</div>
 		
-        <p>计算机的存储层次（memory hierarchy）之中，寄存器（register）最快，内存其次，最慢的是硬盘。<br>同样都是晶体管存储设备，为什么寄存器比内存快呢？<br>Mike Ash 写了一篇很好的解释，非常通俗地回答了这个问题，有助于加深对硬件的理解。下面就是我的简单翻译。<br><a id="more"></a></p>
-<h2 id="原因一：距离不同"><a href="#原因一：距离不同" class="headerlink" title="原因一：距离不同"></a>原因一：距离不同</h2><p>距离不是主要因素，但是最好懂，所以放在最前面说。内存离 CPU 比较远，所以要耗费更长的时间读取。<br>以 3GHz 的 CPU 为例，电流每秒钟可以振荡 30 亿次，每次耗时大约为 0.33纳秒。光在 1 纳秒的时间内，可以前进 30 厘米。也就是说，在 CPU 的一个时钟周期内，光可以前进 10 厘米。因此，如果内存距离 CPU 超过 5 厘米，就不可能在一个时钟周期内完成数据的读取，这还没有考虑硬件的限制和电流实际上达不到光速。相比之下，寄存器在 CPU 内部，当然读起来会快一点。<br>距离对于桌面电脑影响很大，对于手机影响就要小得多。手机 CPU 的时钟频率比较慢（iPhone 5s 为 1.3GHz），而且手机的内存紧挨着 CPU。</p>
-<h2 id="原因二：硬件设计不同"><a href="#原因二：硬件设计不同" class="headerlink" title="原因二：硬件设计不同"></a>原因二：硬件设计不同</h2><p>苹果公司新推出的 iPhone 5s，CPU 是 A7，寄存器有 6000 多位（31 个 64 位寄存器，加上 32 个 128 位寄存器）。而 iPhone 5s 的内存是 1GB，约为 80 亿位（bit）。这意味着，高性能、高成本、高耗电的设计可以用在寄存器上，反正只有 6000 多位，而不能用在内存上。因为每个位的成本和能耗只要增加一点点，就会被放大 80 亿倍。</p>
-<p>事实上确实如此，内存的设计相对简单，每个位就是一个电容和一个晶体管，而寄存器的设计则完全不同，多出好几个电子元件。并且通电以后，寄存器的晶体管一直有电，而内存的晶体管只有用到的才有电，没用到的就没电，这样有利于省电。这些设计上的因素，决定了寄存器比内存读取速度更快。</p>
-<h2 id="原因三：工作方式不同"><a href="#原因三：工作方式不同" class="headerlink" title="原因三：工作方式不同"></a>原因三：工作方式不同</h2><p>寄存器的工作方式很简单，只有两步：（1）找到相关的位，（2）读取这些位。</p>
-<p>内存的工作方式就要复杂得多：<br>（1）找到数据的指针。（指针可能存放在寄存器内，所以这一步就已经包括寄存器的全部工作了。）<br>（2）将指针送往内存管理单元（MMU），由 MMU 将虚拟的内存地址翻译成实际的物理地址。<br>（3）将物理地址送往内存控制器（memory controller），由内存控制器找出该地址在哪一根内存插槽（bank）上。<br>（4）确定数据在哪一个内存块（chunk）上，从该块读取数据。<br>（5）数据先送回内存控制器，再送回 CPU，然后开始使用。<br>内存的工作流程比寄存器多出许多步。每一步都会产生延迟，累积起来就使得内存比寄存器慢得多。<br>为了缓解寄存器与内存之间的巨大速度差异，硬件设计师做出了许多努力，包括在 CPU 内部设置缓存、优化 CPU 工作方式，尽量一次性从内存读取指令所要用到的全部数据等等。</p>
+        <h2 id="React是什么"><a href="#React是什么" class="headerlink" title="React是什么"></a>React是什么</h2><ul>
+<li>React是用于构建用户界面的Javascript库 </li>
+<li>1、仅仅是UI<ul>
+<li>许多人使用React作为MVC架构的V层。 尽管React并没有假设过你的其余技术栈， 但它仍可以作为一个小特征轻易地在已有项目中使用 </li>
+</ul>
+</li>
+<li>2、虚拟DOM<ul>
+<li>React为了更高超的性能而使用虚拟DOM作为其不同的实现。 它同时也可以由服务端Node.js渲染 － 而不需要过重的浏览器DOM支持 </li>
+</ul>
+</li>
+<li>3、数据流<ul>
+<li>React实现了单向响应的数据流，从而减少了重复代码，这也是它为什么比传统数据绑定更简单<a id="more"></a>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="React翻译器经历的几个阶段"><a href="#React翻译器经历的几个阶段" class="headerlink" title="React翻译器经历的几个阶段"></a>React翻译器经历的几个阶段</h2><ul>
+<li><p>React有一套自己的语法糖。在浏览器运行时需将React代码翻译成浏览器可识别的代码，因此需要一条React的翻译引擎。说道React的翻译引擎经历了如下几个阶段</p>
+<ul>
+<li><strong>第一个阶段：在react 0.14前，浏览器端实现对jsx的编译依赖jsxtransformer.js </strong></li>
+<li><strong>第一个阶段：在react 0.14后，这个依赖的库改为browser.js，页面script标签的type也由text/jsx改为text/babel</strong></li>
+<li><strong>第三个阶段：react-tool更换为babel</strong></li>
+</ul>
+</li>
+<li><p>以上第一、第二个节点只是用来测试学习react使用，生产环境需要借助编译工具事先将jsx编译成js </p>
+</li>
+</ul>
+<h2 id="定义组件的三种方式"><a href="#定义组件的三种方式" class="headerlink" title="定义组件的三种方式"></a>定义组件的三种方式</h2><p>第一种：使用 React.createClass() 这种方式是传统的，将组件定义为一个类</p>
+<ul>
+<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Welcome = React.createClass(&#123;</span><br><span class="line">  <span class="comment">//初始化state 通过getInitialState 方法中实现</span></span><br><span class="line">  getInitialState: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;date: []&#125;;</span><br><span class="line">  &#125;,</span><br><span class="line">  render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;div className="welcomeBox"&gt;</span><br><span class="line">        Hello, world! I am a WelcomeBox.</span><br><span class="line">      &lt;/div&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>第二种：使用继承React.Component，此种方式是采用ES6语法定义将组件定义为一个类</p>
+<ul>
+<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Welcome</span> <span class="keyword">extends</span> <span class="title">React</span>.<span class="title">Component</span> </span>&#123;</span><br><span class="line">   <span class="comment">//初始化state 只能通过构造函数constructor中进行初始化</span></span><br><span class="line">   <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">	<span class="keyword">super</span>(props);</span><br><span class="line">	<span class="keyword">this</span>.state = &#123;date: <span class="keyword">new</span> <span class="built_in">Date</span>()&#125;;</span><br><span class="line">   &#125;</span><br><span class="line">   render() &#123;</span><br><span class="line">	<span class="keyword">return</span> &lt;h1&gt;Hello, &#123;this.props.name&#125;&lt;/h1&gt;;</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>第三种：就是一个简单的javascript函数将组件定义为一个函数。</p>
+<ul>
+<li>当React看到表示用户定义组件的元素时，它将JSX属性作为单个对象传递给此组件。 我们称这个对象为“props”。<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Welcome</span>(<span class="params">props</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &lt;h1&gt;Hello, &#123;props.name&#125;&lt;/h1&gt;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong><em>注意事项：</em></strong></p>
+<ul>
+<li><strong>1、无论是是将组件定义为一个函数或者类都不能修改自己的属性。</strong></li>
+<li><strong>2、建议从组件自己的角度来命名属性，而不是使用它的上下文。</strong></li>
+<li><strong>3、不能直接修改状态，或者不会重新渲染组件必须得使用setState()。</strong></li>
+<li><strong>4、状态的更新不要依赖this.state或者this.props来计算一下个值 因为this.state和this.props存在异步更新</strong>。</li>
+<li><strong>5、this.setState 只会将对象进行合并不会替换之前的state。</strong></li>
+</ul>
+<p><strong><em>问题：</em></strong></p>
+<ul>
+<li><strong>1、函数组件与类组件有什么区别？</strong><ul>
+<li>函数组件与类组件直接的唯一区别就是函数组件中没有state，state是类组件特有的功能。</li>
+</ul>
+</li>
+<li><strong>2、组件state更新会不会调用 组件卸载componentWillUnmount方法？</strong><ul>
+<li>不会调用因为组件没有被移除Dom 只是进行了更新 此时会调用shouldComponentUpdate(object nextProps, object nextState)</li>
+</ul>
+</li>
+</ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2013/10/15/为什么寄存器比内存快/" data-id="ciwc2npge001bewybh16voz01" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/11/29/React学习总结一/" data-id="ciwc2npg70012ewybh1g684yx" class="article-share-link">分享</a>
       
       
     </footer>
@@ -119,19 +204,19 @@
     
 <nav id="article-nav">
   
-    <a href="/2013/11/24/Jar转exe/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2016/12/05/JavaScript学习随手记/" id="article-nav-newer" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Newer</strong>
       <div class="article-nav-title">
         
-          Jar转exe
+          JavaScript学习随手记
         
       </div>
     </a>
   
   
-    <a href="/2013/07/18/JavaScript函数/" id="article-nav-older" class="article-nav-link-wrap">
+    <a href="/2016/11/29/模块定义规范/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">JavaScript函数</div>
+      <div class="article-nav-title">模块定义规范</div>
     </a>
   
 </nav>
@@ -139,7 +224,7 @@
   
   
   <!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="post-为什么寄存器比内存快" data-title="为什么寄存器比内存快" data-url="http://yanwuyang.github.io/2013/10/15/为什么寄存器比内存快/"></div>
+	<div class="ds-thread" data-thread-key="post-React学习总结一" data-title="React学习总结一" data-url="http://yanwuyang.github.io/2016/11/29/React学习总结一/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

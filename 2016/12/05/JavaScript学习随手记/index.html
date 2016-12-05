@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Category: Java | 东写西读</title>
+  <title>JavaScript学习随手记 | 东写西读</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="东写西读">
-<meta property="og:url" content="http://yanwuyang.github.io/categories/Java/index.html">
+  <meta name="description" content="今天学习react-redux时学到connect函数组件时对connect函数有点蒙圈，表示不能理解，请看如下代码:1234567function Users(props)&amp;#123;   return (&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;);&amp;#125;function mapStateToProps(&amp;#123; users &amp;#125;) &amp;#123;  return &amp;#1">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript学习随手记">
+<meta property="og:url" content="http://yanwuyang.github.io/2016/12/05/JavaScript学习随手记/index.html">
 <meta property="og:site_name" content="东写西读">
-<meta property="og:description">
+<meta property="og:description" content="今天学习react-redux时学到connect函数组件时对connect函数有点蒙圈，表示不能理解，请看如下代码:1234567function Users(props)&amp;#123;   return (&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;);&amp;#125;function mapStateToProps(&amp;#123; users &amp;#125;) &amp;#123;  return &amp;#1">
+<meta property="og:updated_time" content="2016-12-05T14:31:17.503Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="东写西读">
-<meta name="twitter:description">
+<meta name="twitter:title" content="JavaScript学习随手记">
+<meta name="twitter:description" content="今天学习react-redux时学到connect函数组件时对connect函数有点蒙圈，表示不能理解，请看如下代码:1234567function Users(props)&amp;#123;   return (&amp;lt;div&amp;gt;&amp;lt;/div&amp;gt;);&amp;#125;function mapStateToProps(&amp;#123; users &amp;#125;) &amp;#123;  return &amp;#1">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -66,192 +67,86 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/09/12/Java线程中断interrupt/" class="archive-article-date">
-  <time datetime="2016-09-12T08:55:01.000Z" itemprop="datePublished">9月 12</time>
+        <section id="main"><article id="post-JavaScript学习随手记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/05/JavaScript学习随手记/" class="article-date">
+  <time datetime="2016-12-04T16:00:00.000Z" itemprop="datePublished">2016-12-05</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/09/12/Java线程中断interrupt/">Java线程中断interrupt</a>
+    <h1 class="article-title" itemprop="name">
+      JavaScript学习随手记
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/08/22/JDK常用性能分析命令行工具/" class="archive-article-date">
-  <time datetime="2016-08-22T05:56:33.000Z" itemprop="datePublished">8月 22</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/22/JDK常用性能分析命令行工具/">JDK常用性能分析命令行工具</a>
-    </h1>
-  
+		<!-- Table of Contents -->
+		
+        <ul>
+<li>今天学习react-redux时学到connect函数组件时对connect函数有点蒙圈，表示不能理解，请看如下代码:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Users</span>(<span class="params">props</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> (&lt;div&gt;&lt;/div&gt;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapStateToProps</span>(<span class="params">&#123; users &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; users &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(mapStateToProps)(Users);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<a id="more"></a>
+<p>以为这种写发属于ES6语法糖，于是翻阅ES6标志并没有此项。苦思冥想最后灵光一闪既然是dva的函数那他的源码中肯定有此函数的定义，打开源码一看其实原理很简单,就是connect函数中返回了一个函数，然后在返回函数中在传入了参数Users。参考代码定义如下；</p>
+<ul>
+<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//获取函数名称displayName和name属于Function的原型属性</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getDisplayName</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> WrappedComponent.displayName || WrappedComponent.name || <span class="string">'Component'</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">connect</span>(<span class="params">mapStateToProps</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> <span class="title">wrapWithConnect</span>(<span class="params">WrappedComponent</span>) </span>&#123;</span><br><span class="line">	 <span class="keyword">var</span> name = getDisplayName(WrappedComponent);</span><br><span class="line">	 <span class="built_in">console</span>.log(<span class="string">"function name:"</span>+name);</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//测试代码</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Users</span>(<span class="params">props</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> (&lt;div&gt;&lt;/div&gt;);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapStateToProps</span>(<span class="params">&#123; users &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; users &#125;;</span><br><span class="line">&#125;</span><br><span class="line">connect(mapStateToProps)(Users);</span><br><span class="line"></span><br><span class="line"><span class="comment">//控制台输出</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">name</span>:<span class="title">Users</span></span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>箭头函数</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//ES6写法</span></span><br><span class="line">()=&gt;&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//ES5 写法</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arrow</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123;&#125;; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/08/22/分析Java进程中消耗CPU最高的线程/" class="archive-article-date">
-  <time datetime="2016-08-22T02:56:33.000Z" itemprop="datePublished">8月 22</time>
-</a>
       
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/12/05/JavaScript学习随手记/" data-id="ciwc5aa7600003cyb7twsvhvx" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/22/分析Java进程中消耗CPU最高的线程/">分析Java进程中消耗CPU最高的线程</a>
-    </h1>
+    
+<nav id="article-nav">
   
+  
+    <a href="/2016/11/29/React学习总结一/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">React学习总结一</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-JavaScript学习随手记" data-title="JavaScript学习随手记" data-url="http://yanwuyang.github.io/2016/12/05/JavaScript学习随手记/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/08/10/Java中的IO技术：BIO,NIO,AIO/" class="archive-article-date">
-  <time datetime="2016-08-09T16:00:00.000Z" itemprop="datePublished">8月 10</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/08/10/Java中的IO技术：BIO,NIO,AIO/">Java中的IO技术：BIO,NIO,AIO</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/06/05/Java动态编程/" class="archive-article-date">
-  <time datetime="2016-06-05T08:55:01.000Z" itemprop="datePublished">6月 5</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/06/05/Java动态编程/">Java动态编程</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/10/System.setOut/" class="archive-article-date">
-  <time datetime="2016-05-10T12:10:33.000Z" itemprop="datePublished">5月 10</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/10/System.setOut/">System.setOut</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/01/05/Java设计模式之观察者模式/" class="archive-article-date">
-  <time datetime="2015-01-05T06:43:27.000Z" itemprop="datePublished">1月 5</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/01/05/Java设计模式之观察者模式/">Java设计模式之观察者模式</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-      
-        </div></section>
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2014" class="archive-year">2014</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2014/09/04/Java开发过程中异常汇总及解决办法/" class="archive-article-date">
-  <time datetime="2014-09-04T13:28:01.000Z" itemprop="datePublished">9月 4</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2014/09/04/Java开发过程中异常汇总及解决办法/">Java开发过程中异常汇总及解决办法</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
 </section>
         
