@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>归档: 2016/5 | 东写西读</title>
+  <title>WEB性能优化手段 | 东写西读</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="东写西读">
-<meta property="og:url" content="http://yanwuyang.github.io/archives/2016/05/index.html">
+  <meta name="description" content="前端静态资源独立域名浏览器请求并发数是针对同一域名下的，一般现代浏览器都是6个了解更多查看，这样的设计目的其实是对服务器的一种保护，通常使用多个独立域名作为提供网站响应速度的一种有效手段。可以大大拓展这个并发连接数，也就是令浏览器并行下载更多资源，提高站点性能。 具体的实施方案是将静态资源 图片、css、js 放到一个子域名服务器下。这样带来的好处不仅是提供了浏览器并发请求数量还能减少http 头">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WEB性能优化手段">
+<meta property="og:url" content="http://yanwuyang.github.io/2016/12/28/WEB性能优化手段/index.html">
 <meta property="og:site_name" content="东写西读">
-<meta property="og:description">
+<meta property="og:description" content="前端静态资源独立域名浏览器请求并发数是针对同一域名下的，一般现代浏览器都是6个了解更多查看，这样的设计目的其实是对服务器的一种保护，通常使用多个独立域名作为提供网站响应速度的一种有效手段。可以大大拓展这个并发连接数，也就是令浏览器并行下载更多资源，提高站点性能。 具体的实施方案是将静态资源 图片、css、js 放到一个子域名服务器下。这样带来的好处不仅是提供了浏览器并发请求数量还能减少http 头">
+<meta property="og:updated_time" content="2016-12-27T06:34:53.037Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="东写西读">
-<meta name="twitter:description">
+<meta name="twitter:title" content="WEB性能优化手段">
+<meta name="twitter:description" content="前端静态资源独立域名浏览器请求并发数是针对同一域名下的，一般现代浏览器都是6个了解更多查看，这样的设计目的其实是对服务器的一种保护，通常使用多个独立域名作为提供网站响应速度的一种有效手段。可以大大拓展这个并发连接数，也就是令浏览器并行下载更多资源，提高站点性能。 具体的实施方案是将静态资源 图片、css、js 放到一个子域名服务器下。这样带来的好处不仅是提供了浏览器并发请求数量还能减少http 头">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -66,210 +67,87 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/30/开发管理的一些建议/" class="archive-article-date">
-  <time datetime="2016-05-30T15:57:33.000Z" itemprop="datePublished">5月 30</time>
+        <section id="main"><article id="post-WEB性能优化手段" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/28/WEB性能优化手段/" class="article-date">
+  <time datetime="2016-12-27T16:00:00.000Z" itemprop="datePublished">2016-12-28</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/WEB/">WEB</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/30/开发管理的一些建议/">开发管理的一些建议</a>
+    <h1 class="article-title" itemprop="name">
+      WEB性能优化手段
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/19/Android反编译与混淆技术完全解析/" class="archive-article-date">
-  <time datetime="2016-05-18T16:00:00.000Z" itemprop="datePublished">5月 19</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/19/Android反编译与混淆技术完全解析/">Android反编译与混淆技术完全解析</a>
-    </h1>
-  
+		<!-- Table of Contents -->
+		
+		<div id="toc" class="toc-article">
+		<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前端"><span class="toc-number">1.</span> <span class="toc-text">前端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#静态资源独立域名"><span class="toc-number">1.1.</span> <span class="toc-text">静态资源独立域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存"><span class="toc-number">1.2.</span> <span class="toc-text">缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#资源压缩文件合并"><span class="toc-number">1.3.</span> <span class="toc-text">资源压缩文件合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CDN加速"><span class="toc-number">1.4.</span> <span class="toc-text">CDN加速</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后端"><span class="toc-number">2.</span> <span class="toc-text">后端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#线程调优"><span class="toc-number">2.1.</span> <span class="toc-text">线程调优</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存-1"><span class="toc-number">2.2.</span> <span class="toc-text">缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+		</div>
+		
+        <h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><h3 id="静态资源独立域名"><a href="#静态资源独立域名" class="headerlink" title="静态资源独立域名"></a>静态资源独立域名</h3><p>浏览器请求并发数是针对同一域名下的，一般现代浏览器都是6个<a href="http://www.stevesouders.com/blog/2008/03/20/roundup-on-parallel-connections/" target="_blank" rel="external">了解更多查看</a>，这样的设计目的其实是对服务器的一种保护，通常使用多个独立域名作为提供网站响应速度的一种有效手段。可以大大拓展这个并发连接数，也就是令浏览器并行下载更多资源，提高站点性能。 具体的实施方案是将静态资源 图片、css、js 放到一个子域名服务器下。这样带来的好处不仅是提供了浏览器并发请求数量还能减少http 头的数据大小。很明显的就是能减少cookie的传输。<br><a id="more"></a><br>这个浏览器并发请求受限的还有个原因：实则是多个线程创建了socket 与服务器建立了连接。keep-alive技术的存在使得浏览器复用现有连接和服务器通信比创建新连接的性能要更好一些所以，浏览器的并发数其实并不仅仅只是良知的要求，而是双方都需要保护自己的默契，并在可靠的情况下提供更好的性能。</p>
+<h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>缓存也是性能优化的重要手段之一，这个可以包括服务器常用数据缓存，和静态资源在浏览器中的缓存。</p>
+<h3 id="资源压缩文件合并"><a href="#资源压缩文件合并" class="headerlink" title="资源压缩文件合并"></a>资源压缩文件合并</h3><p>资源压缩技术，文件合并，这样带来的好处就是减少http 请求数和降低网络数据传输包的大小。能有效的提供网站响应数度，<br>具体的方法有：<br>1、资源合并：多个图片合并在一个图片中<br>2、减少请求数：小图片直接使用base64编码</p>
+<h3 id="CDN加速"><a href="#CDN加速" class="headerlink" title="CDN加速"></a>CDN加速</h3><p>将资源放到CDN服务器上</p>
+<h2 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h2><h3 id="线程调优"><a href="#线程调优" class="headerlink" title="线程调优"></a>线程调优</h3><p>线程数量不是越多越好，适当的线程能充分利用CPU带来性能的提升，但过多的线程因为线程上下文的切换开销返回是性能下降，所以多线程数量和性能会有个最优的值通常是CPU核数的2倍</p>
+<h3 id="缓存-1"><a href="#缓存-1" class="headerlink" title="缓存"></a>缓存</h3><p>对于常用的数据加入内存中</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>网站提速的手段方法很多但总结下来无非就是3点：减少请求数量压缩资源大小，充分利用缓存和提高请求并发数。</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/17/漫谈工程师的三观/" class="archive-article-date">
-  <time datetime="2016-05-17T14:48:20.000Z" itemprop="datePublished">5月 17</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/17/漫谈工程师的三观/">漫谈工程师的三观</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/16/构建单页Web应用/" class="archive-article-date">
-  <time datetime="2016-05-16T15:57:33.000Z" itemprop="datePublished">5月 16</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/12/28/WEB性能优化手段/" data-id="cix74hrv1004cpkjwr5z5n600" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/16/构建单页Web应用/">构建单页Web应用</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/16/Web应用组件化的权衡/" class="archive-article-date">
-  <time datetime="2016-05-16T15:11:33.000Z" itemprop="datePublished">5月 16</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/16/Web应用组件化的权衡/">Web应用组件化的权衡</a>
-    </h1>
-  
-
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/16/框架那么多学习那个好/" class="archive-article-date">
-  <time datetime="2016-05-16T14:49:33.000Z" itemprop="datePublished">5月 16</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/16/框架那么多学习那个好/">框架那么多学习那个好</a>
-    </h1>
   
+    <a href="/2016/12/27/HTTP Keep-Alive/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HTTP Keep-Alive</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-WEB性能优化手段" data-title="WEB性能优化手段" data-url="http://yanwuyang.github.io/2016/12/28/WEB性能优化手段/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/11/JavaScript面向对象编程/" class="archive-article-date">
-  <time datetime="2016-05-11T03:05:20.000Z" itemprop="datePublished">5月 11</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/11/JavaScript面向对象编程/">JavaScript面向对象编程</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/10/System.setOut/" class="archive-article-date">
-  <time datetime="2016-05-10T12:10:33.000Z" itemprop="datePublished">5月 10</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/10/System.setOut/">System.setOut</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/10/Linux常见问题解决方法/" class="archive-article-date">
-  <time datetime="2016-05-10T12:05:33.000Z" itemprop="datePublished">5月 10</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/10/Linux常见问题解决方法/">Linux常见问题解决方法</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/10/博客搭建/" class="archive-article-date">
-  <time datetime="2016-05-10T11:05:33.000Z" itemprop="datePublished">5月 10</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/10/博客搭建/">博客搭建</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
 </section>
         

@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>归档: 2016/5 | 东写西读</title>
+  <title>HTTP协议：不可小觑的Content-Length | 东写西读</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="东写西读">
-<meta property="og:url" content="http://yanwuyang.github.io/archives/2016/05/index.html">
+  <meta name="description" content="Content-Length首部告诉浏览器报文中实体主体的大小。这个大小是包含了内容编码的，比如对文件进行了gzip压缩，Content-Length就是压缩后的大小（这点对我们编写服务器非常重要）。除非使用了分块编码，否则Content-Length首部就是带有实体主体的报文必须使用的。使用Content-Length首部是为了能够检测出服务器崩溃而导致的报文截尾，并对共享持久连接的多个报文进行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP协议：不可小觑的Content-Length">
+<meta property="og:url" content="http://yanwuyang.github.io/2016/12/27/HTTP协议：不可小觑的Content-Length/index.html">
 <meta property="og:site_name" content="东写西读">
-<meta property="og:description">
+<meta property="og:description" content="Content-Length首部告诉浏览器报文中实体主体的大小。这个大小是包含了内容编码的，比如对文件进行了gzip压缩，Content-Length就是压缩后的大小（这点对我们编写服务器非常重要）。除非使用了分块编码，否则Content-Length首部就是带有实体主体的报文必须使用的。使用Content-Length首部是为了能够检测出服务器崩溃而导致的报文截尾，并对共享持久连接的多个报文进行">
+<meta property="og:updated_time" content="2016-12-27T05:52:06.388Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="东写西读">
-<meta name="twitter:description">
+<meta name="twitter:title" content="HTTP协议：不可小觑的Content-Length">
+<meta name="twitter:description" content="Content-Length首部告诉浏览器报文中实体主体的大小。这个大小是包含了内容编码的，比如对文件进行了gzip压缩，Content-Length就是压缩后的大小（这点对我们编写服务器非常重要）。除非使用了分块编码，否则Content-Length首部就是带有实体主体的报文必须使用的。使用Content-Length首部是为了能够检测出服务器崩溃而导致的报文截尾，并对共享持久连接的多个报文进行">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -66,210 +67,94 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2016" class="archive-year">2016</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/30/开发管理的一些建议/" class="archive-article-date">
-  <time datetime="2016-05-30T15:57:33.000Z" itemprop="datePublished">5月 30</time>
+        <section id="main"><article id="post-HTTP协议：不可小觑的Content-Length" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/27/HTTP协议：不可小觑的Content-Length/" class="article-date">
+  <time datetime="2016-12-26T16:00:00.000Z" itemprop="datePublished">2016-12-27</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HTTP/">HTTP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/30/开发管理的一些建议/">开发管理的一些建议</a>
+    <h1 class="article-title" itemprop="name">
+      HTTP协议：不可小觑的Content-Length
     </h1>
   
 
-    </header>
-  </div>
-</article>
-  
+      </header>
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/19/Android反编译与混淆技术完全解析/" class="archive-article-date">
-  <time datetime="2016-05-18T16:00:00.000Z" itemprop="datePublished">5月 19</time>
-</a>
+    <div class="article-entry" itemprop="articleBody">
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/19/Android反编译与混淆技术完全解析/">Android反编译与混淆技术完全解析</a>
-    </h1>
-  
+		<!-- Table of Contents -->
+		
+		<div id="toc" class="toc-article">
+		<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#检测截尾"><span class="toc-number">1.</span> <span class="toc-text">检测截尾</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Content-Length与持久连接"><span class="toc-number">2.</span> <span class="toc-text">Content-Length与持久连接</span></a></li></ol>
+		</div>
+		
+        <p>Content-Length首部告诉浏览器报文中实体主体的大小。这个大小是包含了内容编码的，比如对文件进行了gzip压缩，Content-Length就是压缩后的大小（这点对我们编写服务器非常重要）。除非使用了分块编码，否则Content-Length首部就是带有实体主体的报文必须使用的。使用Content-Length首部是为了能够检测出服务器崩溃而导致的报文截尾，并对共享持久连接的多个报文进行正确分段。<br><a id="more"></a></p>
+<h3 id="检测截尾"><a href="#检测截尾" class="headerlink" title="检测截尾"></a>检测截尾</h3><p>HTTP的早期版本采用关闭连接的办法来划定报文的结束。但是，没有Content-Length的话，客户端无法区分到底是报文结束时正常的关闭连接还是报文传输中由于服务器崩溃而导致的连接关闭。客户端需要通过Content-Length来检测报文截尾。 </p>
+<p>报文截尾的问题对缓存代理服务器来说尤为重要。如果缓存服务器收到被截尾的报文却没有识别出截尾的话，它可能会存储不完整的内容并多次使用他来提供服务。缓存代理服务器通常不会为没有显式Content-Length首部的HTTP主体做缓存，以此来减小缓存已截尾报文的风险。 </p>
+<h3 id="Content-Length与持久连接"><a href="#Content-Length与持久连接" class="headerlink" title="Content-Length与持久连接"></a>Content-Length与持久连接</h3><p>Content-Length首部对于持久链接是必不可少的。如果响应通过持久连接传送，就可能有另一条HTTP响应紧随其后。客户端通过Content-Length首部就可以知道报文在何处结束，下一条报文从何处开始。因为连接是持久的，客户端无法依赖连接关闭来判断报文的结束。 </p>
+<p>有一种情况，使用持久连接可以没有Content-Length首部，即采用分块编码（chunked encoding）时。在分块编码的情况下，数据是分为一系列的块来发送的，没块都有大小说明。哪怕服务器在生成首部的时候不知道整个实体的大小（通常是因为实体是动态生成的），仍然可以使用分块编码传输若干已知大小的块。</p>
 
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/17/漫谈工程师的三观/" class="archive-article-date">
-  <time datetime="2016-05-17T14:48:20.000Z" itemprop="datePublished">5月 17</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/17/漫谈工程师的三观/">漫谈工程师的三观</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/16/构建单页Web应用/" class="archive-article-date">
-  <time datetime="2016-05-16T15:57:33.000Z" itemprop="datePublished">5月 16</time>
-</a>
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/12/27/HTTP协议：不可小觑的Content-Length/" data-id="cix72yv6i0003pkjw9j45ed22" class="article-share-link">分享</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/16/构建单页Web应用/">构建单页Web应用</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/16/Web应用组件化的权衡/" class="archive-article-date">
-  <time datetime="2016-05-16T15:11:33.000Z" itemprop="datePublished">5月 16</time>
-</a>
       
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/16/Web应用组件化的权衡/">Web应用组件化的权衡</a>
-    </h1>
-  
-
-    </header>
+    </footer>
   </div>
-</article>
   
     
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/16/框架那么多学习那个好/" class="archive-article-date">
-  <time datetime="2016-05-16T14:49:33.000Z" itemprop="datePublished">5月 16</time>
-</a>
-      
+<nav id="article-nav">
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/16/框架那么多学习那个好/">框架那么多学习那个好</a>
-    </h1>
+    <a href="/2016/12/27/HTTP Keep-Alive/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          HTTP Keep-Alive
+        
+      </div>
+    </a>
   
+  
+    <a href="/2016/12/26/Netty-4.1.4源码分析二之管道设计模式/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Netty-4.1.4源码分析二之管道设计模式</div>
+    </a>
+  
+</nav>
 
-    </header>
-  </div>
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-HTTP协议：不可小觑的Content-Length" data-title="HTTP协议：不可小觑的Content-Length" data-url="http://yanwuyang.github.io/2016/12/27/HTTP协议：不可小觑的Content-Length/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
 </article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/11/JavaScript面向对象编程/" class="archive-article-date">
-  <time datetime="2016-05-11T03:05:20.000Z" itemprop="datePublished">5月 11</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/11/JavaScript面向对象编程/">JavaScript面向对象编程</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/10/System.setOut/" class="archive-article-date">
-  <time datetime="2016-05-10T12:10:33.000Z" itemprop="datePublished">5月 10</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/10/System.setOut/">System.setOut</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/10/Linux常见问题解决方法/" class="archive-article-date">
-  <time datetime="2016-05-10T12:05:33.000Z" itemprop="datePublished">5月 10</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/10/Linux常见问题解决方法/">Linux常见问题解决方法</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2016/05/10/博客搭建/" class="archive-article-date">
-  <time datetime="2016-05-10T11:05:33.000Z" itemprop="datePublished">5月 10</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2016/05/10/博客搭建/">博客搭建</a>
-    </h1>
-  
-
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
 
 </section>
         
