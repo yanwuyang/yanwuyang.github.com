@@ -68,6 +68,52 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-HTTP Keep-Alive" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/27/HTTP Keep-Alive/" class="article-date">
+  <time datetime="2016-12-26T16:00:00.000Z" itemprop="datePublished">2016-12-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HTTP/">HTTP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/27/HTTP Keep-Alive/">HTTP Keep-Alive</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Keep-Alive是什么"><a href="#Keep-Alive是什么" class="headerlink" title="Keep-Alive是什么"></a>Keep-Alive是什么</h3><p>在早期的HTTP1.0版本中，每个http请求都要求打开一个tcp socket连接，并且使用一次之后就断开这个tcp连接。这种效率和性能是最低的，因为建立一个TCP连接需要3次握手，而断开一个链接需要TCP四次握手。而在一个网页页面中含有的大量引入的js、css、img文件，如果每个请求都为之创建一个socket连接，这不仅是性能的底下而且还会给服务器带来很大的压力。 为了改善这种状态希望在一个页面中能重复的利用一个Socket连接来发送请求数据，<br>于是就发明了keep-alive即在一次TCP连接中可以持续发送多份数据而不会断开连接。通过使用keep-alive机制，可以减少tcp连接建立次数，也意味着可以减少TIME_WAIT状态连接，以此提高性能和提高httpd服务器的吞吐率(更少的tcp连接意味着更少的系统内核调用,socket的accept()和close()调用)。但是，keep-alive并不是免费的午餐,长时间的tcp连接容易导致系统资源无效占用。配置不当的keep-alive，有时比重复利用连接带来的损失还更大。所以，正确地设置keep-alive timeout时间非常重要。<br>keepalvie timeout。<br><img src="2013_12_20_02.png" alt=""><br>
+        
+          <p class="article-more-link">
+            <a href="/2016/12/27/HTTP Keep-Alive/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/12/27/HTTP Keep-Alive/" data-id="cix6vnpzy003wsojw8fwitbw7" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
     <article id="post-Netty-4.1.4源码分析二之管道设计模式" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/12/26/Netty-4.1.4源码分析二之管道设计模式/" class="article-date">
@@ -104,7 +150,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/12/26/Netty-4.1.4源码分析二之管道设计模式/" data-id="cix5siz6m0014dwjw2clt3fdc" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/12/26/Netty-4.1.4源码分析二之管道设计模式/" data-id="cix6usvhr0011sojw4445lpo5" class="article-share-link">分享</a>
       
       
     </footer>
@@ -151,7 +197,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/12/23/Netty-4.1.4源码分析一/" data-id="cix5siz6j0011dwjw9xk8fg47" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/12/23/Netty-4.1.4源码分析一/" data-id="cix6usvi70014sojwbxvffun8" class="article-share-link">分享</a>
       
       
     </footer>
@@ -197,7 +243,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/12/10/react-redux/" data-id="cix5siz7h001qdwjwoq80olas" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/12/10/react-redux/" data-id="cix6usvj2001osojw9f79tz4i" class="article-share-link">分享</a>
       
       
     </footer>
@@ -243,7 +289,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/12/09/Redux/" data-id="cix5siz70001gdwjw3hrckwwz" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/12/09/Redux/" data-id="cix6usvin001esojw3p1bvf07" class="article-share-link">分享</a>
       
       
     </footer>
@@ -292,7 +338,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/12/05/JavaScript学习随手记/" data-id="cix5siz3j0007dwjwvwp3ujkn" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/12/05/JavaScript学习随手记/" data-id="cix6usvgh0007sojw6a4r37vv" class="article-share-link">分享</a>
       
       
     </footer>
@@ -349,7 +395,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/11/29/React学习总结一/" data-id="cix5siz6w001edwjwic01smm9" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/11/29/React学习总结一/" data-id="cix6usvi7001bsojweu8jhrhx" class="article-share-link">分享</a>
       
       
     </footer>
@@ -398,7 +444,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/11/29/模块定义规范/" data-id="cix5siz8g002cdwjwy7ir34gz" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/11/29/模块定义规范/" data-id="cix6usvjy0027sojw36u6qmzg" class="article-share-link">分享</a>
       
       
     </footer>
@@ -444,7 +490,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/11/04/第一章 信息化知识/" data-id="cix5siz8m002jdwjw30a7f7do" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/11/04/第一章 信息化知识/" data-id="cix6usvkt002ssojw9s9poikl" class="article-share-link">分享</a>
       
       
     </footer>
@@ -490,7 +536,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/11/03/第二章 信息系统集成及服务管理/" data-id="cix5siz8y002sdwjw45fgv8s7" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/11/03/第二章 信息系统集成及服务管理/" data-id="cix6usvmj002xsojwy5cdow0r" class="article-share-link">分享</a>
       
       
     </footer>
@@ -537,7 +583,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/11/02/第三章 信息系统集成专业技术知识/" data-id="cix5siz8s002ndwjwkzirygiy" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/11/02/第三章 信息系统集成专业技术知识/" data-id="cix6usvm4002vsojw3pyhiwfb" class="article-share-link">分享</a>
       
       
     </footer>
@@ -585,7 +631,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/11/01/第四章 项目管理一般知识/" data-id="cix5siz9f0035dwjwhs86t803" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/11/01/第四章 项目管理一般知识/" data-id="cix6usvoa003nsojwjj2rc6rv" class="article-share-link">分享</a>
       
       
     </footer>
@@ -633,7 +679,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/10/28/第六章 项目整体管理/" data-id="cix5siz92002vdwjwezkpkono" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/10/28/第六章 项目整体管理/" data-id="cix6usvmj0033sojwag4bow8d" class="article-share-link">分享</a>
       
       
     </footer>
@@ -687,7 +733,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/10/27/第七章 项目范围管理/" data-id="cix5siz8p002kdwjwyhcgp1k9" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/10/27/第七章 项目范围管理/" data-id="cix6usvlo002tsojw83xrg68n" class="article-share-link">分享</a>
       
       
     </footer>
@@ -759,56 +805,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/10/25/第八章 项目进度管理/" data-id="cix5siz90002tdwjwsw3x8knc" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-  
-</article>
-
-
-  
-    <article id="post-第九章 项目成本管理" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/10/24/第九章 项目成本管理/" class="article-date">
-  <time datetime="2016-10-24T15:57:33.000Z" itemprop="datePublished">2016-10-24</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/系统集成项目管理/">系统集成项目管理</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/10/24/第九章 项目成本管理/">第九章 项目成本管理</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="概念及相关术语"><a href="#概念及相关术语" class="headerlink" title="概念及相关术语"></a>概念及相关术语</h1><h2 id="概念及构成"><a href="#概念及构成" class="headerlink" title="概念及构成"></a>概念及构成</h2><ul>
-<li>成本是指项目活动或其组成的部分的货币价值或价格。</li>
-</ul>
-<h2 id="项目成本失控原因"><a href="#项目成本失控原因" class="headerlink" title="项目成本失控原因"></a>项目成本失控原因</h2>
-        
-          <p class="article-more-link">
-            <a href="/2016/10/24/第九章 项目成本管理/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/10/24/第九章 项目成本管理/" data-id="cix5siz8v002pdwjw5z2cy2kb" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/10/25/第八章 项目进度管理/" data-id="cix6usvmj0031sojwx22z8nyf" class="article-share-link">分享</a>
       
       
     </footer>
@@ -832,7 +829,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">7</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
     </div>
   </div>
 
@@ -847,7 +844,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -858,6 +855,10 @@
     <h3 class="widget-title">最新文章</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2016/12/27/HTTP Keep-Alive/">HTTP Keep-Alive</a>
+          </li>
         
           <li>
             <a href="/2016/12/26/Netty-4.1.4源码分析二之管道设计模式/">Netty-4.1.4源码分析二之管道设计模式</a>
@@ -873,10 +874,6 @@
         
           <li>
             <a href="/2016/12/09/Redux/">Redux</a>
-          </li>
-        
-          <li>
-            <a href="/2016/12/05/JavaScript学习随手记/">JavaScript学习随手记</a>
           </li>
         
       </ul>
