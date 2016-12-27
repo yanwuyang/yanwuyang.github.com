@@ -11,7 +11,7 @@
 <meta property="og:url" content="http://yanwuyang.github.io/2016/12/28/WEB性能优化手段/index.html">
 <meta property="og:site_name" content="东写西读">
 <meta property="og:description" content="前端静态资源独立域名浏览器请求并发数是针对同一域名下的，一般现代浏览器都是6个了解更多查看，这样的设计目的其实是对服务器的一种保护，通常使用多个独立域名作为提供网站响应速度的一种有效手段。可以大大拓展这个并发连接数，也就是令浏览器并行下载更多资源，提高站点性能。 具体的实施方案是将静态资源 图片、css、js 放到一个子域名服务器下。这样带来的好处不仅是提供了浏览器并发请求数量还能减少http 头">
-<meta property="og:updated_time" content="2016-12-27T06:34:53.037Z">
+<meta property="og:updated_time" content="2016-12-27T07:42:29.791Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WEB性能优化手段">
 <meta name="twitter:description" content="前端静态资源独立域名浏览器请求并发数是针对同一域名下的，一般现代浏览器都是6个了解更多查看，这样的设计目的其实是对服务器的一种保护，通常使用多个独立域名作为提供网站响应速度的一种有效手段。可以大大拓展这个并发连接数，也就是令浏览器并行下载更多资源，提高站点性能。 具体的实施方案是将静态资源 图片、css、js 放到一个子域名服务器下。这样带来的好处不仅是提供了浏览器并发请求数量还能减少http 头">
@@ -97,12 +97,14 @@
 		
 		<div id="toc" class="toc-article">
 		<strong class="toc-title">文章目录</strong>
-		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前端"><span class="toc-number">1.</span> <span class="toc-text">前端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#静态资源独立域名"><span class="toc-number">1.1.</span> <span class="toc-text">静态资源独立域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存"><span class="toc-number">1.2.</span> <span class="toc-text">缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#资源压缩文件合并"><span class="toc-number">1.3.</span> <span class="toc-text">资源压缩文件合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CDN加速"><span class="toc-number">1.4.</span> <span class="toc-text">CDN加速</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后端"><span class="toc-number">2.</span> <span class="toc-text">后端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#线程调优"><span class="toc-number">2.1.</span> <span class="toc-text">线程调优</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存-1"><span class="toc-number">2.2.</span> <span class="toc-text">缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前端"><span class="toc-number">1.</span> <span class="toc-text">前端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#静态资源独立域名"><span class="toc-number">1.1.</span> <span class="toc-text">静态资源独立域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存"><span class="toc-number">1.2.</span> <span class="toc-text">缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#资源压缩文件合并"><span class="toc-number">1.3.</span> <span class="toc-text">资源压缩文件合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#资源lazy加载"><span class="toc-number">1.4.</span> <span class="toc-text">资源lazy加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用资源摆放位置"><span class="toc-number">1.5.</span> <span class="toc-text">引用资源摆放位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CDN加速"><span class="toc-number">1.6.</span> <span class="toc-text">CDN加速</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后端"><span class="toc-number">2.</span> <span class="toc-text">后端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#线程调优"><span class="toc-number">2.1.</span> <span class="toc-text">线程调优</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存-1"><span class="toc-number">2.2.</span> <span class="toc-text">缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
 		</div>
 		
         <h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><h3 id="静态资源独立域名"><a href="#静态资源独立域名" class="headerlink" title="静态资源独立域名"></a>静态资源独立域名</h3><p>浏览器请求并发数是针对同一域名下的，一般现代浏览器都是6个<a href="http://www.stevesouders.com/blog/2008/03/20/roundup-on-parallel-connections/" target="_blank" rel="external">了解更多查看</a>，这样的设计目的其实是对服务器的一种保护，通常使用多个独立域名作为提供网站响应速度的一种有效手段。可以大大拓展这个并发连接数，也就是令浏览器并行下载更多资源，提高站点性能。 具体的实施方案是将静态资源 图片、css、js 放到一个子域名服务器下。这样带来的好处不仅是提供了浏览器并发请求数量还能减少http 头的数据大小。很明显的就是能减少cookie的传输。<br><a id="more"></a><br>这个浏览器并发请求受限的还有个原因：实则是多个线程创建了socket 与服务器建立了连接。keep-alive技术的存在使得浏览器复用现有连接和服务器通信比创建新连接的性能要更好一些所以，浏览器的并发数其实并不仅仅只是良知的要求，而是双方都需要保护自己的默契，并在可靠的情况下提供更好的性能。</p>
 <h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>缓存也是性能优化的重要手段之一，这个可以包括服务器常用数据缓存，和静态资源在浏览器中的缓存。</p>
 <h3 id="资源压缩文件合并"><a href="#资源压缩文件合并" class="headerlink" title="资源压缩文件合并"></a>资源压缩文件合并</h3><p>资源压缩技术，文件合并，这样带来的好处就是减少http 请求数和降低网络数据传输包的大小。能有效的提供网站响应数度，<br>具体的方法有：<br>1、资源合并：多个图片合并在一个图片中<br>2、减少请求数：小图片直接使用base64编码</p>
+<h3 id="资源lazy加载"><a href="#资源lazy加载" class="headerlink" title="资源lazy加载"></a>资源lazy加载</h3><p>对于web网页一屏显示不了可以采用lazy加载技术，当请求网页时加载可视区的内容，当拖动滚动条时在动态的加载网页内容。</p>
+<h3 id="引用资源摆放位置"><a href="#引用资源摆放位置" class="headerlink" title="引用资源摆放位置"></a>引用资源摆放位置</h3><p>公用的做法就是对于CSS资源放置在HTML文档的头部，JS资源的应用一般都放在了尾部。或者在script 标签上添加defer。对于引入的第三方没依赖的资源在标签上添加async属性</p>
 <h3 id="CDN加速"><a href="#CDN加速" class="headerlink" title="CDN加速"></a>CDN加速</h3><p>将资源放到CDN服务器上</p>
 <h2 id="后端"><a href="#后端" class="headerlink" title="后端"></a>后端</h2><h3 id="线程调优"><a href="#线程调优" class="headerlink" title="线程调优"></a>线程调优</h3><p>线程数量不是越多越好，适当的线程能充分利用CPU带来性能的提升，但过多的线程因为线程上下文的切换开销返回是性能下降，所以多线程数量和性能会有个最优的值通常是CPU核数的2倍</p>
 <h3 id="缓存-1"><a href="#缓存-1" class="headerlink" title="缓存"></a>缓存</h3><p>对于常用的数据加入内存中</p>
@@ -111,7 +113,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/12/28/WEB性能优化手段/" data-id="cix74hrv1004cpkjwr5z5n600" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/12/28/WEB性能优化手段/" data-id="cix77h0p2001i4kjwe7v78qvg" class="article-share-link">分享</a>
       
       
     </footer>
