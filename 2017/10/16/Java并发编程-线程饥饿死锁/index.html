@@ -3,17 +3,18 @@
 <head>
   <meta charset="utf-8">
   
-  <title>归档: 2013/1 | 东写西读</title>
+  <title>Java并发编程-线程饥饿死锁 | 东写西读</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="东写西读">
-<meta property="og:url" content="http://yanwuyang.github.io/archives/2013/01/index.html">
+  <meta name="description" content="最近公司项目上遇到一个问题，同事反映服务一直没有收到回调（异步接口），查看日志没看到任何的异常信息，重启服务后偶尔又出现，通过分析可能存在三种情况：第一种是数据库发生死锁了，第二种情况线程死锁。第三种情况redis连接池为空一直在等待空闲的资源  使用查看数据库锁查询语句查询没有任何锁，那就只可能存在第二、第三种情况了。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java并发编程-线程饥饿死锁">
+<meta property="og:url" content="http://yanwuyang.github.io/2017/10/16/Java并发编程-线程饥饿死锁/index.html">
 <meta property="og:site_name" content="东写西读">
-<meta property="og:description">
+<meta property="og:description" content="最近公司项目上遇到一个问题，同事反映服务一直没有收到回调（异步接口），查看日志没看到任何的异常信息，重启服务后偶尔又出现，通过分析可能存在三种情况：第一种是数据库发生死锁了，第二种情况线程死锁。第三种情况redis连接池为空一直在等待空闲的资源  使用查看数据库锁查询语句查询没有任何锁，那就只可能存在第二、第三种情况了。">
+<meta property="og:updated_time" content="2017-10-16T15:04:38.657Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="东写西读">
-<meta name="twitter:description">
+<meta name="twitter:title" content="Java并发编程-线程饥饿死锁">
+<meta name="twitter:description" content="最近公司项目上遇到一个问题，同事反映服务一直没有收到回调（异步接口），查看日志没看到任何的异常信息，重启服务后偶尔又出现，通过分析可能存在三种情况：第一种是数据库发生死锁了，第二种情况线程死锁。第三种情况redis连接池为空一直在等待空闲的资源  使用查看数据库锁查询语句查询没有任何锁，那就只可能存在第二、第三种情况了。">
   
   
     <link rel="icon" href="/favicon.ico">
@@ -66,39 +67,83 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2013" class="archive-year">2013</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2013/01/30/浅谈BSF/" class="archive-article-date">
-  <time datetime="2013-01-30T13:28:01.000Z" itemprop="datePublished">1月 30</time>
+        <section id="main"><article id="post-Java并发编程-线程饥饿死锁" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/16/Java并发编程-线程饥饿死锁/" class="article-date">
+  <time datetime="2017-10-16T13:43:27.000Z" itemprop="datePublished">2017-10-16</time>
 </a>
-      
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2013/01/30/浅谈BSF/">浅谈BSF</a>
+    <h1 class="article-title" itemprop="name">
+      Java并发编程-线程饥饿死锁
     </h1>
   
 
-    </header>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+        <p>  最近公司项目上遇到一个问题，同事反映服务一直没有收到回调（异步接口），查看日志没看到任何的异常信息，重启服务后偶尔又出现，通过分析可能存在三种情况：第一种是数据库发生死锁了，第二种情况线程死锁。第三种情况redis连接池为空一直在等待空闲的资源<br>  使用查看数据库锁查询语句查询没有任何锁，那就只可能存在第二、第三种情况了。</p>
+<a id="more"></a>
+<p>  其实第一、二、三种情况都可以通过线程的堆栈信息分析得出。<br>  输出线程堆栈信息<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">jstack -l pid &gt; thread.stack</span><br></pre></td></tr></table></figure></p>
+<p>发现线程池中所有的线程状态都是waiting。是什么原因导致了线程的状态都是waiting呢，原来是任务依赖于其他的任务，任务提交到了同一个Executor中，并且等待这个被提交任务的结果，引发死锁。第二个任务停留在工作队列中，并等待第一个任务的完成，而第一个任务又无法完成，因为他在等待第二个任务的完成。在更大的线程池中，如果所有正在执行任务的线程都由于等待其他仍处于工作队列中的任务二阻塞，那么会发生同样的问题。这种现象被称为线程饥饿死锁。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">ThreadDeadlock</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    ExecutorService exec = Executors.newSingleThreadExecutor();</span><br><span class="line">	</span><br><span class="line">    <span class="keyword">private</span> AtomicInteger index = <span class="keyword">new</span> AtomicInteger();</span><br><span class="line">	</span><br><span class="line">    <span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Task</span> <span class="keyword">implements</span> <span class="title">Callable</span>&lt;<span class="title">String</span>&gt;</span>&#123;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> String <span class="title">call</span><span class="params">()</span> <span class="keyword">throws</span> Exception</span>&#123;</span><br><span class="line">            <span class="keyword">return</span> getName();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">service</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Future&lt;String&gt; future=exec.submit(<span class="keyword">new</span> Task());</span><br><span class="line">        <span class="keyword">return</span> future.get();</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(index.getAndIncrement()==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> service();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"hello world"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>引发思考-任务与执行策略之间的隐性耦合</strong></p>
+<p>我们已经知道，Executor框架可以将任务的提交与任务的执行策略解耦开来。就像许多对复杂过程的解耦操作那样，这种论断多少有些言过其实。虽然Executor框架为制定和修改执行策略都提供了相当大的灵活性，但并非所有的任务都能适用所有的执行策略。有些类型的任务需要明确地执行策略</p>
+<p><strong>依赖性任务</strong><br>大多数行为正确的任务都是独立的：它们不依赖与其他任务的执行时序。执行结果或其他效果。当在线程池中执行独立的认为是，可以随意地改变线程池的大小和配置，这些修改只会对执行性能产生影响。然而，如果提交给线程池的任务需要依赖其他的任务，那么就隐含地给执行策略带来了约束，此时必须小心地维持这些执行策略以避免产生活跃性的问题。除非线程池无限大，否则将可能造成死锁。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2017/10/16/Java并发编程-线程饥饿死锁/" data-id="cj8u8cgka004854ybfetcjfh8" class="article-share-link">分享</a>
+      
+      
+    </footer>
   </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2017/06/20/2017年上半年Java高级工程师求职面试题总结/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">2017年上半年Java高级工程师求职面试题总结</div>
+    </a>
+  
+</nav>
+
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-Java并发编程-线程饥饿死锁" data-title="Java并发编程-线程饥饿死锁" data-url="http://yanwuyang.github.io/2017/10/16/Java并发编程-线程饥饿死锁/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
 </article>
-  
-  
-    </div></section>
-  
 
 </section>
         
