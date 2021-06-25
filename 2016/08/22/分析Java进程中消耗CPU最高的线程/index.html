@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>分析Java进程中消耗CPU最高的线程 | 东写西读</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="第一步：查看JAVA进程（也可以使用top命令查看系统中消耗CPU最高的进程）12&amp;gt;jps -l28070 com.yonyouup.openapi.netty.startup.Bootstrap">
+<meta property="og:type" content="article">
+<meta property="og:title" content="分析Java进程中消耗CPU最高的线程">
+<meta property="og:url" content="http://yanwuyang.github.io/2016/08/22/分析Java进程中消耗CPU最高的线程/index.html">
+<meta property="og:site_name" content="东写西读">
+<meta property="og:description" content="第一步：查看JAVA进程（也可以使用top命令查看系统中消耗CPU最高的进程）12&amp;gt;jps -l28070 com.yonyouup.openapi.netty.startup.Bootstrap">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-06-25T02:00:18.135Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="分析Java进程中消耗CPU最高的线程">
+<meta name="twitter:description" content="第一步：查看JAVA进程（也可以使用top命令查看系统中消耗CPU最高的进程）12&amp;gt;jps -l28070 com.yonyouup.openapi.netty.startup.Bootstrap">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/css.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">东写西读</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">实践是最好的成长，发表是最好的记忆</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+	    
+           <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
+	    
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-分析Java进程中消耗CPU最高的线程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/22/分析Java进程中消耗CPU最高的线程/" class="article-date">
+  <time datetime="2016-08-22T02:56:33.000Z" itemprop="datePublished">2016-08-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      分析Java进程中消耗CPU最高的线程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+        <p>第一步：查看JAVA进程（也可以使用top命令查看系统中消耗CPU最高的进程）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;jps -l</span><br><span class="line">28070 com.yonyouup.openapi.netty.startup.Bootstrap</span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p>第二步：查找进程中消耗CPU最高的线程ID<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&gt;top -p 28070H</span><br><span class="line">  PID USER      PR  NI    VIRT    RES    SHR S %CPU %MEM     TIME+ COMMAND    </span><br><span class="line">28173 root      20   0 3673316 314988  11984 S  0.3  1.0   0:11.12 java                                          </span><br><span class="line">28070 root      20   0 3673316 314988  11984 S  0.0  1.0   0:00.00 java                                          </span><br><span class="line">28071 root      20   0 3673316 314988  11984 S  0.0  1.0   0:00.67 java                                          </span><br><span class="line">28072 root      20   0 3673316 314988  11984 S  0.0  1.0   0:00.09 java                                          </span><br><span class="line">28073 root      20   0 3673316 314988  11984 S  0.0  1.0   0:00.08 java                                          </span><br><span class="line">28074 root      20   0 3673316 314988  11984 S  0.0  1.0   0:00.07 java                                          </span><br><span class="line">28075 root      20   0 3673316 314988  11984 S  0.0  1.0   0:00.08 java                                          </span><br><span class="line">28076 root      20   0 3673316 314988  11984 S  0.0  1.0   0:09.67 java                                          </span><br><span class="line">28077 root      20   0 3673316 314988  11984 S  0.0  1.0   0:00.00 java</span><br></pre></td></tr></table></figure></p>
+<p>第三步：查看线程栈信息<br>我们查看消耗0.3%CPU的线程28173<br>将28173（10进制）转换成16进制（6e0d）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&gt;jstack 28070|grep -A 12 6e0d</span><br><span class="line">&quot;nioEventLoopGroup-3-3&quot; prio=10 tid=0x00007fb7d800b000 nid=0x6e0d runnable [0x00007fb7b48f4000]</span><br><span class="line">   java.lang.Thread.State: RUNNABLE</span><br><span class="line">        at sun.nio.ch.EPollArrayWrapper.epollWait(Native Method)</span><br><span class="line">        at sun.nio.ch.EPollArrayWrapper.poll(EPollArrayWrapper.java:269)</span><br><span class="line">        at sun.nio.ch.EPollSelectorImpl.doSelect(EPollSelectorImpl.java:79)</span><br><span class="line">        at sun.nio.ch.SelectorImpl.lockAndDoSelect(SelectorImpl.java:87)</span><br><span class="line">        - locked &lt;0x00000000c08454f8&gt; (a io.netty.channel.nio.SelectedSelectionKeySet)</span><br><span class="line">        - locked &lt;0x00000000c08455a8&gt; (a java.util.Collections$UnmodifiableSet)</span><br><span class="line">        - locked &lt;0x00000000c0845400&gt; (a sun.nio.ch.EPollSelectorImpl)</span><br><span class="line">        at sun.nio.ch.SelectorImpl.select(SelectorImpl.java:98)</span><br><span class="line">        at io.netty.channel.nio.NioEventLoop.select(NioEventLoop.java:692)</span><br><span class="line">        at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:352)</span><br><span class="line">        at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:877)</span><br></pre></td></tr></table></figure></p>
+<p>A 12表示查找到所在行的后12行。28173用计算器转换为16进制6e0d，注意字母是小写。</p>
+<p><strong><em>以上命令针对Linux系统由于Windows系统不支持查看摸个进程中的线程所以只能借助第三方工具查看（JProfiler）</em></strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/08/22/分析Java进程中消耗CPU最高的线程/" data-id="ckqbozfjj002eikl5h102zfj0" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/08/22/JDK常用性能分析命令行工具/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          JDK常用性能分析命令行工具
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/08/10/Java中的IO技术：BIO,NIO,AIO/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Java中的IO技术：BIO,NIO,AIO</div>
+    </a>
+  
+</nav>
+
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-分析Java进程中消耗CPU最高的线程" data-title="分析Java进程中消耗CPU最高的线程" data-url="http://yanwuyang.github.io/2016/08/22/分析Java进程中消耗CPU最高的线程/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/20/100个为什么/">100个为什么</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/16/Java并发编程-线程饥饿死锁/">Java并发编程-线程饥饿死锁</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/20/2017年上半年Java高级工程师求职面试题总结/">2017年上半年Java高级工程师求职面试题总结</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/28/WEB性能优化手段/">WEB性能优化手段</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/27/HTTP Keep-Alive/">HTTP Keep-Alive</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 yanwuyang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+ 
+</script>
+            
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+  </div>
+</body>
+</html>

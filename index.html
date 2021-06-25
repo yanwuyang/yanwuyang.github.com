@@ -1,0 +1,884 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>东写西读</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="东写西读">
+<meta property="og:url" content="http://yanwuyang.github.io/index.html">
+<meta property="og:site_name" content="东写西读">
+<meta property="og:locale" content="zh-CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="东写西读">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/css.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">东写西读</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">实践是最好的成长，发表是最好的记忆</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+	    
+           <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
+	    
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-100个为什么" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/03/20/100个为什么/" class="article-date">
+  <time datetime="2021-03-20T14:48:20.000Z" itemprop="datePublished">2021-03-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/操作系统/">操作系统</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/20/100个为什么/">100个为什么</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="CPU执行的第一条指令是什么"><a href="#CPU执行的第一条指令是什么" class="headerlink" title="CPU执行的第一条指令是什么"></a>CPU执行的第一条指令是什么</h2><p>引导指令，将操作系统加载到内存中<br>当用户启动计算机的电源时，计算机硬件会自动产生一个中断信号，这个中断信号触发计算机处理器（CPU）中的一段指令执行。该段指令的执行结果将是发现外部存储设备中操作系统引导区（boot block）的位置。如果已经安装了操作系统，则操作系统引导区中的代码将被自动导入计算机的内存，并开始执行。引导区代码的执行结果是将操作系统程序加载到计算机内存中的指定区域，并初始化计算机的有关硬件，例如存储器，终端设备，以及各种计算机运行所需的数据结果等。至此操作系统程序开始启动，并未用户提供相应的用户界面，开始提供各种服务</p>
+        
+          <p class="article-more-link">
+            <a href="/2021/03/20/100个为什么/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2021/03/20/100个为什么/" data-id="ckqbqwrc50000bol5qlnjdgz4" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-Java并发编程-线程饥饿死锁" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/10/16/Java并发编程-线程饥饿死锁/" class="article-date">
+  <time datetime="2017-10-16T13:43:27.000Z" itemprop="datePublished">2017-10-16</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/16/Java并发编程-线程饥饿死锁/">Java并发编程-线程饥饿死锁</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>  最近公司项目上遇到一个问题，同事反映服务一直没有收到回调（异步接口），查看日志没看到任何的异常信息，重启服务后偶尔又出现，通过分析可能存在三种情况：第一种是数据库发生死锁了，第二种情况线程死锁。第三种情况redis连接池为空一直在等待空闲的资源<br>  使用查看数据库锁查询语句查询没有任何锁，那就只可能存在第二、第三种情况了。</p>
+        
+          <p class="article-more-link">
+            <a href="/2017/10/16/Java并发编程-线程饥饿死锁/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2017/10/16/Java并发编程-线程饥饿死锁/" data-id="ckqbozfia000oikl5qvq4xezj" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-2017年上半年Java高级工程师求职面试题总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/20/2017年上半年Java高级工程师求职面试题总结/" class="article-date">
+  <time datetime="2017-06-20T14:48:20.000Z" itemprop="datePublished">2017-06-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/心得体会/">心得体会</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/06/20/2017年上半年Java高级工程师求职面试题总结/">2017年上半年Java高级工程师求职面试题总结</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="HashMap的数据结构"><a href="#HashMap的数据结构" class="headerlink" title="HashMap的数据结构"></a>HashMap的数据结构</h2><p>数组加单链表结构。不允许有相同的key允许null为key，null为key的时候值是保存下了数组下标为0中。可以有相同的value<br>
+        
+          <p class="article-more-link">
+            <a href="/2017/06/20/2017年上半年Java高级工程师求职面试题总结/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2017/06/20/2017年上半年Java高级工程师求职面试题总结/" data-id="ckqbozfh90003ikl5h4du30xq" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-WEB性能优化手段" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/28/WEB性能优化手段/" class="article-date">
+  <time datetime="2016-12-27T16:00:00.000Z" itemprop="datePublished">2016-12-28</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/WEB/">WEB</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/28/WEB性能优化手段/">WEB性能优化手段</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><h3 id="静态资源独立域名"><a href="#静态资源独立域名" class="headerlink" title="静态资源独立域名"></a>静态资源独立域名</h3><p>浏览器请求并发数是针对同一域名下的，一般现代浏览器都是6个<a href="http://www.stevesouders.com/blog/2008/03/20/roundup-on-parallel-connections/" target="_blank" rel="noopener">了解更多查看</a>，这样的设计目的其实是对服务器的一种保护，通常使用多个独立域名作为提供网站响应速度的一种有效手段。可以大大拓展这个并发连接数，也就是令浏览器并行下载更多资源，提高站点性能。 具体的实施方案是将静态资源 图片、css、js 放到一个子域名服务器下。这样带来的好处不仅是提供了浏览器并发请求数量还能减少http 头的数据大小。很明显的就是能减少cookie的传输。<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/12/28/WEB性能优化手段/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/12/28/WEB性能优化手段/" data-id="ckqbozfj2001qikl5lh7ybxjh" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-HTTP Keep-Alive" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/27/HTTP Keep-Alive/" class="article-date">
+  <time datetime="2016-12-26T16:00:00.000Z" itemprop="datePublished">2016-12-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HTTP/">HTTP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/27/HTTP Keep-Alive/">HTTP Keep-Alive</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Keep-Alive是什么"><a href="#Keep-Alive是什么" class="headerlink" title="Keep-Alive是什么"></a>Keep-Alive是什么</h3><p>在早期的HTTP1.0版本中，每个http请求都要求打开一个tcp socket连接，并且使用一次之后就断开这个tcp连接。这种效率和性能是最低的，因为建立一个TCP连接需要3次握手，而断开一个链接需要TCP四次握手。而在一个网页页面中含有的大量引入的js、css、img文件，如果每个请求都为之创建一个socket连接，这不仅是性能的底下而且还会给服务器带来很大的压力。 为了改善这种状态希望在一个页面中能重复的利用一个Socket连接来发送请求数据，<br>于是就发明了keep-alive即在一次TCP连接中可以持续发送多份数据而不会断开连接。通过使用keep-alive机制，可以减少tcp连接建立次数，也意味着可以减少TIME_WAIT状态连接，以此提高性能和提高httpd服务器的吞吐率(更少的tcp连接意味着更少的系统内核调用,socket的accept()和close()调用)。但是，keep-alive并不是免费的午餐,长时间的tcp连接容易导致系统资源无效占用。配置不当的keep-alive，有时比重复利用连接带来的损失还更大。所以，正确地设置keep-alive timeout时间非常重要。<br>keepalvie timeout。<br><img src="2013_12_20_02.png" alt><br>
+        
+          <p class="article-more-link">
+            <a href="/2016/12/27/HTTP Keep-Alive/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/12/27/HTTP Keep-Alive/" data-id="ckqbozfh40001ikl56ealb38i" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-HTTP协议：不可小觑的Content-Length" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/27/HTTP协议：不可小觑的Content-Length/" class="article-date">
+  <time datetime="2016-12-26T16:00:00.000Z" itemprop="datePublished">2016-12-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HTTP/">HTTP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/27/HTTP协议：不可小觑的Content-Length/">HTTP协议：不可小觑的Content-Length</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Content-Length首部告诉浏览器报文中实体主体的大小。这个大小是包含了内容编码的，比如对文件进行了gzip压缩，Content-Length就是压缩后的大小（这点对我们编写服务器非常重要）。除非使用了分块编码，否则Content-Length首部就是带有实体主体的报文必须使用的。使用Content-Length首部是为了能够检测出服务器崩溃而导致的报文截尾，并对共享持久连接的多个报文进行正确分段。<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/12/27/HTTP协议：不可小觑的Content-Length/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/12/27/HTTP协议：不可小觑的Content-Length/" data-id="ckqbozfhh0005ikl53poymcz0" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-Netty-4.1.4源码分析二之管道设计模式" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/26/Netty-4.1.4源码分析二之管道设计模式/" class="article-date">
+  <time datetime="2016-12-25T16:00:00.000Z" itemprop="datePublished">2016-12-26</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/26/Netty-4.1.4源码分析二之管道设计模式/">Netty-4.1.4源码分析二之管道设计模式</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="管道模式的好处"><a href="#管道模式的好处" class="headerlink" title="管道模式的好处"></a>管道模式的好处</h3><ul>
+<li>在Netty中对数据的处理编码解码读取都是通过管道模式串连起来，这些handler都是管道中的一个阀门。对于管道模式的好处在这里简单的说下。在一个比较复杂的大型系统中，假如存在某个对象或数据流需要被进行繁杂的逻辑处理的话，我们可以选择在一个大的组件中进行这些繁杂的逻辑处理，这种方式确实达到了目的，但却是简单粗暴的。或许在某些情况这种简单粗暴的方式将带来一些麻烦，例如我要改动其中某部分处理逻辑、我要添加一些处理逻辑到流程、我要在流程中减少一些处理逻辑时，这里有些看似简单的改动都让我们无从下手，除了对整个组件进行改动。整个系统看起来没有任何可扩展性和可重用性。<br>是否有一种模式可以将整个处理流程进行详细划分，划分出的每个小模块互相独立且各自负责一段逻辑处理，这些逻辑处理小模块根据顺序连起来，前以模块的输出作为后一模块的输入，最后一个模块的输出为最终的处理结果。如此一来修改逻辑时只针对某个模块修改，添加或减少处理逻辑也可细化到某个模块颗粒度，并且每个模块可重复利用，可重用性大大增强。
+        
+          <p class="article-more-link">
+            <a href="/2016/12/26/Netty-4.1.4源码分析二之管道设计模式/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/12/26/Netty-4.1.4源码分析二之管道设计模式/" data-id="ckqbozfiv001gikl5a5rkci6i" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-Netty-4.1.4源码分析一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/23/Netty-4.1.4源码分析一/" class="article-date">
+  <time datetime="2016-12-22T16:00:00.000Z" itemprop="datePublished">2016-12-23</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/23/Netty-4.1.4源码分析一/">Netty-4.1.4源码分析一</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Netty是什么"><a href="#Netty是什么" class="headerlink" title="Netty是什么"></a>Netty是什么</h2><ul>
+<li>Netty是一个异步的事件驱动的网络应用程序框架用于快速开发可维护的高性能协议服务器和客户端。基于NIO客户端服务器框架，可以快速，轻松地开发网络应用程序，如协议服务器和客户端。 它大大简化和简化了网络编程，如TCP和UDP套接字服务器。
+        
+          <p class="article-more-link">
+            <a href="/2016/12/23/Netty-4.1.4源码分析一/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/12/23/Netty-4.1.4源码分析一/" data-id="ckqbozfiq0018ikl5e0zcmvto" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-react-redux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/10/react-redux/" class="article-date">
+  <time datetime="2016-12-09T16:00:00.000Z" itemprop="datePublished">2016-12-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/10/react-redux/">react-redux</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>react-redux是基于redux javascript轻量级框架，为了更好的和react结合对redux提供了一些封装，一种更科学的代码组织方式，让我们更舒服地在React的代码中使用Redux。<br>react-redux很简单他就提供了两个模块：Provider和connect。<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/12/10/react-redux/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/12/10/react-redux/" data-id="ckqbozfj90020ikl5sieeevvm" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-Redux" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/09/Redux/" class="article-date">
+  <time datetime="2016-12-08T16:00:00.000Z" itemprop="datePublished">2016-12-09</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/09/Redux/">Redux</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><strong>Redux是一个通用Javscript App模块，用做App State的管理。</strong><br>1、React有props和state: props意味着父级分发下来的属性，state意味着组件内部可以自行管理的状态，并且整个React没有数据向上回溯的能力，也就是说数据只能单向向下分发，或者自行内部消化。<br>2、一般构建的React组件内部可能是一个完整的应用，它自己工作良好，你可以通过属性作为API控制它。但是更多的时候发现React根本无法让两个组件互相交流，使用对方的数据。<br>然后这时候不通过DOM沟通（也就是React体制内）解决的唯一办法就是提升state，将state放到共有的父组件中来管理，再作为props分发回子组件。<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/12/09/Redux/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/12/09/Redux/" data-id="ckqbozfj4001sikl5h7gnrwne" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-JavaScript学习随手记" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/05/JavaScript学习随手记/" class="article-date">
+  <time datetime="2016-12-04T16:00:00.000Z" itemprop="datePublished">2016-12-05</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/12/05/JavaScript学习随手记/">JavaScript学习随手记</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li>今天学习react-redux时学到connect函数组件时对connect函数有点蒙圈，表示不能理解，请看如下代码:<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Users</span>(<span class="params">props</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">return</span> (<span class="xml"><span class="tag">&lt;<span class="name">div</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mapStateToProps</span>(<span class="params">&#123; users &#125;</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> &#123; users &#125;;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> connect(mapStateToProps)(Users);</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+        
+          <p class="article-more-link">
+            <a href="/2016/12/05/JavaScript学习随手记/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/12/05/JavaScript学习随手记/" data-id="ckqbozfhu000cikl5scilfl96" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-React学习总结一" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/29/React学习总结一/" class="article-date">
+  <time datetime="2016-11-28T16:00:00.000Z" itemprop="datePublished">2016-11-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/29/React学习总结一/">React学习总结一</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="React是什么"><a href="#React是什么" class="headerlink" title="React是什么"></a>React是什么</h2><ul>
+<li>React是用于构建用户界面的Javascript库 </li>
+<li>1、仅仅是UI<ul>
+<li>许多人使用React作为MVC架构的V层。 尽管React并没有假设过你的其余技术栈， 但它仍可以作为一个小特征轻易地在已有项目中使用 </li>
+</ul>
+</li>
+<li>2、虚拟DOM<ul>
+<li>React为了更高超的性能而使用虚拟DOM作为其不同的实现。 它同时也可以由服务端Node.js渲染 － 而不需要过重的浏览器DOM支持 </li>
+</ul>
+</li>
+<li>3、数据流<ul>
+<li>React实现了单向响应的数据流，从而减少了重复代码，这也是它为什么比传统数据绑定更简单
+        
+          <p class="article-more-link">
+            <a href="/2016/11/29/React学习总结一/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/11/29/React学习总结一/" data-id="ckqbozfiw001iikl57dhltx6s" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-模块定义规范" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/29/模块定义规范/" class="article-date">
+  <time datetime="2016-11-28T16:00:00.000Z" itemprop="datePublished">2016-11-29</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/29/模块定义规范/">模块定义规范</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="CMD"><a href="#CMD" class="headerlink" title="CMD"></a>CMD</h2><ul>
+<li>通用模块定义规范，一般用于后端，采用同步加载的方式。nodejs的npm实现了此标准。</li>
+<li>规范中指定一个文件对应一个模块</li>
+<li>代表：CommonJS
+        
+          <p class="article-more-link">
+            <a href="/2016/11/29/模块定义规范/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/11/29/模块定义规范/" data-id="ckqbozfjl002hikl5oxb81vbt" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-第一章 信息化知识" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/04/第一章 信息化知识/" class="article-date">
+  <time datetime="2016-11-04T15:57:33.000Z" itemprop="datePublished">2016-11-04</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/系统集成项目管理/">系统集成项目管理</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/04/第一章 信息化知识/">第一章 信息化知识</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="信息与信息化"><a href="#信息与信息化" class="headerlink" title="信息与信息化"></a>信息与信息化</h1><p>信息技术不断创新，信息产业持续发展，信息网络广泛普及，信息化成为全球经济社会发展的显著特征。在信息技术的推动下，人类社会已经并正在加速进入全新发展时期，基于智能、网络和大数据的新经济业态正在形成，而“融合”是这个时期的主要特征，表现为信息技术和工业制造深度融合、人和机器的融合、信息资源和材料源的融合。在这个形式下，世界政治、经济、产业、文化和军事发展模式的竞争新格局必将重塑。而教育、医疗、公开服务、社会交往走向全局智能，极大地改变人们生活方式和行为模式。<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/11/04/第一章 信息化知识/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/11/04/第一章 信息化知识/" data-id="ckqbozfjv002wikl5ovx52oj9" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-第二章 信息系统集成及服务管理" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/11/03/第二章 信息系统集成及服务管理/" class="article-date">
+  <time datetime="2016-11-03T15:57:33.000Z" itemprop="datePublished">2016-11-03</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/系统集成项目管理/">系统集成项目管理</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/11/03/第二章 信息系统集成及服务管理/">第二章 信息系统集成及服务管理</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="信息系统集成及服务管理体系"><a href="#信息系统集成及服务管理体系" class="headerlink" title="信息系统集成及服务管理体系"></a>信息系统集成及服务管理体系</h1><p><strong><em>随着信息技术的飞速发展，信息系统建设取得了巨大的成绩，积累了宝贵的经验，主流是健康的。但暴露出来的各种问题不容忽视。随着我国信息化建设的逐步推进，对信息系统集成及服务的引导和管理，逐渐形成了我国自由的信息系统集成及服务管理体系。</em></strong><br>
+        
+          <p class="article-more-link">
+            <a href="/2016/11/03/第二章 信息系统集成及服务管理/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/11/03/第二章 信息系统集成及服务管理/" data-id="ckqbozfk00033ikl5bj9jg3sr" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">下一页 &raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/20/100个为什么/">100个为什么</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/16/Java并发编程-线程饥饿死锁/">Java并发编程-线程饥饿死锁</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/20/2017年上半年Java高级工程师求职面试题总结/">2017年上半年Java高级工程师求职面试题总结</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/28/WEB性能优化手段/">WEB性能优化手段</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/27/HTTP Keep-Alive/">HTTP Keep-Alive</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 yanwuyang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+ 
+</script>
+            
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+  </div>
+</body>
+</html>

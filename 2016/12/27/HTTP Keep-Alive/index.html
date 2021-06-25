@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>HTTP Keep-Alive | 东写西读</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Keep-Alive是什么在早期的HTTP1.0版本中，每个http请求都要求打开一个tcp socket连接，并且使用一次之后就断开这个tcp连接。这种效率和性能是最低的，因为建立一个TCP连接需要3次握手，而断开一个链接需要TCP四次握手。而在一个网页页面中含有的大量引入的js、css、img文件，如果每个请求都为之创建一个socket连接，这不仅是性能的底下而且还会给服务器带来很大的压力。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP Keep-Alive">
+<meta property="og:url" content="http://yanwuyang.github.io/2016/12/27/HTTP Keep-Alive/index.html">
+<meta property="og:site_name" content="东写西读">
+<meta property="og:description" content="Keep-Alive是什么在早期的HTTP1.0版本中，每个http请求都要求打开一个tcp socket连接，并且使用一次之后就断开这个tcp连接。这种效率和性能是最低的，因为建立一个TCP连接需要3次握手，而断开一个链接需要TCP四次握手。而在一个网页页面中含有的大量引入的js、css、img文件，如果每个请求都为之创建一个socket连接，这不仅是性能的底下而且还会给服务器带来很大的压力。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yanwuyang.github.io/2016/12/27/HTTP%20Keep-Alive/2013_12_20_02.png">
+<meta property="og:image" content="http://yanwuyang.github.io/2016/12/27/HTTP%20Keep-Alive/20161227112307.png">
+<meta property="og:updated_time" content="2021-06-25T02:00:17.826Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="HTTP Keep-Alive">
+<meta name="twitter:description" content="Keep-Alive是什么在早期的HTTP1.0版本中，每个http请求都要求打开一个tcp socket连接，并且使用一次之后就断开这个tcp连接。这种效率和性能是最低的，因为建立一个TCP连接需要3次握手，而断开一个链接需要TCP四次握手。而在一个网页页面中含有的大量引入的js、css、img文件，如果每个请求都为之创建一个socket连接，这不仅是性能的底下而且还会给服务器带来很大的压力。">
+<meta name="twitter:image" content="http://yanwuyang.github.io/2016/12/27/HTTP%20Keep-Alive/2013_12_20_02.png">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/css.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">东写西读</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">实践是最好的成长，发表是最好的记忆</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+	    
+           <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
+	    
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-HTTP Keep-Alive" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/12/27/HTTP Keep-Alive/" class="article-date">
+  <time datetime="2016-12-26T16:00:00.000Z" itemprop="datePublished">2016-12-27</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/HTTP/">HTTP</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      HTTP Keep-Alive
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+		<div id="toc" class="toc-article">
+		<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#Keep-Alive是什么"><span class="toc-number">1.</span> <span class="toc-text">Keep-Alive是什么</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Keep-Alive如何设置"><span class="toc-number">2.</span> <span class="toc-text">Keep-Alive如何设置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#基于Java服务端的Keep-Alive的连接如何实现"><span class="toc-number">3.</span> <span class="toc-text">基于Java服务端的Keep-Alive的连接如何实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP-Keep-Alive于Socket-KeepAlive有何区别"><span class="toc-number">4.</span> <span class="toc-text">HTTP Keep-Alive于Socket KeepAlive有何区别</span></a></li></ol>
+		</div>
+		
+        <h3 id="Keep-Alive是什么"><a href="#Keep-Alive是什么" class="headerlink" title="Keep-Alive是什么"></a>Keep-Alive是什么</h3><p>在早期的HTTP1.0版本中，每个http请求都要求打开一个tcp socket连接，并且使用一次之后就断开这个tcp连接。这种效率和性能是最低的，因为建立一个TCP连接需要3次握手，而断开一个链接需要TCP四次握手。而在一个网页页面中含有的大量引入的js、css、img文件，如果每个请求都为之创建一个socket连接，这不仅是性能的底下而且还会给服务器带来很大的压力。 为了改善这种状态希望在一个页面中能重复的利用一个Socket连接来发送请求数据，<br>于是就发明了keep-alive即在一次TCP连接中可以持续发送多份数据而不会断开连接。通过使用keep-alive机制，可以减少tcp连接建立次数，也意味着可以减少TIME_WAIT状态连接，以此提高性能和提高httpd服务器的吞吐率(更少的tcp连接意味着更少的系统内核调用,socket的accept()和close()调用)。但是，keep-alive并不是免费的午餐,长时间的tcp连接容易导致系统资源无效占用。配置不当的keep-alive，有时比重复利用连接带来的损失还更大。所以，正确地设置keep-alive timeout时间非常重要。<br>keepalvie timeout。<br><img src="2013_12_20_02.png" alt><br><a id="more"></a></p>
+<h3 id="Keep-Alive如何设置"><a href="#Keep-Alive如何设置" class="headerlink" title="Keep-Alive如何设置"></a>Keep-Alive如何设置</h3><p>在HTTP1.1协议中都默认了支持keep-alive连接，而且所有浏览器都支持了这种模式，默认在HTTP头中自带了如下信息。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Connection: keep-alive</span><br></pre></td></tr></table></figure></p>
+<p>这种设置告诉服务器我是支持keep-alive连接的。服务器接收到请求解析HTTP头Connection看到是keep-alive，在响应客户端后时判断了请求数没有超过maxKeepAliveRequests（Tomcat中默认是100）于是在响应头中设置了Connection: keep-alive，告诉浏览器Socket连接我没有关闭你再用这个连接给我发送数据。反之如果超过了就将Connection设置为如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Connection: close</span><br></pre></td></tr></table></figure></p>
+<p>告诉客户端连接我已经关闭了你需要重新建立连接。<br>这样会带来一个问题，因为在HTTP的早期版本采用关闭连接的办法来划定报文的结束，但是keep-alive的连接Socket并没有关闭所以浏览器不知道报文的结束于是将一直阻塞等待有新的数据可读，浏览器显示加载状态。于是需要借助HTTP头的另一个属性Content-Length，来告诉浏览器我的报文数据大小，从而来确定报文截尾。更多的内容请查看文章<a href="/2016/12/27/HTTP协议：不可小觑的Content-Length/">HTTP协议：不可小觑的Content-Length</a></p>
+<h3 id="基于Java服务端的Keep-Alive的连接如何实现"><a href="#基于Java服务端的Keep-Alive的连接如何实现" class="headerlink" title="基于Java服务端的Keep-Alive的连接如何实现"></a>基于Java服务端的Keep-Alive的连接如何实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KeepAliveServer</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> IOException </span>&#123;</span><br><span class="line">        ServerSocket serverSocket = <span class="keyword">new</span> ServerSocket(<span class="number">8888</span>);</span><br><span class="line">        AtomicInteger atomicInteger = <span class="keyword">new</span> AtomicInteger();</span><br><span class="line">        <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;</span><br><span class="line">            <span class="keyword">final</span> Socket socket =  serverSocket.accept();</span><br><span class="line">            <span class="keyword">final</span> <span class="keyword">int</span> temp = atomicInteger.incrementAndGet();</span><br><span class="line">            System.out.println(<span class="string">"客户端："</span>+socket.getRemoteSocketAddress().toString()+<span class="string">"序号："</span>+temp);</span><br><span class="line">            socket.setSoTimeout(<span class="number">1000</span>);<span class="comment">//（1）</span></span><br><span class="line">            <span class="keyword">new</span> Thread(<span class="keyword">new</span> Runnable() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">                    InputStream inputStream = <span class="keyword">null</span>;</span><br><span class="line">                    PrintWriter out = <span class="keyword">null</span>;</span><br><span class="line">                    <span class="keyword">int</span> maxKeepAliveConnect = <span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">int</span> index=<span class="number">0</span>;</span><br><span class="line">                    <span class="keyword">while</span>(<span class="keyword">true</span>)&#123;<span class="comment">//（2）</span></span><br><span class="line">                        <span class="keyword">try</span> &#123;</span><br><span class="line">                            ++maxKeepAliveConnect;</span><br><span class="line">                            System.out.println(<span class="string">"链接:"</span>+temp+<span class="string">"开始第"</span>+(++index)+<span class="string">"次读取"</span>);</span><br><span class="line">                            <span class="keyword">if</span>(maxKeepAliveConnect&gt;<span class="number">10</span>)&#123;</span><br><span class="line">                                <span class="keyword">break</span>;</span><br><span class="line">                            &#125;</span><br><span class="line">                            inputStream = socket.getInputStream();</span><br><span class="line">                            <span class="keyword">byte</span>[] b = <span class="keyword">new</span> <span class="keyword">byte</span>[<span class="number">1024</span>];</span><br><span class="line">                            <span class="keyword">int</span> i =-<span class="number">1</span>;</span><br><span class="line">                            <span class="keyword">if</span>((i=inputStream.read(b))!=-<span class="number">1</span>)&#123;<span class="comment">//（3）</span></span><br><span class="line">                                <span class="comment">//System.out.println(new String(b,0,i));</span></span><br><span class="line">                            &#125;</span><br><span class="line">                             </span><br><span class="line">                            out = <span class="keyword">new</span> PrintWriter(socket.getOutputStream());</span><br><span class="line">                            StringBuffer sb = <span class="keyword">new</span> StringBuffer();</span><br><span class="line">                            sb.append(<span class="string">"&lt;script src=\"1.js\"&gt;&lt;/script&gt;"</span>);</span><br><span class="line">                            sb.append(<span class="string">"&lt;script src=\"2.js\"&gt;&lt;/script&gt;"</span>);</span><br><span class="line">                            sb.append(<span class="string">"&lt;script src=\"3.js\"&gt;&lt;/script&gt;"</span>);</span><br><span class="line">                            sb.append(<span class="string">"&lt;script src=\"4.js\"&gt;&lt;/script&gt;"</span>);</span><br><span class="line">                            sb.append(<span class="string">"&lt;script src=\"5.js\"&gt;&lt;/script&gt;"</span>);</span><br><span class="line">                            sb.append(<span class="string">"&lt;script src=\"6.js\"&gt;&lt;/script&gt;"</span>);</span><br><span class="line">                            sb.append(<span class="string">"&lt;script src=\"7.js\"&gt;&lt;/script&gt;"</span>);</span><br><span class="line">                            sb.append(<span class="string">"&lt;script src=\"8.js\"&gt;&lt;/script&gt;"</span>);</span><br><span class="line">                            sb.append(<span class="string">"&lt;script src=\"9.js\"&gt;&lt;/script&gt;"</span>);</span><br><span class="line">                            sb.append(<span class="string">"&lt;script src=\"10.js\"&gt;&lt;/script&gt;"</span>);</span><br><span class="line">                            sb.append(<span class="string">"&lt;script src=\"11.js\"&gt;&lt;/script&gt;"</span>);</span><br><span class="line">                            sb.append(<span class="string">"&lt;script src=\"12.js\"&gt;&lt;/script&gt;"</span>);</span><br><span class="line">                            sb.append(<span class="string">"&lt;h1&gt;hello world&lt;/h1&gt;"</span>);</span><br><span class="line">                            </span><br><span class="line">                            out.println(<span class="string">"HTTP/1.1 200 OK"</span>);   </span><br><span class="line">                            out.println(<span class="string">"Connection: Keep-Alive"</span>);</span><br><span class="line">                            out.println(<span class="string">"Content-Type:text/html;charset:GBK"</span>);</span><br><span class="line">                            out.println(<span class="string">"Content-Length:"</span>+sb.toString().length());</span><br><span class="line">                            out.println();</span><br><span class="line">                            out.println(sb.toString());</span><br><span class="line">                            out.flush();</span><br><span class="line">                            System.out.println(<span class="string">"链接:"</span>+temp+<span class="string">"第"</span>+(index)+<span class="string">"次读取完成"</span>);</span><br><span class="line">                        &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                            <span class="comment">//e.printStackTrace();</span></span><br><span class="line">                        &#125;</span><br><span class="line">                    &#125;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        inputStream.close();</span><br><span class="line">                        out.close();</span><br><span class="line">                        socket.close();</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (IOException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;).start();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这里需要特别说明的几个地方：<br><strong>（1）：socket.setSoTimeout(1000);</strong><br>使用指定的超时时间启用/禁用SO_TIMEOUT毫秒。 使用此选项设置为非零超时，对与此Socket相关联的InputStream的read（）调用将阻塞只有这段时间。 如果超时到期，java.net.SocketTimeoutException 被引发，虽然套接字仍然有效。 必须启用选项之前进入阻塞操作有效。 的timeout必须&gt; 0。超时为零被解释为无限超时。<br><strong>（2）：while(true)</strong><br>默认为长连接。循环读取socket中的数据，每一次循环都将是客户端的一次请求<br><strong>（3）：inputStream.read(b);</strong><br>读取socket中的数据本次读取完成将返回-1，再次读取的时候如果Socket中没有数据可读将一直阻塞，除非有数据可读或者设置了setSoTimeout()。</p>
+<p>我们启动服务浏览器发送请求控制台输出如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">客户端：/127.0.0.1:2992序号：1</span><br><span class="line">客户端：/127.0.0.1:3000序号：2</span><br><span class="line">客户端：/127.0.0.1:3001序号：3</span><br><span class="line">客户端：/127.0.0.1:3002序号：4</span><br><span class="line">客户端：/127.0.0.1:3003序号：5</span><br><span class="line">客户端：/127.0.0.1:3004序号：6</span><br></pre></td></tr></table></figure></p>
+<p>Firefox浏览器网络请求信息<br><img src="20161227112307.png" alt><br><strong>总结</strong><br>由此可以看出浏览器发送了了13个请求，但后台只有6个访问连接说明了其中有的请求共用了连接。这里6个连接也说明了Firefox的请求并发是6，每个并发都是一个新的连接。<br>各个浏览器并发请求数请参考<a href="http://www.stevesouders.com/blog/2008/03/20/roundup-on-parallel-connections/" target="_blank" rel="noopener">浏览器并发请求数</a></p>
+<h3 id="HTTP-Keep-Alive于Socket-KeepAlive有何区别"><a href="#HTTP-Keep-Alive于Socket-KeepAlive有何区别" class="headerlink" title="HTTP Keep-Alive于Socket KeepAlive有何区别"></a>HTTP Keep-Alive于Socket KeepAlive有何区别</h3><p><strong>HTTP的Keep-Alive</strong>是http代理（通常指浏览器）与HTTP服务器之间的约定。告诉服务器处理完本次请求不要关闭连接，我待会还要使用，而服务器在响应HTTP头上也带有Keep-Alive告诉客服端我连接以及保存你可以继续使用。</p>
+<p><strong>Socket的KeepAlive</strong>是在客户端与服务器建立了长连接以后，如果应用程序或者上层协议一直不发送数据，或者隔很长时间才发送一次数据，当链接很久没有数据报文传输时如何去确定对方还在线，到底是掉线了还是确实没有数据传输，链接还需不需要保持，这种情况在TCP协议设计中是需要考虑到的。TCP协议通过一种巧妙的方式去解决这个问题，当超过一段时间之后，TCP自动发送一个数据为空的报文给对方，如果对方回应了这个报文，说明对方还在线，链接可以继续保持，如果对方没有报文返回，并且重试了多次之后则认为链接丢失，没有必要保持链接。</p>
+<p>HTTP Keep-Alive与TCP Keep-Alive，不是同一回事，意图不一样。HTTP Keep-Alive是为了让TCP活得更久一点，以便在同一个连接上传送多个HTTP，提高Socket的效率。而TCP Keep-Alive是TCP的一种检测TCP连接状况的保鲜机制。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/12/27/HTTP Keep-Alive/" data-id="ckqbozfh40001ikl56ealb38i" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/12/28/WEB性能优化手段/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          WEB性能优化手段
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/27/HTTP协议：不可小觑的Content-Length/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">HTTP协议：不可小觑的Content-Length</div>
+    </a>
+  
+</nav>
+
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-HTTP Keep-Alive" data-title="HTTP Keep-Alive" data-url="http://yanwuyang.github.io/2016/12/27/HTTP Keep-Alive/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/20/100个为什么/">100个为什么</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/16/Java并发编程-线程饥饿死锁/">Java并发编程-线程饥饿死锁</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/20/2017年上半年Java高级工程师求职面试题总结/">2017年上半年Java高级工程师求职面试题总结</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/28/WEB性能优化手段/">WEB性能优化手段</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/27/HTTP Keep-Alive/">HTTP Keep-Alive</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 yanwuyang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+ 
+</script>
+            
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+  </div>
+</body>
+</html>

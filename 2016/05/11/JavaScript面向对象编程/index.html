@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>JavaScript面向对象编程 | 东写西读</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="thisjavascript中的this和java一样都是表示当前对象，它用在对象的方法中。关键字 this 总是指向调用该方法的对象，但需要注意的是同一个函数调用的方式不一样this指向的对象也不一样如下： 1234567function Test()&amp;#123;  alert(this);&amp;#125;//此时的this，是window弹出[object Window]Test();//此时的t">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JavaScript面向对象编程">
+<meta property="og:url" content="http://yanwuyang.github.io/2016/05/11/JavaScript面向对象编程/index.html">
+<meta property="og:site_name" content="东写西读">
+<meta property="og:description" content="thisjavascript中的this和java一样都是表示当前对象，它用在对象的方法中。关键字 this 总是指向调用该方法的对象，但需要注意的是同一个函数调用的方式不一样this指向的对象也不一样如下： 1234567function Test()&amp;#123;  alert(this);&amp;#125;//此时的this，是window弹出[object Window]Test();//此时的t">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-06-25T02:00:17.941Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JavaScript面向对象编程">
+<meta name="twitter:description" content="thisjavascript中的this和java一样都是表示当前对象，它用在对象的方法中。关键字 this 总是指向调用该方法的对象，但需要注意的是同一个函数调用的方式不一样this指向的对象也不一样如下： 1234567function Test()&amp;#123;  alert(this);&amp;#125;//此时的this，是window弹出[object Window]Test();//此时的t">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/css.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">东写西读</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">实践是最好的成长，发表是最好的记忆</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+	    
+           <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
+	    
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-JavaScript面向对象编程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/05/11/JavaScript面向对象编程/" class="article-date">
+  <time datetime="2016-05-11T03:05:20.000Z" itemprop="datePublished">2016-05-11</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/JavaScript/">JavaScript</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JavaScript面向对象编程
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+		<div id="toc" class="toc-article">
+		<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#this"><span class="toc-number">1.</span> <span class="toc-text">this</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#apply、call"><span class="toc-number">1.1.</span> <span class="toc-text">apply、call</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Prototype"><span class="toc-number">2.</span> <span class="toc-text">Prototype</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对于对象常用的操作"><span class="toc-number">3.</span> <span class="toc-text">对于对象常用的操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#constructor-NaN"><span class="toc-number">3.1.</span> <span class="toc-text">constructor</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#instanceof"><span class="toc-number">3.2.</span> <span class="toc-text">instanceof</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#isPrototypeOf-NaN"><span class="toc-number">3.3.</span> <span class="toc-text">isPrototypeOf</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#hasOwnProperty-NaN"><span class="toc-number">3.4.</span> <span class="toc-text">hasOwnProperty</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#in"><span class="toc-number">3.5.</span> <span class="toc-text">in</span></a></li></ol></li></ol>
+		</div>
+		
+        <h2 id="this"><a href="#this" class="headerlink" title="this"></a>this</h2><p>javascript中的this和java一样都是表示当前对象，它用在对象的方法中。关键字 this 总是指向调用该方法的对象，但需要注意的是同一个函数调用的方式不一样this指向的对象也不一样如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Test</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  alert(<span class="keyword">this</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//此时的this，是window弹出[object Window]</span></span><br><span class="line">Test();</span><br><span class="line"><span class="comment">//此时的this，是当前对象的的object 弹出[object Object]</span></span><br><span class="line"><span class="keyword">var</span> t = <span class="keyword">new</span> Test();</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p>会出现前后不一样的原因其实很简单，因为我们直接在调用Test函数浏览器会把这个函数当成window中的一个函数，此时的this当然指向的是window。在后面我们通过new 实例化了Test此时浏览器会吧Test当做成了一个对象此时的this肯定是指向当前对象。<br>由此可以总结：函数在不同的环境下执行，this的指向也不同，谁调用了这个函数，this就指向谁。</p>
+<h3 id="apply、call"><a href="#apply、call" class="headerlink" title="apply、call"></a>apply、call</h3><p>call, apply都属于Function.prototype的一个方法,它是JavaScript引擎内在实现的,因为属于Function.prototype,所以每个Function对象实例,也就是每个方法都有call, apply属性.既然作为方法的属性,那它们的使用就当然是针对方法的了.这两个方法是容易混淆的,因为它们的作用一样,只是使用方式不同.</p>
+<p>区分apply,call就一句话,<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">foo.call(<span class="keyword">this</span>, arg1,arg2,arg3) == foo.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>)==<span class="keyword">this</span>.foo(arg1, arg2, arg3)</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>相同点:两个方法产生的作用是完全一样的</em></strong><br><strong><em>不同点:方法传递的参数不同</em></strong><br><strong><em>call, apply作用就是借用别人的方法来调用,就像调用自己的一样.</em></strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//声明人类 人类含有属性、name、age、sex</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">person</span>(<span class="params">name,age,sex</span>)</span>&#123;</span><br><span class="line">   <span class="keyword">this</span>.name = name;</span><br><span class="line">   <span class="keyword">this</span>.age=age;</span><br><span class="line">   <span class="keyword">this</span>.sex=sex;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//声明中国人  </span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">chinese</span>(<span class="params">name,age,sex</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.colour=<span class="string">"yellow"</span>;</span><br><span class="line">  <span class="comment">//用call方式借用person,参数显式打散传递</span></span><br><span class="line">  person.call(<span class="keyword">this</span>, name, age, sex);</span><br><span class="line">  <span class="comment">//用apply方式借用person, 参数作为一个数组传递,</span></span><br><span class="line">  <span class="comment">//这里直接用JavaScript方法内本身有的arguments数组</span></span><br><span class="line">  person.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">  <span class="comment">//或者封装成数组</span></span><br><span class="line">  person.apply(<span class="keyword">this</span>, [name,age,sex]);</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">this</span>.sayHello=<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    alert(<span class="string">"大家好我叫："</span>+<span class="keyword">this</span>.name+<span class="string">" 性别："</span>+<span class="keyword">this</span>.sex+<span class="string">" 年龄："</span>+<span class="keyword">this</span>.age+<span class="string">" 肤色："</span>+<span class="keyword">this</span>.colour);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> p =<span class="keyword">new</span> chinese(<span class="string">"张三"</span>,<span class="number">18</span>,<span class="string">"男"</span>);</span><br><span class="line">p.sayHello();</span><br><span class="line"><span class="comment">//弹出  大家好我叫：张三 性别：男 年龄：18 肤色：yellow</span></span><br><span class="line">chinese(<span class="string">"张三"</span>,<span class="number">18</span>,<span class="string">"男"</span>);</span><br><span class="line">sayHello();</span><br><span class="line"><span class="comment">//弹出  大家好我叫：张三 性别：男 年龄：18 肤色：yellow</span></span><br></pre></td></tr></table></figure></p>
+<p>在这场景中, chinese方法内,name,age,sex作为方法传递的参数, 方法分别运用了apply, call去借person方法来调用,<br>23行由于直接调用chinese方法, 所以在该方法中的上下文对象this就是window对象.在chinese方法中 通过this.sayHello=function(){}等价于 windows.sayHello=function(){}所以最后一行syaHello调用不会报错</p>
+<p><strong><em>应用场景:</em></strong><br>当参数明确时可用call, 当参数不明确时可用apply给合arguments</p>
+<p><strong><em>总结：</em></strong>通过call、apply可以改变一个函数内的this引用，使用这个特性可以实现JavaScript面向对象编程的三大特性其中的<strong><em>继承</em></strong></p>
+<h2 id="Prototype"><a href="#Prototype" class="headerlink" title="Prototype"></a>Prototype</h2><p>javascript规定，每一个构造函数都有一个prototype属性，指向另一个对象。这个对象的所有属性和方法，都会被构造函数的实例继承。<br>这意味着。我们可以把那些不变的属性和方法，直接定义在prototype对象上。这样带来的好处就是再实例多一个对象的时候减少了内存开销，因为多个对象指向的是同一个内存地址，提高了允许的效率。类似于java中的静态方法（被static修饰的变量和方法）。</p>
+<h2 id="对于对象常用的操作"><a href="#对于对象常用的操作" class="headerlink" title="对于对象常用的操作"></a>对于对象常用的操作</h2><h3 id="constructor-NaN"><a href="#constructor-NaN" class="headerlink" title="constructor"></a>constructor</h3><p>每一个对象都会自动包含一个constructor属性，指向他们的构造函数。obj.constructor == Object</p>
+<h3 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h3><p>用于验证原型对象与实例对象之间的关系 obj  instanceof Object</p>
+<h3 id="isPrototypeOf-NaN"><a href="#isPrototypeOf-NaN" class="headerlink" title="isPrototypeOf"></a>isPrototypeOf</h3><p>判断某个prototype对象和某个实例之间的关系 Object.prototype.isPrototypeOf(obj)</p>
+<h3 id="hasOwnProperty-NaN"><a href="#hasOwnProperty-NaN" class="headerlink" title="hasOwnProperty"></a>hasOwnProperty</h3><p>用于判断某一个属性到底是本地属性，还是继承自prototype对象的属性  obj.hasOwnProerty(“name”)</p>
+<h3 id="in"><a href="#in" class="headerlink" title="in"></a>in</h3><p>某个实例是否含有某个属性，不管是不是本地属性。 “name” in Obj<br>in运算符还可以用来遍历某个对象的所有属性<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> prop <span class="keyword">in</span> cat1) &#123;</span><br><span class="line">  alert(<span class="string">"cat1["</span>+prop+<span class="string">"]="</span>+cat1[prop]); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/05/11/JavaScript面向对象编程/" data-id="ckqbozfi9000nikl5ofrhs6gj" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/05/16/框架那么多学习那个好/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          框架那么多学习那个好
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/05/10/System.setOut/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">System.setOut</div>
+    </a>
+  
+</nav>
+
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-JavaScript面向对象编程" data-title="JavaScript面向对象编程" data-url="http://yanwuyang.github.io/2016/05/11/JavaScript面向对象编程/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/20/100个为什么/">100个为什么</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/16/Java并发编程-线程饥饿死锁/">Java并发编程-线程饥饿死锁</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/20/2017年上半年Java高级工程师求职面试题总结/">2017年上半年Java高级工程师求职面试题总结</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/28/WEB性能优化手段/">WEB性能优化手段</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/27/HTTP Keep-Alive/">HTTP Keep-Alive</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 yanwuyang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+ 
+</script>
+            
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+  </div>
+</body>
+</html>

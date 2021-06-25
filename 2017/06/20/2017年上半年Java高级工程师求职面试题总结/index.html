@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>2017年上半年Java高级工程师求职面试题总结 | 东写西读</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="HashMap的数据结构数组加单链表结构。不允许有相同的key允许null为key，null为key的时候值是保存下了数组下标为0中。可以有相同的value">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2017年上半年Java高级工程师求职面试题总结">
+<meta property="og:url" content="http://yanwuyang.github.io/2017/06/20/2017年上半年Java高级工程师求职面试题总结/index.html">
+<meta property="og:site_name" content="东写西读">
+<meta property="og:description" content="HashMap的数据结构数组加单链表结构。不允许有相同的key允许null为key，null为key的时候值是保存下了数组下标为0中。可以有相同的value">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2021-06-25T02:00:17.782Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="2017年上半年Java高级工程师求职面试题总结">
+<meta name="twitter:description" content="HashMap的数据结构数组加单链表结构。不允许有相同的key允许null为key，null为key的时候值是保存下了数组下标为0中。可以有相同的value">
+  
+  
+    <link rel="icon" href="/favicon.ico">
+  
+  
+    <link href="/css/css.css" rel="stylesheet" type="text/css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  
+
+</head>
+</html>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">东写西读</a>
+      </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">实践是最好的成长，发表是最好的记忆</a>
+        </h2>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">首页</a>
+        
+          <a class="main-nav-link" href="/archives">文章</a>
+        
+          <a class="main-nav-link" href="/about">关于</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        <a id="nav-search-btn" class="nav-icon" title="搜索"></a>
+      </nav>
+      <div id="search-form-wrap">
+	    
+           <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
+	    
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-2017年上半年Java高级工程师求职面试题总结" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/06/20/2017年上半年Java高级工程师求职面试题总结/" class="article-date">
+  <time datetime="2017-06-20T14:48:20.000Z" itemprop="datePublished">2017-06-20</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/心得体会/">心得体会</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      2017年上半年Java高级工程师求职面试题总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+		<!-- Table of Contents -->
+		
+		<div id="toc" class="toc-article">
+		<strong class="toc-title">文章目录</strong>
+		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HashMap的数据结构"><span class="toc-number">1.</span> <span class="toc-text">HashMap的数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ArrayList的数据结构"><span class="toc-number">2.</span> <span class="toc-text">ArrayList的数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashSet的数据结构"><span class="toc-number">3.</span> <span class="toc-text">HashSet的数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LinkedList的数据结构"><span class="toc-number">4.</span> <span class="toc-text">LinkedList的数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Integer值的-判断"><span class="toc-number">5.</span> <span class="toc-text">Integer值的==判断</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#创建一个线程池有几种方法以及参数"><span class="toc-number">6.</span> <span class="toc-text">创建一个线程池有几种方法以及参数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring的IOC（循环依赖）"><span class="toc-number">7.</span> <span class="toc-text">Spring的IOC（循环依赖）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring-AOP"><span class="toc-number">8.</span> <span class="toc-text">Spring AOP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring一个方法是否可以配置多个切面"><span class="toc-number">9.</span> <span class="toc-text">Spring一个方法是否可以配置多个切面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java内存结构"><span class="toc-number">10.</span> <span class="toc-text">Java内存结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring多数据源的事物控制"><span class="toc-number">11.</span> <span class="toc-text">Spring多数据源的事物控制</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring事物嵌套"><span class="toc-number">12.</span> <span class="toc-text">Spring事物嵌套</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ThreadLocal结构"><span class="toc-number">13.</span> <span class="toc-text">ThreadLocal结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis"><span class="toc-number">14.</span> <span class="toc-text">redis</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis有几种数据结构"><span class="toc-number">15.</span> <span class="toc-text">redis有几种数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis常用方法"><span class="toc-number">16.</span> <span class="toc-text">redis常用方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#redis事物"><span class="toc-number">17.</span> <span class="toc-text">redis事物</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分布式锁如何实现"><span class="toc-number">18.</span> <span class="toc-text">分布式锁如何实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#多个方法同时操作一条数据怎么办"><span class="toc-number">19.</span> <span class="toc-text">多个方法同时操作一条数据怎么办</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二叉树遍历的几种方式"><span class="toc-number">20.</span> <span class="toc-text">二叉树遍历的几种方式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二分查找法"><span class="toc-number">21.</span> <span class="toc-text">二分查找法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#栈（先进后出）"><span class="toc-number">22.</span> <span class="toc-text">栈（先进后出）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#堆（先进先出）"><span class="toc-number">23.</span> <span class="toc-text">堆（先进先出）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#http状态码"><span class="toc-number">24.</span> <span class="toc-text">http状态码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#linux下查看日志文件常用命令"><span class="toc-number">25.</span> <span class="toc-text">linux下查看日志文件常用命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#适配器模式"><span class="toc-number">26.</span> <span class="toc-text">适配器模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java中那些类使用了那些模式"><span class="toc-number">27.</span> <span class="toc-text">Java中那些类使用了那些模式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#乐观锁"><span class="toc-number">28.</span> <span class="toc-text">乐观锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#悲观锁"><span class="toc-number">29.</span> <span class="toc-text">悲观锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#事物与锁"><span class="toc-number">30.</span> <span class="toc-text">事物与锁</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线上mysql如何查看那条sql执行时间比较长"><span class="toc-number">31.</span> <span class="toc-text">线上mysql如何查看那条sql执行时间比较长</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#synchronized与Lock"><span class="toc-number">32.</span> <span class="toc-text">synchronized与Lock</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#请描述一下GC（jvm垃圾回收器）"><span class="toc-number">33.</span> <span class="toc-text">请描述一下GC（jvm垃圾回收器）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java中的引用有几种"><span class="toc-number">34.</span> <span class="toc-text">Java中的引用有几种?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java中的threadlocal是怎么用的-threadlocal中的内部实现是怎么样的-哪种引用"><span class="toc-number">35.</span> <span class="toc-text">Java中的threadlocal是怎么用的? threadlocal中的内部实现是怎么样的? 哪种引用?</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java中的”final”关键字在多线程的语义中，有什么含义"><span class="toc-number">36.</span> <span class="toc-text">Java中的”final”关键字在多线程的语义中，有什么含义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#说说nio的架构，为什么变快了，说说select和buffer都是怎么用的？"><span class="toc-number">37.</span> <span class="toc-text">说说nio的架构，为什么变快了，说说select和buffer都是怎么用的？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nio中，-如果不显式的调用-system-gc-那会出现什么问题？"><span class="toc-number">38.</span> <span class="toc-text">nio中， 如果不显式的调用 system.gc() 那会出现什么问题？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SimpleDateFormat如果是一个全局变量的话，有什么问题？"><span class="toc-number">39.</span> <span class="toc-text">SimpleDateFormat如果是一个全局变量的话，有什么问题？</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HashMap的操作中，直接使用keySet-遍历有什么问题"><span class="toc-number">40.</span> <span class="toc-text">HashMap的操作中，直接使用keySet()遍历有什么问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#线程池队列中几种策略"><span class="toc-number">41.</span> <span class="toc-text">线程池队列中几种策略</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ConcurrentHashMap为什么会比HashTable快"><span class="toc-number">42.</span> <span class="toc-text">ConcurrentHashMap为什么会比HashTable快</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个数组n-其中的值是1到n-1-找出其中第一个重复的"><span class="toc-number">43.</span> <span class="toc-text">一个数组n 其中的值是1到n-1 找出其中第一个重复的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#两个整数交换不使用第三个变量"><span class="toc-number">44.</span> <span class="toc-text">两个整数交换不使用第三个变量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#手写代码实现LRU数据结构"><span class="toc-number">45.</span> <span class="toc-text">手写代码实现LRU数据结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个数组将奇数放左边偶数放右边"><span class="toc-number">46.</span> <span class="toc-text">一个数组将奇数放左边偶数放右边</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#一个字符串找出第一个相同的字符"><span class="toc-number">47.</span> <span class="toc-text">一个字符串找出第一个相同的字符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库sql优化"><span class="toc-number">48.</span> <span class="toc-text">数据库sql优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数据库索引该如何建在正确的字段上"><span class="toc-number">49.</span> <span class="toc-text">数据库索引该如何建在正确的字段上</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Spring有几种事物隔离"><span class="toc-number">50.</span> <span class="toc-text">Spring有几种事物隔离</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#请描述一下Spring-MVC-从发起请求到后台的处理流程"><span class="toc-number">51.</span> <span class="toc-text">请描述一下Spring MVC 从发起请求到后台的处理流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#请描述一下JVM类加载"><span class="toc-number">52.</span> <span class="toc-text">请描述一下JVM类加载</span></a></li></ol>
+		</div>
+		
+        <h2 id="HashMap的数据结构"><a href="#HashMap的数据结构" class="headerlink" title="HashMap的数据结构"></a>HashMap的数据结构</h2><p>数组加单链表结构。不允许有相同的key允许null为key，null为key的时候值是保存下了数组下标为0中。可以有相同的value<br><a id="more"></a><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">HashMap</span></span>&#123;</span><br><span class="line">    Entity[] entity;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">HashMap</span><span class="params">()</span></span>&#123;</span><br><span class="line">        entity = <span class="keyword">new</span> Entity[<span class="number">10</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Entity</span></span>&#123;</span><br><span class="line">        String key;</span><br><span class="line">        String value;</span><br><span class="line">        <span class="keyword">int</span> hash;</span><br><span class="line">        Entity next;	</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">put</span><span class="params">(Object key,Object value)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = key.hashCode % entity.length;</span><br><span class="line">        <span class="keyword">if</span>(entity[i]==<span class="keyword">null</span>)&#123;</span><br><span class="line">            entity[i] = <span class="keyword">new</span> Entity(key,value,i,<span class="keyword">null</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            Entity temp = entity[i];</span><br><span class="line">            entity[i] =  = <span class="keyword">new</span> Entity(key,value,i,temp);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> Object <span class="title">get</span><span class="params">(Object key)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i = key.hashCode % entity.length;</span><br><span class="line">        Entity temp = Entity[i];</span><br><span class="line">        <span class="keyword">while</span>(temp!=<span class="keyword">null</span>)&#123;</span><br><span class="line">            <span class="keyword">if</span>(temp.key.equlas(key))&#123;</span><br><span class="line">                <span class="keyword">return</span> temp.value;</span><br><span class="line">            &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                temp = temp.next;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;	</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="ArrayList的数据结构"><a href="#ArrayList的数据结构" class="headerlink" title="ArrayList的数据结构"></a>ArrayList的数据结构</h2><p>数组结构，允许重复数据，取值快，插入慢<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ArrayList</span></span>&#123;</span><br><span class="line">    Object[] elementData;</span><br><span class="line">    <span class="keyword">int</span> elementCount;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">ArrayList</span><span class="params">()</span></span>&#123;</span><br><span class="line">        elementData = <span class="keyword">new</span> Object[<span class="number">10</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">add</span><span class="params">(Object o)</span></span>&#123;</span><br><span class="line">        elementData[elementCount++]=o; </span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="HashSet的数据结构"><a href="#HashSet的数据结构" class="headerlink" title="HashSet的数据结构"></a>HashSet的数据结构</h2><p>不允许有相同的值，无序的，优势在于查找相同元素的时候时间复杂度为最低<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">HashSet</span></span>&#123;</span><br><span class="line">    HashMap map ;</span><br><span class="line">    Object PRESENT = <span class="keyword">new</span> Object();</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">add</span><span class="params">(Object v)</span></span>&#123;</span><br><span class="line">        map.put(v,PRESENT);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="LinkedList的数据结构"><a href="#LinkedList的数据结构" class="headerlink" title="LinkedList的数据结构"></a>LinkedList的数据结构</h2><p>双链表结构<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">LinkedList</span></span>&#123;</span><br><span class="line">    Node first;</span><br><span class="line">    Node last;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Object o)</span></span>&#123;</span><br><span class="line">        addFirst(o);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">addFirst</span><span class="params">(Object o)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(first==<span class="keyword">null</span>)&#123;</span><br><span class="line">            first =<span class="keyword">new</span> Node();</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">        Object v;</span><br><span class="line">        Node prev;</span><br><span class="line">        Node next;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="title">Node</span><span class="params">(Object o,Node prev,Node next)</span></span>&#123;</span><br><span class="line">            v=o;</span><br><span class="line">            prev = prev;</span><br><span class="line">            next = next;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;	</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Integer值的-判断"><a href="#Integer值的-判断" class="headerlink" title="Integer值的==判断"></a>Integer值的==判断</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Integer a=<span class="number">1</span>;</span><br><span class="line">Integer b=<span class="number">1</span>;</span><br><span class="line">a==b  echo <span class="keyword">true</span></span><br><span class="line">Integer a1=<span class="number">200</span>;</span><br><span class="line">Integer b1=<span class="number">200</span>;</span><br><span class="line">a1==b1  echo <span class="keyword">false</span></span><br></pre></td></tr></table></figure>
+<p>-128到127之间的值是存在一块缓存区域中超过此区间这个是new Integer</p>
+<h2 id="创建一个线程池有几种方法以及参数"><a href="#创建一个线程池有几种方法以及参数" class="headerlink" title="创建一个线程池有几种方法以及参数"></a>创建一个线程池有几种方法以及参数</h2><p>可以使用Executors类创建也可以自己new ThreadPoolExecutor();<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> ThreadPoolExecutor(<span class="keyword">int</span> corePoolSize,</span><br><span class="line">                              <span class="keyword">int</span> maximumPoolSize,</span><br><span class="line">                              <span class="keyword">long</span> keepAliveTime,</span><br><span class="line">                              TimeUnit unit,</span><br><span class="line">                              BlockingQueue&lt;Runnable&gt; workQueue,</span><br><span class="line">                              ThreadFactory threadFactory);</span><br></pre></td></tr></table></figure></p>
+<p>执行流程当有任务执行的时候创建一个线程执行此任务如果，已到达corePoolSize大小并且小于maximumPoolSize时且没有空闲的线程，将任务加入到任务队列中<br>当任务队列慢了的时候开始创建新的线程执行任务队列中的任务。当等于maximumPoolSize大小的时候且任务队列满了的时候此时开始启用策略，默认是拒绝任务加入，还有一种是抛弃旧的任务。<br>当任务都执行完成了线程池的线程数大于corePoolSize，并且空闲时间大于keepAliveTime时销毁线程使之线程池中的数量等于corePoolSize</p>
+<p>Executors.newFixedThreadPool(int nThreads)：创建一个固定的大小的线程池<br>Executors.newSingleThreadExecutor();创建一个线程的线程池<br>Executors.newCachedThreadPool()；创建一个0到Integer.MAX_VALUE区间的线程池 线程空闲60秒销毁</p>
+<h2 id="Spring的IOC（循环依赖）"><a href="#Spring的IOC（循环依赖）" class="headerlink" title="Spring的IOC（循环依赖）"></a>Spring的IOC（循环依赖）</h2><p>IOC 注入有三种方式<br>构造器注入、set注入、注解注入</p>
+<p>循环注入问题<br>如果采用构造器或者bean为prototype的此时循环依赖会抛出异常，在以下情况不会出现循环依赖异常scope为singleton非构造器注入</p>
+<h2 id="Spring-AOP"><a href="#Spring-AOP" class="headerlink" title="Spring AOP"></a>Spring AOP</h2><p>有两种代理方式一中是使用JdkDynamicAopProxy一种是使用cglib判断方式是被代理的类有没有实现一个接口<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DefaultAopProxyFactory</span> <span class="keyword">implements</span> <span class="title">AopProxyFactory</span>, <span class="title">Serializable</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> AopProxy <span class="title">createAopProxy</span><span class="params">(AdvisedSupport config)</span> <span class="keyword">throws</span> AopConfigException </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (config.isOptimize() || config.isProxyTargetClass() || hasNoUserSuppliedProxyInterfaces(config)) &#123;</span><br><span class="line">            Class targetClass = config.getTargetClass();</span><br><span class="line">            <span class="keyword">if</span> (targetClass == <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">throw</span> <span class="keyword">new</span> AopConfigException(<span class="string">"TargetSource cannot determine target class: "</span> +</span><br><span class="line">                    <span class="string">"Either an interface or a target is required for proxy creation."</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span> (targetClass.isInterface()) &#123;</span><br><span class="line">                <span class="keyword">return</span> <span class="keyword">new</span> JdkDynamicAopProxy(config);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">return</span> CglibProxyFactory.createCglibProxy(config);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="keyword">new</span> JdkDynamicAopProxy(config);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Determine whether the supplied &#123;<span class="doctag">@link</span> AdvisedSupport&#125; has only the</span></span><br><span class="line"><span class="comment">     * &#123;<span class="doctag">@link</span> org.springframework.aop.SpringProxy&#125; interface specified</span></span><br><span class="line"><span class="comment">     * (or no proxy interfaces specified at all).</span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">hasNoUserSuppliedProxyInterfaces</span><span class="params">(AdvisedSupport config)</span> </span>&#123;</span><br><span class="line">        Class[] interfaces = config.getProxiedInterfaces();</span><br><span class="line">        return (interfaces.length == 0 || (interfaces.length == 1 &amp;&amp; SpringProxy.class.equals(interfaces[0])));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Spring一个方法是否可以配置多个切面"><a href="#Spring一个方法是否可以配置多个切面" class="headerlink" title="Spring一个方法是否可以配置多个切面"></a>Spring一个方法是否可以配置多个切面</h2><p>可以,是采用递归的方式执行</p>
+<h2 id="Java内存结构"><a href="#Java内存结构" class="headerlink" title="Java内存结构"></a>Java内存结构</h2><p>方法区 堆 栈 程序计数器 本地方法栈<br>方法区：被所有线程共享区域用于存放已被虚拟机加载的类信息，常量，静态变量等数据<br>栈：它是线程私有的，生命周期与线程相同，存放编译期间可知的8种基本数据类型，及对象引用和指令地址<br>堆：堆被所有线程共享区域，在虚拟机启动时创建，唯一目的存放对象实例<br>程序计数器：当前线程所执行的行号指示器<br>本地方法栈：用于支持native方法的运行<br>堆有可以细分为新生代、幸存区、和老年代</p>
+<h2 id="Spring多数据源的事物控制"><a href="#Spring多数据源的事物控制" class="headerlink" title="Spring多数据源的事物控制"></a>Spring多数据源的事物控制</h2><h2 id="Spring事物嵌套"><a href="#Spring事物嵌套" class="headerlink" title="Spring事物嵌套"></a>Spring事物嵌套</h2><p>采用REQUIRED级别只要一个失败结果都失败不管有没有try异常<br>场景：如果一个失败了另一个不受影响 可以对那个需要不受印象的配置为NOT_SUPPORTED 已非事物执行如果当前存在事物就将事物挂起<br>或者采用独立事物执行 REQUIRES_NEW新建一个事物，如果当前存在事物就将事物挂起</p>
+<h2 id="ThreadLocal结构"><a href="#ThreadLocal结构" class="headerlink" title="ThreadLocal结构"></a>ThreadLocal结构</h2><p>当前线程属性threadLocals 为一个ThreadLocalMap结构</p>
+<h2 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h2><p>单进程单线程 多路 I/O 复用模型</p>
+<h2 id="redis有几种数据结构"><a href="#redis有几种数据结构" class="headerlink" title="redis有几种数据结构"></a>redis有几种数据结构</h2><p>String：字符串<br>hash：哈希 Map结构<br>List:列表 双向链表结构<br>set：集合 不允许重复且无序的<br>sortset 有序集合</p>
+<h2 id="redis常用方法"><a href="#redis常用方法" class="headerlink" title="redis常用方法"></a>redis常用方法</h2><p>String类型对应 set get del<br>Hash类型对应 hset hget hdel<br>List类型对应 lset lpush lpop<br>set: sadd spop<br>sortset    zadd<br>发布/订阅<br>原子操作</p>
+<h2 id="redis事物"><a href="#redis事物" class="headerlink" title="redis事物"></a>redis事物</h2><h2 id="分布式锁如何实现"><a href="#分布式锁如何实现" class="headerlink" title="分布式锁如何实现"></a>分布式锁如何实现</h2><p>借助redis</p>
+<ul>
+<li>1、setnx(lockkey, 当前时间+过期超时时间) ，如果返回1，则获取锁成功；<br>如果返回0则没有获取到锁，转向2。</li>
+<li>2、get(lockkey)获取值oldExpireTime ，并将这个value值与当前的系统时间进行比较，<br>如果小于当前系统时间，则认为这个锁已经超时，可以允许别的请求重新获取，转向3。</li>
+<li>3、计算newExpireTime=当前时间+过期超时时间，然后getset(lockkey, newExpireTime)<br>会返回当前lockkey的值currentExpireTime。</li>
+<li>4、判断currentExpireTime与oldExpireTime 是否相等，如果相等，<br>说明当前getset设置成功，获取到了锁。如果不相等，说明这个锁又被别的请求获取走了，那么当前请求可以直接返回失败，或者继续重试。</li>
+<li>5、在获取到锁之后，当前线程可以开始自己的业务处理，当处理完毕后，比较自己的处理时间和对于锁设置的超时时间，如果小于锁设置的超时时间，则直接执行delete释放锁；如果大于锁设置的超时时间，则不需要再锁进行处理。</li>
+</ul>
+<h2 id="多个方法同时操作一条数据怎么办"><a href="#多个方法同时操作一条数据怎么办" class="headerlink" title="多个方法同时操作一条数据怎么办"></a>多个方法同时操作一条数据怎么办</h2><p>将表的引擎修改为innerDB这种就支持行锁，但注意的是表里面需要含有主键 查询条件也需要为主键字段或者会成为表锁</p>
+<h2 id="二叉树遍历的几种方式"><a href="#二叉树遍历的几种方式" class="headerlink" title="二叉树遍历的几种方式"></a>二叉树遍历的几种方式</h2><p>前序（根左右） 中序（左根右）后序（左右根）</p>
+<h2 id="二分查找法"><a href="#二分查找法" class="headerlink" title="二分查找法"></a>二分查找法</h2><h2 id="栈（先进后出）"><a href="#栈（先进后出）" class="headerlink" title="栈（先进后出）"></a>栈（先进后出）</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Stack</span></span>&#123;</span><br><span class="line">    Object[] element;</span><br><span class="line">    <span class="keyword">int</span> elementCount;</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Stack</span><span class="params">()</span></span>&#123;</span><br><span class="line">        element = <span class="keyword">new</span> Object[<span class="number">10</span>];</span><br><span class="line">    &#125;</span><br><span class="line">	</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> <span class="keyword">void</span> <span class="title">push</span><span class="params">(Object o)</span></span>&#123;</span><br><span class="line">        element[elementCount++]=o;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">synchronized</span> Object <span class="title">pop</span><span class="params">()</span></span>&#123;</span><br><span class="line">        Object o = element[elementCount--];</span><br><span class="line">        element[elementCount--]=<span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">return</span> o;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="堆（先进先出）"><a href="#堆（先进先出）" class="headerlink" title="堆（先进先出）"></a>堆（先进先出）</h2><h2 id="http状态码"><a href="#http状态码" class="headerlink" title="http状态码"></a>http状态码</h2><h2 id="linux下查看日志文件常用命令"><a href="#linux下查看日志文件常用命令" class="headerlink" title="linux下查看日志文件常用命令"></a>linux下查看日志文件常用命令</h2><h2 id="适配器模式"><a href="#适配器模式" class="headerlink" title="适配器模式"></a>适配器模式</h2><p>系统需要使用现有的类，而这些类的接口不符合系统的接口。</p>
+<h2 id="Java中那些类使用了那些模式"><a href="#Java中那些类使用了那些模式" class="headerlink" title="Java中那些类使用了那些模式"></a>Java中那些类使用了那些模式</h2><h2 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h2><p>每次去拿数据的时候都认为别人不会修改，所以不会上锁，但在更新的时候会判断一下再次期间有没有人去更新这个数据，可是使用版本号等机制。<br>在表中添加一个version字段来记录当前数据的版本号</p>
+<h2 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h2><p>每次取数据的时候都会认为别人会对这个数据进行修改，所以每次拿数据的时候都会加上锁 比如行锁，表锁等，读锁，写锁等</p>
+<p>mysql 锁分三种 行锁、表锁、页锁<br>innoDB 行锁在检索数据的时候只有根据索引为条件才会添加行锁或者为表锁<br>MyISAM 表锁 不支持事物<br>a、对MyISAM表的读操作（加读锁），不会阻塞其他进程对同一表的读请求，但会阻塞对同一表的写请求。只有当读锁释放后，才会执行其它进程的写操作。<br>b、对MyISAM表的写操作（加写锁），会阻塞其他进程对同一表的读和写操作，只有当写锁释放后，才会执行其它进程的读写操作。<br>BDB 页锁</p>
+<p>行锁：对写操作多的时候使用行数可以提搞并发；缺点：比页锁需要占用更多的内存。<br>表锁：对度操作多的时候使用表锁可以提高性能</p>
+<h2 id="事物与锁"><a href="#事物与锁" class="headerlink" title="事物与锁"></a>事物与锁</h2><p>事物：原子性、一致性、隔离性、持久性<br>锁：是为了保证数据的完整性。</p>
+<h2 id="线上mysql如何查看那条sql执行时间比较长"><a href="#线上mysql如何查看那条sql执行时间比较长" class="headerlink" title="线上mysql如何查看那条sql执行时间比较长"></a>线上mysql如何查看那条sql执行时间比较长</h2><p>查看mysql慢日志</p>
+<h2 id="synchronized与Lock"><a href="#synchronized与Lock" class="headerlink" title="synchronized与Lock"></a>synchronized与Lock</h2><p>synchronizeed与Lock实现的功能都一样，在使用方面synchronizeed是隐式的而Lock是显示的<br>大多数情况下，内置锁都能很好的工作，但在功能上存在一些局限性，例如，无法中断一个正在等待获取锁的的线程。或者无法再请求获取一个锁时无限地等待下去。<br>Lock是基于CAS LockSupport.park()与LockSupport.unpark实现</p>
+<h2 id="请描述一下GC（jvm垃圾回收器）"><a href="#请描述一下GC（jvm垃圾回收器）" class="headerlink" title="请描述一下GC（jvm垃圾回收器）"></a>请描述一下GC（jvm垃圾回收器）</h2><h2 id="Java中的引用有几种"><a href="#Java中的引用有几种" class="headerlink" title="Java中的引用有几种?"></a>Java中的引用有几种?</h2><p>四种 分别为强引用 弱引用 软引用 虚引用</p>
+<h2 id="Java中的threadlocal是怎么用的-threadlocal中的内部实现是怎么样的-哪种引用"><a href="#Java中的threadlocal是怎么用的-threadlocal中的内部实现是怎么样的-哪种引用" class="headerlink" title="Java中的threadlocal是怎么用的? threadlocal中的内部实现是怎么样的? 哪种引用?"></a>Java中的threadlocal是怎么用的? threadlocal中的内部实现是怎么样的? 哪种引用?</h2><p>new ThreadLocal()调用set get方法<br>软引用<br>使用当前线程的的threadLocals属性 这是一个Map结构</p>
+<h2 id="Java中的”final”关键字在多线程的语义中，有什么含义"><a href="#Java中的”final”关键字在多线程的语义中，有什么含义" class="headerlink" title="Java中的”final”关键字在多线程的语义中，有什么含义"></a>Java中的”final”关键字在多线程的语义中，有什么含义</h2><p>最终的不可修改的</p>
+<h2 id="说说nio的架构，为什么变快了，说说select和buffer都是怎么用的？"><a href="#说说nio的架构，为什么变快了，说说select和buffer都是怎么用的？" class="headerlink" title="说说nio的架构，为什么变快了，说说select和buffer都是怎么用的？"></a>说说nio的架构，为什么变快了，说说select和buffer都是怎么用的？</h2><pre><code>在操作系统中的实现原理? 如果都是cpu轮训话，会不会对cpu影响太大?
+应用到了linux中的什么特性?
+</code></pre><p>NIO无阻塞IO，基于事件驱动，<br>在Select中绑定Socket 注册相关事件<br>ByteBuffer.allocateDirect() </p>
+<h2 id="nio中，-如果不显式的调用-system-gc-那会出现什么问题？"><a href="#nio中，-如果不显式的调用-system-gc-那会出现什么问题？" class="headerlink" title="nio中， 如果不显式的调用 system.gc() 那会出现什么问题？"></a>nio中， 如果不显式的调用 system.gc() 那会出现什么问题？</h2><p>会引起内存溢出<br>对系统而言分为内核空间和用户空间 而jvm属于用户空间在jvm中垃圾是自动回收，而触发这个垃圾回收器的时机是java堆内存满的时候<br>在NIO中使用的ByteBuffer通过allocateDirect在内核内存中分配了一份空间。而此空间不属于jvm堆所以如果不显示调用gc就会引起系统内存溢出的情况<br>这也是传说中的零拷贝</p>
+<h2 id="SimpleDateFormat如果是一个全局变量的话，有什么问题？"><a href="#SimpleDateFormat如果是一个全局变量的话，有什么问题？" class="headerlink" title="SimpleDateFormat如果是一个全局变量的话，有什么问题？"></a>SimpleDateFormat如果是一个全局变量的话，有什么问题？</h2><p>因为不是同步的 在并发的时候会引起各种错误异常</p>
+<h2 id="HashMap的操作中，直接使用keySet-遍历有什么问题"><a href="#HashMap的操作中，直接使用keySet-遍历有什么问题" class="headerlink" title="HashMap的操作中，直接使用keySet()遍历有什么问题"></a>HashMap的操作中，直接使用keySet()遍历有什么问题</h2><p>性能底下；为啥呢因为会遍历两次</p>
+<h2 id="线程池队列中几种策略"><a href="#线程池队列中几种策略" class="headerlink" title="线程池队列中几种策略"></a>线程池队列中几种策略</h2><p>两种<br>第一种：拒绝任务<br>第二种：丢弃历史任务</p>
+<h2 id="ConcurrentHashMap为什么会比HashTable快"><a href="#ConcurrentHashMap为什么会比HashTable快" class="headerlink" title="ConcurrentHashMap为什么会比HashTable快"></a>ConcurrentHashMap为什么会比HashTable快</h2><h2 id="一个数组n-其中的值是1到n-1-找出其中第一个重复的"><a href="#一个数组n-其中的值是1到n-1-找出其中第一个重复的" class="headerlink" title="一个数组n 其中的值是1到n-1 找出其中第一个重复的"></a>一个数组n 其中的值是1到n-1 找出其中第一个重复的</h2><h2 id="两个整数交换不使用第三个变量"><a href="#两个整数交换不使用第三个变量" class="headerlink" title="两个整数交换不使用第三个变量"></a>两个整数交换不使用第三个变量</h2><p>a=a+b;<br>b=a-b;<br>a=a-b;</p>
+<h2 id="手写代码实现LRU数据结构"><a href="#手写代码实现LRU数据结构" class="headerlink" title="手写代码实现LRU数据结构"></a>手写代码实现LRU数据结构</h2><p>查看<a href="http://www.programcreek.com/2013/03/leetcode-lru-cache-java/" target="_blank" rel="noopener">http://www.programcreek.com/2013/03/leetcode-lru-cache-java/</a></p>
+<h2 id="一个数组将奇数放左边偶数放右边"><a href="#一个数组将奇数放左边偶数放右边" class="headerlink" title="一个数组将奇数放左边偶数放右边"></a>一个数组将奇数放左边偶数放右边</h2><h2 id="一个字符串找出第一个相同的字符"><a href="#一个字符串找出第一个相同的字符" class="headerlink" title="一个字符串找出第一个相同的字符"></a>一个字符串找出第一个相同的字符</h2><h2 id="数据库sql优化"><a href="#数据库sql优化" class="headerlink" title="数据库sql优化"></a>数据库sql优化</h2><h2 id="数据库索引该如何建在正确的字段上"><a href="#数据库索引该如何建在正确的字段上" class="headerlink" title="数据库索引该如何建在正确的字段上"></a>数据库索引该如何建在正确的字段上</h2><h2 id="Spring有几种事物隔离"><a href="#Spring有几种事物隔离" class="headerlink" title="Spring有几种事物隔离"></a>Spring有几种事物隔离</h2><h2 id="请描述一下Spring-MVC-从发起请求到后台的处理流程"><a href="#请描述一下Spring-MVC-从发起请求到后台的处理流程" class="headerlink" title="请描述一下Spring MVC 从发起请求到后台的处理流程"></a>请描述一下Spring MVC 从发起请求到后台的处理流程</h2><h2 id="请描述一下JVM类加载"><a href="#请描述一下JVM类加载" class="headerlink" title="请描述一下JVM类加载"></a>请描述一下JVM类加载</h2>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2017/06/20/2017年上半年Java高级工程师求职面试题总结/" data-id="ckqbozfh90003ikl5h4du30xq" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2017/10/16/Java并发编程-线程饥饿死锁/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          Java并发编程-线程饥饿死锁
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/12/28/WEB性能优化手段/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">WEB性能优化手段</div>
+    </a>
+  
+</nav>
+
+  
+  
+  <!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="post-2017年上半年Java高级工程师求职面试题总结" data-title="2017年上半年Java高级工程师求职面试题总结" data-url="http://yanwuyang.github.io/2017/06/20/2017年上半年Java高级工程师求职面试题总结/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"yanwuyang"};
+		(function() {
+			var ds = document.createElement('script');
+			ds.type = 'text/javascript';ds.async = true;
+			ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+			ds.charset = 'UTF-8';
+			(document.getElementsByTagName('head')[0] 
+			 || document.getElementsByTagName('body')[0]).appendChild(ds);
+		})();
+		</script>
+	<!-- 多说公共JS代码 end -->
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">分类</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">归档</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">最新文章</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2021/03/20/100个为什么/">100个为什么</a>
+          </li>
+        
+          <li>
+            <a href="/2017/10/16/Java并发编程-线程饥饿死锁/">Java并发编程-线程饥饿死锁</a>
+          </li>
+        
+          <li>
+            <a href="/2017/06/20/2017年上半年Java高级工程师求职面试题总结/">2017年上半年Java高级工程师求职面试题总结</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/28/WEB性能优化手段/">WEB性能优化手段</a>
+          </li>
+        
+          <li>
+            <a href="/2016/12/27/HTTP Keep-Alive/">HTTP Keep-Alive</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 yanwuyang<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+ 
+</script>
+            
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">首页</a>
+  
+    <a href="/archives" class="mobile-nav-link">文章</a>
+  
+    <a href="/about" class="mobile-nav-link">关于</a>
+  
+</nav>
+    
+
+<script src="/js/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  <script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script src="/js/script.js"></script>
+
+<div style="display:none">
+<script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1255200114'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1255200114%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+</div>
+  </div>
+</body>
+</html>
