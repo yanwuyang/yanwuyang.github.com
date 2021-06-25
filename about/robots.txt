@@ -1,9 +1,3 @@
-<<<<<<< HEAD
 User-Agent: *
 Allow: /index.html
 
-=======
-User-Agent: *
-Allow: /index.html
-
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a

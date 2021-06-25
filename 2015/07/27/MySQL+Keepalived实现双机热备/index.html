@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
 <head><meta name="generator" content="Hexo 3.9.0">
-=======
-<head>
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
   <meta charset="utf-8">
   
   <title>MySQL+Keepalived实现双机热备 | 东写西读</title>
@@ -15,7 +11,6 @@
 <meta property="og:url" content="http://yanwuyang.github.io/2015/07/27/MySQL+Keepalived实现双机热备/index.html">
 <meta property="og:site_name" content="东写西读">
 <meta property="og:description" content="前言MySQL的安装与节点间的同步复制在这就不在阐述，大家可以查看文档MySQL5.6在CentOS6.6安装步骤和MySQL5.6.25节点复制">
-<<<<<<< HEAD
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yanwuyang.github.io/2015/07/27/MySQL+Keepalived实现双机热备/1.png">
 <meta property="og:updated_time" content="2021-06-25T02:00:18.038Z">
@@ -23,14 +18,6 @@
 <meta name="twitter:title" content="MySQL+Keepalived实现双机热备">
 <meta name="twitter:description" content="前言MySQL的安装与节点间的同步复制在这就不在阐述，大家可以查看文档MySQL5.6在CentOS6.6安装步骤和MySQL5.6.25节点复制">
 <meta name="twitter:image" content="http://yanwuyang.github.io/2015/07/27/MySQL+Keepalived实现双机热备/1.png">
-=======
-<meta property="og:image" content="http://yanwuyang.github.io/1.png">
-<meta property="og:updated_time" content="2016-05-14T11:17:53.544Z">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="MySQL+Keepalived实现双机热备">
-<meta name="twitter:description" content="前言MySQL的安装与节点间的同步复制在这就不在阐述，大家可以查看文档MySQL5.6在CentOS6.6安装步骤和MySQL5.6.25节点复制">
-<meta name="twitter:image" content="http://yanwuyang.github.io/1.png">
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
   
   
     <link rel="icon" href="/favicon.ico">
@@ -42,11 +29,7 @@
   
 
 </head>
-<<<<<<< HEAD
 </html>
-=======
-
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 <body>
   <div id="container">
     <div id="wrap">
@@ -80,11 +63,7 @@
       </nav>
       <div id="search-form-wrap">
 	    
-<<<<<<< HEAD
            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
-=======
-           <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 	    
       </div>
     </div>
@@ -136,20 +115,12 @@
 <p><strong><em>注：此脚本是上面配置文件notify_down选项所用到的，keepalived使用notify_down选项来检查real_server的服务状态，当发现real_server服务故障时，便触发此脚本；我们可以看到，脚本就一个命令，通过pkill keepalived强制杀死keepalived进程，从而实现了MySQL故障自动转移。另外，我们不用担心两个MySQL会同时提供数据更新操作，因为每台MySQL上的keepalived的配置里面只有本机MySQL的IP+VIP，而不是两台MySQL的IP+VIP</em></strong><br>在这样只有一个vrrp_instance 的环境里，主负载均衡器(MASTER)与备份负载均衡器（BACKUP）配置文件的差异一共只有3处: 全局定义的route_id、vrrp_instance state已经vrrp_instance的优先级priority</p>
 <h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>启动MySQL ,keepalived<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sheel&gt;service mysqld start</span><br><span class="line">sheel&gt;service keepalived start</span><br><span class="line">sheel&gt;service iptables stop</span><br></pre></td></tr></table></figure></p>
 <p>查看vip 是否已经帮到到了网卡eth0<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shell&gt;ip a</span><br></pre></td></tr></table></figure></p>
-<<<<<<< HEAD
 <p><img src="1.png" alt><br>关闭myql服务或vip已经绑定在了192.18.11.129上了表示测试成功</p>
-=======
-<p><img src="1.png" alt=""><br>关闭myql服务或vip已经绑定在了192.18.11.129上了表示测试成功</p>
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 
       
     </div>
     <footer class="article-footer">
-<<<<<<< HEAD
-      <a data-url="http://yanwuyang.github.io/2015/07/27/MySQL+Keepalived实现双机热备/" data-id="ckqbozfil0011ikl5rwhtnj0c" class="article-share-link">分享</a>
-=======
-      <a data-url="http://yanwuyang.github.io/2015/07/27/MySQL+Keepalived实现双机热备/" data-id="cj8u85r3p001054yb9b4h9nft" class="article-share-link">分享</a>
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
+      <a data-url="http://yanwuyang.github.io/2015/07/27/MySQL+Keepalived实现双机热备/" data-id="ckqc31hki0010twl5d3qivpm9" class="article-share-link">分享</a>
       
       
     </footer>
@@ -204,11 +175,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-<<<<<<< HEAD
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
-=======
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
     </div>
   </div>
 
@@ -223,11 +190,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-<<<<<<< HEAD
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
-=======
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
     </div>
   </div>
 
@@ -240,13 +203,10 @@
       <ul>
         
           <li>
-<<<<<<< HEAD
             <a href="/2021/03/20/100个为什么/">100个为什么</a>
           </li>
         
           <li>
-=======
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
             <a href="/2017/10/16/Java并发编程-线程饥饿死锁/">Java并发编程-线程饥饿死锁</a>
           </li>
         
@@ -259,14 +219,7 @@
           </li>
         
           <li>
-<<<<<<< HEAD
-=======
             <a href="/2016/12/27/HTTP协议：不可小觑的Content-Length/">HTTP协议：不可小觑的Content-Length</a>
-          </li>
-        
-          <li>
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
-            <a href="/2016/12/27/HTTP Keep-Alive/">HTTP Keep-Alive</a>
           </li>
         
       </ul>
@@ -281,11 +234,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-<<<<<<< HEAD
       &copy; 2021 yanwuyang<br>
-=======
-      &copy; 2017 yanwuyang<br>
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

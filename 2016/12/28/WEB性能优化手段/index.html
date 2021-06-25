@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html>
-<<<<<<< HEAD
 <head><meta name="generator" content="Hexo 3.9.0">
-=======
-<head>
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
   <meta charset="utf-8">
   
   <title>WEB性能优化手段 | 东写西读</title>
@@ -15,12 +11,8 @@
 <meta property="og:url" content="http://yanwuyang.github.io/2016/12/28/WEB性能优化手段/index.html">
 <meta property="og:site_name" content="东写西读">
 <meta property="og:description" content="前端静态资源独立域名浏览器请求并发数是针对同一域名下的，一般现代浏览器都是6个了解更多查看，这样的设计目的其实是对服务器的一种保护，通常使用多个独立域名作为提供网站响应速度的一种有效手段。可以大大拓展这个并发连接数，也就是令浏览器并行下载更多资源，提高站点性能。 具体的实施方案是将静态资源 图片、css、js 放到一个子域名服务器下。这样带来的好处不仅是提供了浏览器并发请求数量还能减少http 头">
-<<<<<<< HEAD
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2021-06-25T02:00:18.108Z">
-=======
-<meta property="og:updated_time" content="2017-02-20T12:17:51.120Z">
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="WEB性能优化手段">
 <meta name="twitter:description" content="前端静态资源独立域名浏览器请求并发数是针对同一域名下的，一般现代浏览器都是6个了解更多查看，这样的设计目的其实是对服务器的一种保护，通常使用多个独立域名作为提供网站响应速度的一种有效手段。可以大大拓展这个并发连接数，也就是令浏览器并行下载更多资源，提高站点性能。 具体的实施方案是将静态资源 图片、css、js 放到一个子域名服务器下。这样带来的好处不仅是提供了浏览器并发请求数量还能减少http 头">
@@ -35,11 +27,7 @@
   
 
 </head>
-<<<<<<< HEAD
 </html>
-=======
-
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 <body>
   <div id="container">
     <div id="wrap">
@@ -73,11 +61,7 @@
       </nav>
       <div id="search-form-wrap">
 	    
-<<<<<<< HEAD
            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
-=======
-           <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 	    
       </div>
     </div>
@@ -117,11 +101,7 @@
 		<ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#前端"><span class="toc-number">1.</span> <span class="toc-text">前端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#静态资源独立域名"><span class="toc-number">1.1.</span> <span class="toc-text">静态资源独立域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存"><span class="toc-number">1.2.</span> <span class="toc-text">缓存</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#资源压缩文件合并"><span class="toc-number">1.3.</span> <span class="toc-text">资源压缩文件合并</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#资源lazy加载"><span class="toc-number">1.4.</span> <span class="toc-text">资源lazy加载</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引用资源摆放位置"><span class="toc-number">1.5.</span> <span class="toc-text">引用资源摆放位置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CDN加速"><span class="toc-number">1.6.</span> <span class="toc-text">CDN加速</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#后端"><span class="toc-number">2.</span> <span class="toc-text">后端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#线程调优"><span class="toc-number">2.1.</span> <span class="toc-text">线程调优</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#缓存-1"><span class="toc-number">2.2.</span> <span class="toc-text">缓存</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#总结"><span class="toc-number">3.</span> <span class="toc-text">总结</span></a></li></ol>
 		</div>
 		
-<<<<<<< HEAD
         <h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><h3 id="静态资源独立域名"><a href="#静态资源独立域名" class="headerlink" title="静态资源独立域名"></a>静态资源独立域名</h3><p>浏览器请求并发数是针对同一域名下的，一般现代浏览器都是6个<a href="http://www.stevesouders.com/blog/2008/03/20/roundup-on-parallel-connections/" target="_blank" rel="noopener">了解更多查看</a>，这样的设计目的其实是对服务器的一种保护，通常使用多个独立域名作为提供网站响应速度的一种有效手段。可以大大拓展这个并发连接数，也就是令浏览器并行下载更多资源，提高站点性能。 具体的实施方案是将静态资源 图片、css、js 放到一个子域名服务器下。这样带来的好处不仅是提供了浏览器并发请求数量还能减少http 头的数据大小。很明显的就是能减少cookie的传输。<br><a id="more"></a><br>这个浏览器并发请求受限的还有个原因：实则是多个线程创建了socket 与服务器建立了连接。keep-alive技术的存在使得浏览器复用现有连接和服务器通信比创建新连接的性能要更好一些所以，浏览器的并发数其实并不仅仅只是良知的要求，而是双方都需要保护自己的默契，并在可靠的情况下提供更好的性能。</p>
-=======
-        <h2 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h2><h3 id="静态资源独立域名"><a href="#静态资源独立域名" class="headerlink" title="静态资源独立域名"></a>静态资源独立域名</h3><p>浏览器请求并发数是针对同一域名下的，一般现代浏览器都是6个<a href="http://www.stevesouders.com/blog/2008/03/20/roundup-on-parallel-connections/" target="_blank" rel="external">了解更多查看</a>，这样的设计目的其实是对服务器的一种保护，通常使用多个独立域名作为提供网站响应速度的一种有效手段。可以大大拓展这个并发连接数，也就是令浏览器并行下载更多资源，提高站点性能。 具体的实施方案是将静态资源 图片、css、js 放到一个子域名服务器下。这样带来的好处不仅是提供了浏览器并发请求数量还能减少http 头的数据大小。很明显的就是能减少cookie的传输。<br><a id="more"></a><br>这个浏览器并发请求受限的还有个原因：实则是多个线程创建了socket 与服务器建立了连接。keep-alive技术的存在使得浏览器复用现有连接和服务器通信比创建新连接的性能要更好一些所以，浏览器的并发数其实并不仅仅只是良知的要求，而是双方都需要保护自己的默契，并在可靠的情况下提供更好的性能。</p>
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 <h3 id="缓存"><a href="#缓存" class="headerlink" title="缓存"></a>缓存</h3><p>缓存也是性能优化的重要手段之一，这个可以包括服务器常用数据缓存，和静态资源在浏览器中的缓存。</p>
 <h3 id="资源压缩文件合并"><a href="#资源压缩文件合并" class="headerlink" title="资源压缩文件合并"></a>资源压缩文件合并</h3><p>资源压缩技术，文件合并，这样带来的好处就是减少http 请求数和降低网络数据传输包的大小。能有效的提供网站响应数度，<br>具体的方法有：<br>1、资源合并：多个图片合并在一个图片中<br>2、减少请求数：小图片直接使用base64编码</p>
 <h3 id="资源lazy加载"><a href="#资源lazy加载" class="headerlink" title="资源lazy加载"></a>资源lazy加载</h3><p>对于web网页一屏显示不了可以采用lazy加载技术，当请求网页时加载可视区的内容，当拖动滚动条时在动态的加载网页内容。</p>
@@ -134,11 +114,7 @@
       
     </div>
     <footer class="article-footer">
-<<<<<<< HEAD
-      <a data-url="http://yanwuyang.github.io/2016/12/28/WEB性能优化手段/" data-id="ckqbozfj2001qikl5lh7ybxjh" class="article-share-link">分享</a>
-=======
-      <a data-url="http://yanwuyang.github.io/2016/12/28/WEB性能优化手段/" data-id="cj8u85r45001l54ybg41hodw8" class="article-share-link">分享</a>
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
+      <a data-url="http://yanwuyang.github.io/2016/12/28/WEB性能优化手段/" data-id="ckqc31hl5001stwl5jqwk8ia4" class="article-share-link">分享</a>
       
       
     </footer>
@@ -157,15 +133,9 @@
     </a>
   
   
-<<<<<<< HEAD
-    <a href="/2016/12/27/HTTP Keep-Alive/" id="article-nav-older" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Older</strong>
-      <div class="article-nav-title">HTTP Keep-Alive</div>
-=======
     <a href="/2016/12/27/HTTP协议：不可小觑的Content-Length/" id="article-nav-older" class="article-nav-link-wrap">
       <strong class="article-nav-caption">Older</strong>
       <div class="article-nav-title">HTTP协议：不可小觑的Content-Length</div>
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
     </a>
   
 </nav>
@@ -199,11 +169,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-<<<<<<< HEAD
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
-=======
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
     </div>
   </div>
 
@@ -218,11 +184,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-<<<<<<< HEAD
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
-=======
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
     </div>
   </div>
 
@@ -235,13 +197,10 @@
       <ul>
         
           <li>
-<<<<<<< HEAD
             <a href="/2021/03/20/100个为什么/">100个为什么</a>
           </li>
         
           <li>
-=======
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
             <a href="/2017/10/16/Java并发编程-线程饥饿死锁/">Java并发编程-线程饥饿死锁</a>
           </li>
         
@@ -254,14 +213,7 @@
           </li>
         
           <li>
-<<<<<<< HEAD
-=======
             <a href="/2016/12/27/HTTP协议：不可小觑的Content-Length/">HTTP协议：不可小觑的Content-Length</a>
-          </li>
-        
-          <li>
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
-            <a href="/2016/12/27/HTTP Keep-Alive/">HTTP Keep-Alive</a>
           </li>
         
       </ul>
@@ -276,11 +228,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-<<<<<<< HEAD
       &copy; 2021 yanwuyang<br>
-=======
-      &copy; 2017 yanwuyang<br>
->>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
