@@ -1,21 +1,43 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
 <head><meta name="generator" content="Hexo 3.9.0">
+=======
+<head>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
   <meta charset="utf-8">
   
   <title>框架那么多学习那个好 | 东写西读</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<<<<<<< HEAD
   <meta name="description" content="摘自知乎文章，加自己体会 我们学习一个东西，通常两个目的：-为了解决现在的问题-为了解决将来可能会有的问题 所以，在学习这些东西之前，先必须了解，它们是用来解决什么问题的。">
+=======
+  <meta name="description" content="摘自知乎文章，加自己体会
+我们学习一个东西，通常两个目的：-为了解决现在的问题-为了解决将来可能会有的问题
+所以，在学习这些东西之前，先必须了解，它们是用来解决什么问题的。">
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 <meta property="og:type" content="article">
 <meta property="og:title" content="框架那么多学习那个好">
 <meta property="og:url" content="http://yanwuyang.github.io/2016/05/16/框架那么多学习那个好/index.html">
 <meta property="og:site_name" content="东写西读">
+<<<<<<< HEAD
 <meta property="og:description" content="摘自知乎文章，加自己体会 我们学习一个东西，通常两个目的：-为了解决现在的问题-为了解决将来可能会有的问题 所以，在学习这些东西之前，先必须了解，它们是用来解决什么问题的。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2021-06-25T02:00:18.142Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="框架那么多学习那个好">
 <meta name="twitter:description" content="摘自知乎文章，加自己体会 我们学习一个东西，通常两个目的：-为了解决现在的问题-为了解决将来可能会有的问题 所以，在学习这些东西之前，先必须了解，它们是用来解决什么问题的。">
+=======
+<meta property="og:description" content="摘自知乎文章，加自己体会
+我们学习一个东西，通常两个目的：-为了解决现在的问题-为了解决将来可能会有的问题
+所以，在学习这些东西之前，先必须了解，它们是用来解决什么问题的。">
+<meta property="og:updated_time" content="2016-05-16T15:44:47.377Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="框架那么多学习那个好">
+<meta name="twitter:description" content="摘自知乎文章，加自己体会
+我们学习一个东西，通常两个目的：-为了解决现在的问题-为了解决将来可能会有的问题
+所以，在学习这些东西之前，先必须了解，它们是用来解决什么问题的。">
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
   
   
     <link rel="icon" href="/favicon.ico">
@@ -27,7 +49,11 @@
   
 
 </head>
+<<<<<<< HEAD
 </html>
+=======
+
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 <body>
   <div id="container">
     <div id="wrap">
@@ -61,7 +87,11 @@
       </nav>
       <div id="search-form-wrap">
 	    
+<<<<<<< HEAD
            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
+=======
+           <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 	    
       </div>
     </div>
@@ -104,12 +134,20 @@
 <p>刚才这些，都可以看作是满足最基本的需求，那就是业务的正确性。在这之后，就有另外的诉求了，首当其冲的就是整个业务代码的组织。<br>所谓组织，指的是两个方面，一方面是模块关系，另一方面是业务模型。<br>我们是怎样解决模块关系的呢？共识就是组件化。整个应用形成倒置的组件树，每个组件提供对外接口，然后内部只关注自己的实现。这些东西说起来简单，但实际做的时候还是有非常多需要考虑的东西，包括组件的定义，约束，管理，测试等等，而在Web这个体系中，组件化也有一些不太适合的场景，需要做一些权衡，这方面详细说就比较复杂了，需要好多篇幅才能说清楚<br>那么，业务模型又是指什么呢？我们提到React的时候，就会听到Flux，Redux之类的东西，为什么又要有它们呢？我们必须认识到，脱离了这类东西，纯上层的组件化是不牢固的，如果你感受不到，只有一个原因：你的项目的业务层太薄。<br>业务模型指的是所处领域中的业务数据、规则、流程的集合。即使抛开所有展示层，这一层也是应当要能够运作起来的。<br>那么，这跟Redux之类又有什么关系呢？<br>我们刚才提到组件化，整个应用形成了一个组件树，组件之间可能会需要通讯，它们通讯的内容可能是简单的界面事件，也可能是业务含义较深，能够牵一发而动全身的。界面是怎么来的？是由初始界面加上状态形成的，为了能够反映界面的变化，我们必须使得对业务模型的每一个扰动都收敛到确切的状态，所以，这也就是Redux这类东西的意义所在。<br>所以，没有Redux之类辅助方案的React，是不完整的。而Redux本身，也不是局限到只能作为React辅助方案的，它的理念，对于Angular，Vue，照样是非常重要的补充。在同一业务场景下，对于每个框架来说，数据模型层面临的问题都是一样的，在这一层并没有任何分别。<br>另外，Angular 2中引入了RxJS，这个东西处理这方面也是有很大优势的。<br>在这里我要插一句自己的想法，很多学习能力较强的朋友，当他发现FP，FRP之类编程模型的时候，会非常喜欢，但对于大型项目，需要很多人协作的状况来说，不一定是好事。<br>用面向过程，面向对象的那些方式，虽然笨重，但好处是门槛低，符合大多数人的理解和思维方式，并且可以复用几十年积累的各种设计模式和经验。所以，如果不是小而精悍的团队，我对引入FP和FRP都是比较保守的。<br>在这些东西下层，还有Relay，GraphQL等等致力于业务模型同步的方案，但这个引入代价同样是非常大。<br>再插另外一句：很多人吐槽Angular大而全笨重，吐槽React全家桶，但其实世界上大部分人是没有框架整合能力的，小而美的库最后整合了，在面临各种业务需求之后不断引入新模块，也还是一个大而全的方案。在绝大部分场景下，还是有一整套标配模块比较好。你看ExtJS他也单独提供ExtCore模块，但不但竞争不过jQuery，连mootools和prototype都竞争不过，用它的人几乎都是用全方案的。</p>
 <p>3、效率</p>
 <p>效率也分两种，一种是开发效率，一种是运行效率。<br>我们前面提到，组件化，这是提升开发效率的一种手段，在组件化这个点上，各路框架的组织方式大同小异，反正最终都是组件树。<br>具体到单个组件的实现上，我个人是倾向于MVVM流的，MVVM系的代码量会少一些，开发效率稍高一点。<br>其中，Angular因为实现的特殊性，有作用域继承之类的双刃剑黑魔法，开发效率的不稳定因素要高不少，深刻理解的人用起来效率很高，不理解的用了到处是坑。<br>再看运行效率，这里面，Angular是较低的那个，主要在于数据变更检测方式，但这也不是绝对的，在部分场景下，脏检测未必就没有优势，<br>运行效率的另外一面主要是创建和修改DOM，在创建上，大家是没有太大差异的，而在修改DOM的时候，React首创的虚拟DOM有很大优势，所以其他框架内部实现也在逐渐借鉴。</p>
+<<<<<<< HEAD
 <p>作者：徐飞<br>链接：<a href="https://www.zhihu.com/question/39943474/answer/83905933" target="_blank" rel="noopener">https://www.zhihu.com/question/39943474/answer/83905933</a><br>来源：知乎</p>
+=======
+<p>作者：徐飞<br>链接：<a href="https://www.zhihu.com/question/39943474/answer/83905933" target="_blank" rel="external">https://www.zhihu.com/question/39943474/answer/83905933</a><br>来源：知乎</p>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 
       
     </div>
     <footer class="article-footer">
+<<<<<<< HEAD
       <a data-url="http://yanwuyang.github.io/2016/05/16/框架那么多学习那个好/" data-id="ckqbozfjn002jikl583nyc8hv" class="article-share-link">分享</a>
+=======
+      <a data-url="http://yanwuyang.github.io/2016/05/16/框架那么多学习那个好/" data-id="cj8u85r5g002f54ybsfga2zvm" class="article-share-link">分享</a>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
       
       
     </footer>
@@ -164,7 +202,11 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
+<<<<<<< HEAD
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
+=======
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
     </div>
   </div>
 
@@ -179,7 +221,11 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
+<<<<<<< HEAD
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+=======
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
     </div>
   </div>
 
@@ -192,10 +238,13 @@
       <ul>
         
           <li>
+<<<<<<< HEAD
             <a href="/2021/03/20/100个为什么/">100个为什么</a>
           </li>
         
           <li>
+=======
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
             <a href="/2017/10/16/Java并发编程-线程饥饿死锁/">Java并发编程-线程饥饿死锁</a>
           </li>
         
@@ -208,6 +257,13 @@
           </li>
         
           <li>
+<<<<<<< HEAD
+=======
+            <a href="/2016/12/27/HTTP协议：不可小觑的Content-Length/">HTTP协议：不可小觑的Content-Length</a>
+          </li>
+        
+          <li>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
             <a href="/2016/12/27/HTTP Keep-Alive/">HTTP Keep-Alive</a>
           </li>
         
@@ -223,7 +279,11 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
+<<<<<<< HEAD
       &copy; 2021 yanwuyang<br>
+=======
+      &copy; 2017 yanwuyang<br>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

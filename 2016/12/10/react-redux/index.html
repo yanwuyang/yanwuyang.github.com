@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
 <head><meta name="generator" content="Hexo 3.9.0">
+=======
+<head>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
   <meta charset="utf-8">
   
   <title>react-redux | 东写西读</title>
@@ -11,8 +15,12 @@
 <meta property="og:url" content="http://yanwuyang.github.io/2016/12/10/react-redux/index.html">
 <meta property="og:site_name" content="东写西读">
 <meta property="og:description" content="react-redux是基于redux javascript轻量级框架，为了更好的和react结合对redux提供了一些封装，一种更科学的代码组织方式，让我们更舒服地在React的代码中使用Redux。react-redux很简单他就提供了两个模块：Provider和connect。">
+<<<<<<< HEAD
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2021-06-25T02:00:18.113Z">
+=======
+<meta property="og:updated_time" content="2016-12-11T08:45:29.594Z">
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="react-redux">
 <meta name="twitter:description" content="react-redux是基于redux javascript轻量级框架，为了更好的和react结合对redux提供了一些封装，一种更科学的代码组织方式，让我们更舒服地在React的代码中使用Redux。react-redux很简单他就提供了两个模块：Provider和connect。">
@@ -27,7 +35,11 @@
   
 
 </head>
+<<<<<<< HEAD
 </html>
+=======
+
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 <body>
   <div id="container">
     <div id="wrap">
@@ -61,7 +73,11 @@
       </nav>
       <div id="search-form-wrap">
 	    
+<<<<<<< HEAD
            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
+=======
+           <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 	    
       </div>
     </div>
@@ -99,12 +115,20 @@
         <p>react-redux是基于redux javascript轻量级框架，为了更好的和react结合对redux提供了一些封装，一种更科学的代码组织方式，让我们更舒服地在React的代码中使用Redux。<br>react-redux很简单他就提供了两个模块：Provider和connect。<br><a id="more"></a></p>
 <h3 id="Provider"><a href="#Provider" class="headerlink" title="Provider"></a>Provider</h3><p>Provider是一个普通组件，可以作为顶层app的分发点，它只需要store属性就可以了。它会将state分发给所有被connect的组件，不管它在哪里，被嵌套多少层。<br>这个模块是作为整个App的容器，在你原有的App Container的基础上再包上一层，它的工作很简单，就是接受Redux的store作为props，并将其声明为context的属性之一，子组件可以在声明了contextTypes之后可以方便的通过this.context.store访问到store。不过我们的组件通常不需要这么做，将store放在context里，是为了给下面的connect用的。</p>
 <ul>
+<<<<<<< HEAD
 <li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(</span><br><span class="line">  &lt;Provider store=&#123;store&#125;&gt;</span><br><span class="line">    &lt;MyRootComponent /&gt;</span><br><span class="line">  &lt;<span class="regexp">/Provider&gt;,</span></span><br><span class="line"><span class="regexp">  rootEl</span></span><br><span class="line"><span class="regexp">)</span></span><br></pre></td></tr></table></figure>
+=======
+<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">ReactDOM.render(</span><br><span class="line">  <span class="xml"><span class="tag">&lt;<span class="name">Provider</span> <span class="attr">store</span>=<span class="string">&#123;store&#125;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">MyRootComponent</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">Provider</span>&gt;</span></span>,</span><br><span class="line">  rootEl</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 </li>
 </ul>
 <p>如下是Provider组件的核心代码：</p>
 <ul>
+<<<<<<< HEAD
 <li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Provider</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">   <span class="comment">//在context设置store，可以被子组件引用</span></span><br><span class="line">   getChildContext() &#123;</span><br><span class="line">       <span class="keyword">return</span> &#123; <span class="attr">store</span>: <span class="keyword">this</span>.store &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">constructor</span>(props, context) &#123;</span><br><span class="line">      <span class="keyword">super</span>(props, context)</span><br><span class="line">      <span class="keyword">this</span>.store = props.store</span><br><span class="line">   &#125;</span><br><span class="line">   render() &#123;</span><br><span class="line">      <span class="keyword">return</span> Children.only(<span class="keyword">this</span>.props.children)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+=======
+<li><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">Provider</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">   <span class="comment">//在context设置store，可以被子组件引用</span></span><br><span class="line">   getChildContext() &#123;</span><br><span class="line">       <span class="keyword">return</span> &#123; store: <span class="keyword">this</span>.store &#125;</span><br><span class="line">   &#125;</span><br><span class="line"></span><br><span class="line">   <span class="keyword">constructor</span>(props, context) &#123;</span><br><span class="line">      <span class="keyword">super</span>(props, context)</span><br><span class="line">      <span class="keyword">this</span>.store = props.store</span><br><span class="line">   &#125;</span><br><span class="line">   render() &#123;</span><br><span class="line">      <span class="keyword">return</span> Children.only(<span class="keyword">this</span>.props.children)</span><br><span class="line">   &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 </li>
 </ul>
 <h3 id="connect"><a href="#connect" class="headerlink" title="connect"></a>connect</h3><p>connect是真正的重点，它是一个柯里化函数，意思是先接受两个参数（数据绑定mapStateToProps和事件绑定mapDispatchToProps），再接受一个参数（将要绑定的组件本身）：</p>
@@ -120,7 +144,11 @@
       
     </div>
     <footer class="article-footer">
+<<<<<<< HEAD
       <a data-url="http://yanwuyang.github.io/2016/12/10/react-redux/" data-id="ckqbozfj90020ikl5sieeevvm" class="article-share-link">分享</a>
+=======
+      <a data-url="http://yanwuyang.github.io/2016/12/10/react-redux/" data-id="cj8u85r4l001t54ybw7byo12g" class="article-share-link">分享</a>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
       
       
     </footer>
@@ -175,7 +203,11 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
+<<<<<<< HEAD
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
+=======
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
     </div>
   </div>
 
@@ -190,7 +222,11 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
+<<<<<<< HEAD
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+=======
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
     </div>
   </div>
 
@@ -203,10 +239,13 @@
       <ul>
         
           <li>
+<<<<<<< HEAD
             <a href="/2021/03/20/100个为什么/">100个为什么</a>
           </li>
         
           <li>
+=======
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
             <a href="/2017/10/16/Java并发编程-线程饥饿死锁/">Java并发编程-线程饥饿死锁</a>
           </li>
         
@@ -219,6 +258,13 @@
           </li>
         
           <li>
+<<<<<<< HEAD
+=======
+            <a href="/2016/12/27/HTTP协议：不可小觑的Content-Length/">HTTP协议：不可小觑的Content-Length</a>
+          </li>
+        
+          <li>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
             <a href="/2016/12/27/HTTP Keep-Alive/">HTTP Keep-Alive</a>
           </li>
         
@@ -234,7 +280,11 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
+<<<<<<< HEAD
       &copy; 2021 yanwuyang<br>
+=======
+      &copy; 2017 yanwuyang<br>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

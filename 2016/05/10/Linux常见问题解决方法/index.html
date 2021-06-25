@@ -1,21 +1,40 @@
 <!DOCTYPE html>
 <html>
+<<<<<<< HEAD
 <head><meta name="generator" content="Hexo 3.9.0">
+=======
+<head>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
   <meta charset="utf-8">
   
   <title>Linux常见问题解决方法 | 东写西读</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<<<<<<< HEAD
   <meta name="description" content="使用SSH登陆Linux的时候提示 问题描述12The host &apos;192.168.1.240&apos; is unreachable.the host may be down,or there may be a problem with the network connection.Sometimes such problems can also be caused by a misconfigured">
+=======
+  <meta name="description" content="使用SSH登陆Linux的时候提示
+问题描述12The host &amp;apos;192.168.1.240&amp;apos; is unreachable.the host may be down,or there may be a problem with the network connection.Sometimes such problems can also be caused by a mis">
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 <meta property="og:type" content="article">
 <meta property="og:title" content="Linux常见问题解决方法">
 <meta property="og:url" content="http://yanwuyang.github.io/2016/05/10/Linux常见问题解决方法/index.html">
 <meta property="og:site_name" content="东写西读">
+<<<<<<< HEAD
 <meta property="og:description" content="使用SSH登陆Linux的时候提示 问题描述12The host &apos;192.168.1.240&apos; is unreachable.the host may be down,or there may be a problem with the network connection.Sometimes such problems can also be caused by a misconfigured">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2021-06-25T02:00:18.037Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Linux常见问题解决方法">
 <meta name="twitter:description" content="使用SSH登陆Linux的时候提示 问题描述12The host &apos;192.168.1.240&apos; is unreachable.the host may be down,or there may be a problem with the network connection.Sometimes such problems can also be caused by a misconfigured">
+=======
+<meta property="og:description" content="使用SSH登陆Linux的时候提示
+问题描述12The host &amp;apos;192.168.1.240&amp;apos; is unreachable.the host may be down,or there may be a problem with the network connection.Sometimes such problems can also be caused by a mis">
+<meta property="og:updated_time" content="2016-05-11T11:54:03.519Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Linux常见问题解决方法">
+<meta name="twitter:description" content="使用SSH登陆Linux的时候提示
+问题描述12The host &amp;apos;192.168.1.240&amp;apos; is unreachable.the host may be down,or there may be a problem with the network connection.Sometimes such problems can also be caused by a mis">
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
   
   
     <link rel="icon" href="/favicon.ico">
@@ -27,7 +46,11 @@
   
 
 </head>
+<<<<<<< HEAD
 </html>
+=======
+
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 <body>
   <div id="container">
     <div id="wrap">
@@ -61,7 +84,11 @@
       </nav>
       <div id="search-form-wrap">
 	    
+<<<<<<< HEAD
            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
+=======
+           <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yanwuyang.github.io"></form>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 	    
       </div>
     </div>
@@ -97,51 +124,87 @@
 		<!-- Table of Contents -->
 		
         <h3 id="使用SSH登陆Linux的时候提示"><a href="#使用SSH登陆Linux的时候提示" class="headerlink" title="使用SSH登陆Linux的时候提示"></a>使用SSH登陆Linux的时候提示</h3><ol>
+<<<<<<< HEAD
 <li>问题描述<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The host '192.168.1.240' is unreachable.</span><br><span class="line">the host may be down,or there may be a problem with the network connection.Sometimes such problems can also be caused by a misconfigured firewall</span><br></pre></td></tr></table></figure>
+=======
+<li>问题描述<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">The host &apos;192.168.1.240&apos; is unreachable.</span><br><span class="line">the host may be down,or there may be a problem with the network connection.Sometimes such problems can also be caused by a misconfigured firewall</span><br></pre></td></tr></table></figure>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 </li>
 </ol>
 <p><strong>解决办法</strong><br><a id="more"></a></p>
 <ol>
+<<<<<<< HEAD
 <li>关闭防火墙<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service iptables stop(重启生效)</span><br><span class="line">iptables -F(立即生效)</span><br></pre></td></tr></table></figure>
 </li>
 </ol>
 <p><strong><em>如果通过上面的方法还是无法连接那就是sshd服务没有启动</em></strong></p>
 <ol start="2">
 <li>启动服务就可以正常访问。<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service sshd start</span><br></pre></td></tr></table></figure>
+=======
+<li>关闭防火墙<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service iptables stop(重启生效)</span><br><span class="line">iptables -F(立即生效)</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<p><strong><em>如果通过上面的方法还是无法连接那就是sshd服务没有启动</em></strong></p>
+<ol>
+<li>启动服务就可以正常访问。<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">service sshd start</span><br></pre></td></tr></table></figure>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 </li>
 </ol>
 <hr>
 <h3 id="connect-network-is-unreachable"><a href="#connect-network-is-unreachable" class="headerlink" title="connect network is unreachable"></a>connect network is unreachable</h3><p>原因是没有正确设置IP地址<br><strong>解决办法</strong></p>
 <ol>
+<<<<<<< HEAD
 <li>修改ifcfg-eth0<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth0</span><br><span class="line"></span><br><span class="line">service network restart</span><br><span class="line">route add default  gw 192.168.1.1(设置网关)</span><br><span class="line">service network restart</span><br></pre></td></tr></table></figure>
+=======
+<li>修改ifcfg-eth0<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/sysconfig/network-scripts/ifcfg-eth0</span><br><span class="line"></span><br><span class="line">service network restart</span><br><span class="line">route add default  gw 192.168.1.1(设置网关)</span><br><span class="line">service network restart</span><br></pre></td></tr></table></figure>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 </li>
 </ol>
 <hr>
 <h3 id="linux从一台主机复杂文件目录到另一台"><a href="#linux从一台主机复杂文件目录到另一台" class="headerlink" title="linux从一台主机复杂文件目录到另一台"></a>linux从一台主机复杂文件目录到另一台</h3><ol>
 <li><p>复制文件</p>
+<<<<<<< HEAD
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scp conf.xml root@192.168.1.240:/usr/conf</span><br><span class="line"></span><br><span class="line">说明：scp 文件名 用户名@计算机IP或者计算机名称 :远程路径</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>复制目录</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scp -r apache-tomcat-6.0.41 root@192.168.1.240:/usr/tomcat</span><br><span class="line"></span><br><span class="line">说明：scp -r 目录名 用户名@计算机IP或者计算机名称 :远程路径</span><br></pre></td></tr></table></figure>
+=======
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scp conf.xml root@192.168.1.240:/usr/conf</span><br><span class="line"></span><br><span class="line">说明：scp 文件名 用户名@计算机IP或者计算机名称 :远程路径</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>复制目录</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">scp -r apache-tomcat-6.0.41 root@192.168.1.240:/usr/tomcat</span><br><span class="line"></span><br><span class="line">说明：scp -r 目录名 用户名@计算机IP或者计算机名称 :远程路径</span><br></pre></td></tr></table></figure>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 </li>
 </ol>
 <hr>
 <h3 id="make：cc：命令未找到"><a href="#make：cc：命令未找到" class="headerlink" title="make：cc：命令未找到"></a>make：cc：命令未找到</h3><p><strong>解决办法</strong></p>
 <ol>
+<<<<<<< HEAD
 <li>安装gcc<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc automake autoconf libtool make</span><br></pre></td></tr></table></figure>
+=======
+<li>安装gcc<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum -y install gcc automake autoconf libtool make</span><br></pre></td></tr></table></figure>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 </li>
 </ol>
 <hr>
 <h3 id="bin-sh-ctags-command-not-found"><a href="#bin-sh-ctags-command-not-found" class="headerlink" title="/bin/sh:ctags:command not found"></a>/bin/sh:ctags:command not found</h3><p><strong>解决办法</strong></p>
 <ol>
+<<<<<<< HEAD
 <li>安装ctags<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install ctags</span><br></pre></td></tr></table></figure>
+=======
+<li>安装ctags<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install ctags</span><br></pre></td></tr></table></figure>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
 </li>
 </ol>
 
       
     </div>
     <footer class="article-footer">
+<<<<<<< HEAD
       <a data-url="http://yanwuyang.github.io/2016/05/10/Linux常见问题解决方法/" data-id="ckqbozfih000wikl54w060bdo" class="article-share-link">分享</a>
+=======
+      <a data-url="http://yanwuyang.github.io/2016/05/10/Linux常见问题解决方法/" data-id="cj8u85r3p001754yb995et39s" class="article-share-link">分享</a>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
       
       
     </footer>
@@ -196,7 +259,11 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
+<<<<<<< HEAD
       <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
+=======
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
     </div>
   </div>
 
@@ -211,7 +278,11 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
+<<<<<<< HEAD
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+=======
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
     </div>
   </div>
 
@@ -224,10 +295,13 @@
       <ul>
         
           <li>
+<<<<<<< HEAD
             <a href="/2021/03/20/100个为什么/">100个为什么</a>
           </li>
         
           <li>
+=======
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
             <a href="/2017/10/16/Java并发编程-线程饥饿死锁/">Java并发编程-线程饥饿死锁</a>
           </li>
         
@@ -240,6 +314,13 @@
           </li>
         
           <li>
+<<<<<<< HEAD
+=======
+            <a href="/2016/12/27/HTTP协议：不可小觑的Content-Length/">HTTP协议：不可小觑的Content-Length</a>
+          </li>
+        
+          <li>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
             <a href="/2016/12/27/HTTP Keep-Alive/">HTTP Keep-Alive</a>
           </li>
         
@@ -255,7 +336,11 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
+<<<<<<< HEAD
       &copy; 2021 yanwuyang<br>
+=======
+      &copy; 2017 yanwuyang<br>
+>>>>>>> 963527806a9cf69f2bab7d9ab00d81037d782d9a
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
