@@ -66,6 +66,236 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-Java线程中断interrupt" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/09/12/Java线程中断interrupt/" class="article-date">
+  <time datetime="2016-09-12T08:55:01.000Z" itemprop="datePublished">2016-09-12</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/09/12/Java线程中断interrupt/">Java线程中断interrupt</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先一个线程的终止不应该由其他线程来强制中断或停止。而是应该由线程自己自行停止。所以线程的stop,suspend,resume 都已经被抛弃了。而线程interrupt的作用也不是<br>中断线程，而是通知线程应该中断了。具体到底中断还是继续运行，应该有被通知的线程自己处理。<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/09/12/Java线程中断interrupt/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/09/12/Java线程中断interrupt/" data-id="ckqjatol80010qkl5g4xjjwyy" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-JDK常用性能分析命令行工具" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/22/JDK常用性能分析命令行工具/" class="article-date">
+  <time datetime="2016-08-22T05:56:33.000Z" itemprop="datePublished">2016-08-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/22/JDK常用性能分析命令行工具/">JDK常用性能分析命令行工具</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="jps"><a href="#jps" class="headerlink" title="jps"></a>jps</h1><p>jps（JVM Process Status Too)可以列出正在运行的虚拟机进程，并显示虚拟机执行主类（Main Class,main（）函数所在的类）名称以及这些进程的本地虚拟机唯一ID（Local Virtual Machine Identifier,LVMID）。虽然功能比较单一，但它是使用频率最高的JDK命令行工具，因为其他的JDK工具大多需要输入它查询到的LVMID来确定要监控的是哪一个虚拟机进程。对于本地虚拟机进程来说，LVMID与操作系统的进程ID（Process Identifier,PID）是一致的，使用Windows的任务管理器或者UNIX的ps命令也可以查询到虚拟机进程的LVMID，但如果同时启动了多个虚拟机进程，无法根据进程名称定位时，那就只能依赖jps命令显示主类的功能才能区分了。<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/08/22/JDK常用性能分析命令行工具/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/08/22/JDK常用性能分析命令行工具/" data-id="ckqjatokd0008qkl57qsb8w77" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-分析Java进程中消耗CPU最高的线程" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/22/分析Java进程中消耗CPU最高的线程/" class="article-date">
+  <time datetime="2016-08-22T02:56:33.000Z" itemprop="datePublished">2016-08-22</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/22/分析Java进程中消耗CPU最高的线程/">分析Java进程中消耗CPU最高的线程</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>第一步：查看JAVA进程（也可以使用top命令查看系统中消耗CPU最高的进程）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt;jps -l</span><br><span class="line">28070 com.yonyouup.openapi.netty.startup.Bootstrap</span><br></pre></td></tr></table></figure></p>
+        
+          <p class="article-more-link">
+            <a href="/2016/08/22/分析Java进程中消耗CPU最高的线程/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/08/22/分析Java进程中消耗CPU最高的线程/" data-id="ckqjatom6002cqkl5fyluatvn" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-Java中的IO技术：BIO,NIO,AIO" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/10/Java中的IO技术：BIO,NIO,AIO/" class="article-date">
+  <time datetime="2016-08-09T16:00:00.000Z" itemprop="datePublished">2016-08-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Java/">Java</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/10/Java中的IO技术：BIO,NIO,AIO/">Java中的IO技术：BIO,NIO,AIO</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="同步异步、阻塞非阻塞概念"><a href="#同步异步、阻塞非阻塞概念" class="headerlink" title="同步异步、阻塞非阻塞概念"></a>同步异步、阻塞非阻塞概念</h1><p>同步和异步是针对应用程序和内核的交互而言的，阻塞和非阻塞是针对于进程在访问数据的时候，根据IO操作的就绪状态来采取的不同方式，说白了是一种读取或者写入操作函数的实现方式，阻塞方式下读取或者写入函数将一直等待，而非阻塞方式下，读取或者写入函数会立即返回一个状态值。<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/08/10/Java中的IO技术：BIO,NIO,AIO/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/08/10/Java中的IO技术：BIO,NIO,AIO/" data-id="ckqjatol1000sqkl5mmor3q7d" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
+    <article id="post-epoll" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2016/08/10/epoll/" class="article-date">
+  <time datetime="2016-08-09T16:00:00.000Z" itemprop="datePublished">2016-08-10</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/Linux/">Linux</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/08/10/epoll/">epoll</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>首先我们来定义流的概念，一个流可以是文件，socket，pipe等等可以进行I/O操作的内核对象。<br>不管是文件，还是套接字，还是管道，我们都可以把他们看作流。<br>之后我们来讨论I/O的操作，通过read，我们可以从流中读入数据；通过write，我们可以往流写入数据。现在假定一个情形，我们需要从流中读数据，但是流中还没有数据，（典型的例子为，客户端要从socket读如数据，但是服务器还没有把数据传回来），这时候该怎么办？<br>
+        
+          <p class="article-more-link">
+            <a href="/2016/08/10/epoll/#more">阅读全文</a>
+          </p>
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yanwuyang.github.io/2016/08/10/epoll/" data-id="ckqjatom00024qkl5jhwfh272" class="article-share-link">分享</a>
+      
+      
+    </footer>
+  </div>
+  
+  
+</article>
+
+
+  
     <article id="post-Java动态编程" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2016/06/05/Java动态编程/" class="article-date">
@@ -102,7 +332,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/06/05/Java动态编程/" data-id="ckqc31hk3000qtwl5usu1ftlr" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/06/05/Java动态编程/" data-id="ckqjatol0000rqkl5stcrmpif" class="article-share-link">分享</a>
       
       
     </footer>
@@ -148,7 +378,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/30/开发管理的一些建议/" data-id="ckqc31hli002ctwl5zrop9eab" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/05/30/开发管理的一些建议/" data-id="ckqjatomb002kqkl55hmqv6x8" class="article-share-link">分享</a>
       
       
     </footer>
@@ -194,7 +424,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/19/Android反编译与混淆技术完全解析/" data-id="ckqc31hj10003twl52ffcosi8" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/05/19/Android反编译与混淆技术完全解析/" data-id="ckqjatojt0001qkl516kc5ito" class="article-share-link">分享</a>
       
       
     </footer>
@@ -243,7 +473,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/17/漫谈工程师的三观/" data-id="ckqc31hlu002stwl56ttw6yhd" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/05/17/漫谈工程师的三观/" data-id="ckqjatomj002uqkl5xdas8jmq" class="article-share-link">分享</a>
       
       
     </footer>
@@ -289,7 +519,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/16/构建单页Web应用/" data-id="ckqc31hlk002etwl5izpp201f" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/05/16/构建单页Web应用/" data-id="ckqjatomd002mqkl5j6to1nk3" class="article-share-link">分享</a>
       
       
     </footer>
@@ -335,7 +565,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/16/Web应用组件化的权衡/" data-id="ckqc31hl6001utwl5djoqpzmt" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/05/16/Web应用组件化的权衡/" data-id="ckqjatoly0021qkl5lw4hsvgq" class="article-share-link">分享</a>
       
       
     </footer>
@@ -383,7 +613,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/16/框架那么多学习那个好/" data-id="ckqc31hln002itwl5q3r5tot7" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/05/16/框架那么多学习那个好/" data-id="ckqjatomi002tqkl5hb0rmhw3" class="article-share-link">分享</a>
       
       
     </footer>
@@ -430,7 +660,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/11/JavaScript面向对象编程/" data-id="ckqc31hk1000ntwl5b7hae5oz" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/05/11/JavaScript面向对象编程/" data-id="ckqjatokz000oqkl5sn6ddmay" class="article-share-link">分享</a>
       
       
     </footer>
@@ -476,7 +706,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/10/System.setOut/" data-id="ckqc31hkz001ltwl5imdtzzrs" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/05/10/System.setOut/" data-id="ckqjatolv001wqkl5bx7ijyjj" class="article-share-link">分享</a>
       
       
     </footer>
@@ -526,234 +756,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/10/Linux常见问题解决方法/" data-id="ckqc31hkq0019twl5dgxtb419" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-  
-</article>
-
-
-  
-    <article id="post-博客搭建" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2016/05/10/博客搭建/" class="article-date">
-  <time datetime="2016-05-10T11:05:33.000Z" itemprop="datePublished">2016-05-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/05/10/博客搭建/">博客搭建</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-		<!-- Table of Contents -->
-		
-        <p><strong><em>坚持写作、总结经验、分享心得、原著为上</em></strong><br>2016年5月10号基于github搭建我的第一个博客</p>
-<p>个人简历: <a href="/about/index.html">关于我</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2016/05/10/博客搭建/" data-id="ckqc31hlf0027twl5zgk5ps7t" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-  
-</article>
-
-
-  
-    <article id="post-企业体检开发框架培训" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/11/03/企业体检开发框架培训/" class="article-date">
-  <time datetime="2015-11-02T16:00:00.000Z" itemprop="datePublished">2015-11-03</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/培训文档/">培训文档</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/03/企业体检开发框架培训/">企业体检开发框架培训</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="框架构成介绍"><a href="#框架构成介绍" class="headerlink" title="框架构成介绍"></a>框架构成介绍</h2><h3 id="系统架构图"><a href="#系统架构图" class="headerlink" title="系统架构图"></a>系统架构图</h3>
-        
-          <p class="article-more-link">
-            <a href="/2015/11/03/企业体检开发框架培训/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2015/11/03/企业体检开发框架培训/" data-id="ckqc31hld0024twl53y7793ys" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-  
-</article>
-
-
-  
-    <article id="post-MySQL+Keepalived实现双机热备" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/27/MySQL+Keepalived实现双机热备/" class="article-date">
-  <time datetime="2015-07-26T16:00:00.000Z" itemprop="datePublished">2015-07-27</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/27/MySQL+Keepalived实现双机热备/">MySQL+Keepalived实现双机热备</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>MySQL的安装与节点间的同步复制在这就不在阐述，大家可以查看文档<a href="/2015/07/25/MySQL5.6.25在CentOS6.6的安装步骤/">MySQL5.6在CentOS6.6安装步骤</a>和<a href="/2015/07/26/MySQL5.6.25主从复制/">MySQL5.6.25节点复制</a></p>
-        
-          <p class="article-more-link">
-            <a href="/2015/07/27/MySQL+Keepalived实现双机热备/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2015/07/27/MySQL+Keepalived实现双机热备/" data-id="ckqc31hki0010twl5d3qivpm9" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-  
-</article>
-
-
-  
-    <article id="post-MySQL5.6.25主从复制" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/26/MySQL5.6.25主从复制/" class="article-date">
-  <time datetime="2015-07-25T16:00:00.000Z" itemprop="datePublished">2015-07-26</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/26/MySQL5.6.25主从复制/">MySQL5.6.25主从复制</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="配置主节点"><a href="#配置主节点" class="headerlink" title="配置主节点"></a>配置主节点</h3><p>配置日志和服务ID , Linux是在/etc/my.cnf window是在my.ini文件下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[mysqld]</span><br><span class="line">log-bin=mysql-bin</span><br><span class="line">server-id=1</span><br><span class="line">#binlog-do-db=testDB //需要备份的数据库名多个库以逗号分隔不写表示全部</span><br><span class="line">#log_bin_trust_function_creates=TRUE //涉及到同步函数或存储过程需要设置</span><br></pre></td></tr></table></figure>
-        
-          <p class="article-more-link">
-            <a href="/2015/07/26/MySQL5.6.25主从复制/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2015/07/26/MySQL5.6.25主从复制/" data-id="ckqc31hkj0011twl5rnakgvu3" class="article-share-link">分享</a>
-      
-      
-    </footer>
-  </div>
-  
-  
-</article>
-
-
-  
-    <article id="post-MySQL5.6.25在CentOS6.6的安装步骤" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2015/07/25/MySQL5.6.25在CentOS6.6的安装步骤/" class="article-date">
-  <time datetime="2015-07-24T16:00:00.000Z" itemprop="datePublished">2015-07-25</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/categories/MySQL/">MySQL</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/07/25/MySQL5.6.25在CentOS6.6的安装步骤/">MySQL5.6在CentOS6.6安装步骤</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>此文档主要介绍的是通过yum 在CentOS6.6安装MySQL5.6.25。注意每个MySQL的版本在不同的系统上安装步骤可能有些不同。所以不能保证按照此方法能保证其他版本安装成功。</p>
-<h3 id="下载MySQL-Yum-Repository"><a href="#下载MySQL-Yum-Repository" class="headerlink" title="下载MySQL Yum Repository"></a>下载MySQL Yum Repository</h3><p>为什么需要下载呢？注意原因是在CentOS Yum Repository还没有收入MySQL最新版本的安装库。<br>针对每个每个系统所下载的Yum Repository是不一样所以我们需要对着下载，今天说的是CentOS6.6所以我们只需要下载如下包。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">shell wget http://dev.mysql.com/get/mysql-community-release-el6-5.noarch.rpm</span><br><span class="line">其他版本对照下载</span><br><span class="line">Red Hat Enterprise Linux 7 / Oracle Linux 7</span><br><span class="line">shell wget http://dev.mysql.com/get/mysql-community-release-el7-5.noarch.rpm</span><br><span class="line">Red Hat Enterprise Linux 5 / Oracle Linux 5</span><br><span class="line">shell wget http://dev.mysql.com/get/mysql-community-release-fc22-5.noarch.rpm</span><br></pre></td></tr></table></figure></p>
-        
-          <p class="article-more-link">
-            <a href="/2015/07/25/MySQL5.6.25在CentOS6.6的安装步骤/#more">阅读全文</a>
-          </p>
-        
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yanwuyang.github.io/2015/07/25/MySQL5.6.25在CentOS6.6的安装步骤/" data-id="ckqc31hks001btwl5e39fzpu3" class="article-share-link">分享</a>
+      <a data-url="http://yanwuyang.github.io/2016/05/10/Linux常见问题解决方法/" data-id="ckqjatole001aqkl5cwgzxlwm" class="article-share-link">分享</a>
       
       
     </footer>
@@ -777,7 +780,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">分类</h3>
     <div class="widget">
-      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li></ul>
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Android/">Android</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/BSF/">BSF</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/EXE4J/">EXE4J</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Eclipse/">Eclipse</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/HTTP/">HTTP</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Hadoop/">Hadoop</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JVM/">JVM</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Java/">Java</a><span class="category-list-count">11</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript/">JavaScript</a><span class="category-list-count">10</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/MySQL/">MySQL</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Oracle/">Oracle</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Other/">Other</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Tomcat/">Tomcat</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/VMware/">VMware</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/WEB/">WEB</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/培训文档/">培训文档</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/心得体会/">心得体会</a><span class="category-list-count">8</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/操作系统/">操作系统</a><span class="category-list-count">3</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/系统集成项目管理/">系统集成项目管理</a><span class="category-list-count">12</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/虚拟化/">虚拟化</a><span class="category-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -792,7 +795,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">归档</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/04/">四月 2021</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/03/">三月 2021</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/10/">十月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">七月 2020</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">十月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/06/">六月 2017</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/12/">十二月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">十一月 2016</a><span class="archive-list-count">6</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">十月 2016</a><span class="archive-list-count">8</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/09/">九月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/08/">八月 2016</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/06/">六月 2016</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/05/">五月 2016</a><span class="archive-list-count">10</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/11/">十一月 2015</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/07/">七月 2015</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/01/">一月 2015</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/12/">十二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/10/">十月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/09/">九月 2014</a><span class="archive-list-count">2</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04/">四月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/02/">二月 2014</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/11/">十一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/10/">十月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/07/">七月 2013</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/01/">一月 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12/">十二月 2012</a><span class="archive-list-count">1</span></li></ul>
     </div>
   </div>
 
@@ -805,23 +808,23 @@
       <ul>
         
           <li>
+            <a href="/2021/04/10/JVMTI随记/">JVMTI随记</a>
+          </li>
+        
+          <li>
+            <a href="/2021/03/27/调试JVM/">调试JVM</a>
+          </li>
+        
+          <li>
             <a href="/2021/03/20/100个为什么/">100个为什么</a>
           </li>
         
           <li>
-            <a href="/2017/10/16/Java并发编程-线程饥饿死锁/">Java并发编程-线程饥饿死锁</a>
+            <a href="/2021/03/10/APIC编程/">APIC编程</a>
           </li>
         
           <li>
-            <a href="/2017/06/20/2017年上半年Java高级工程师求职面试题总结/">2017年上半年Java高级工程师求职面试题总结</a>
-          </li>
-        
-          <li>
-            <a href="/2016/12/28/WEB性能优化手段/">WEB性能优化手段</a>
-          </li>
-        
-          <li>
-            <a href="/2016/12/27/HTTP协议：不可小觑的Content-Length/">HTTP协议：不可小觑的Content-Length</a>
+            <a href="/2020/10/20/编写一个简单的操作系统/">编写一个简单的操作系统——从头开始</a>
           </li>
         
       </ul>
